@@ -1,6 +1,7 @@
 import React from 'react';
 import nimbus from './../nimbus.svg';
 import TestComponent from './testComponent'
+import TestHookComponent from './testHooksComponent'
 
 const AppHeader = () => {
   return (
@@ -18,6 +19,7 @@ const AppHeader = () => {
         Doc Principal
       </a>
       <TestComponent />
+      <TestHookComponent />
     </header>
   )
 }

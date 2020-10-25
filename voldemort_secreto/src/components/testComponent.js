@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { resetTest, runTest } from '../redux/'
+import { resetTest, runTest } from '../redux/reduxIndex'
 
 const TestComponent = (props) => {
   return (
