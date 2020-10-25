@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { resetTest, runTest } from '../redux/redux_index'
+import { resetTest, runTest } from '../redux/'
 
 const TestComponent = (props) => {
   return (
@@ -19,9 +19,9 @@ const TestComponent = (props) => {
 
 const mapStateToProps = state => {
   return {
-    state_var1: state.state_var1,
-    state_var2: state.state_var2,
-    state_var3: state.state_var3
+    state_var1: state.test.state_var1, //state.test comes from combining reducers into rootReducer
+    state_var2: state.test.state_var2,
+    state_var3: state.test.state_var3
   }
 }
 
