@@ -102,32 +102,3 @@ export const register = body => {
       })
   }
 }
-
-/*
-axios.post('/user', {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-*/
-
-/*export const fetchUsers = () => {
-  return (dispatch) => {
-    // the url should be changed for the endpoint of our beautiful API
-    dispatch(fetchUsersRequest)
-    axios.get('https://jsonplaceholder.typicode.com/todos')
-      .then(response => {
-        const users = response.data
-        dispatch(fetchUsersSucess(users))
-      })
-      .catch(error => {
-        const errorMsg = error.message
-        dispatch(fetchUsersFailure(errorMsg))
-      })
-  }
-}*/
