@@ -1,6 +1,6 @@
 import React from 'react';
 import nimbus from './../nimbus.svg';
-import TestComponent from './testComponent'
+import LoginRegisterForm from './loginRegisterForm'
 
 const AppHeader = () => {
   return (
@@ -9,15 +9,7 @@ const AppHeader = () => {
       <p>
         Bienvenido a Secret Voldemort
       </p>
-      <a
-        className="App-link"
-        href="https://drive.google.com/drive/folders/1Pr_bbW787_3N7bLAmw2CrIMbEZedu-vp"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Doc Principal
-      </a>
-      <TestComponent />
+      <LoginRegisterForm/>
     </header>
   )
 }
