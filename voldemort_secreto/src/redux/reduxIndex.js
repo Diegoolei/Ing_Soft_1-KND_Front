@@ -1,3 +1,3 @@
 
-export { setUsername, setEmail, setPassword, login, register } from './loginRegister/loginRegisterActions'
+export { setUsername, setEmail, login, register } from './session/sessionActions'
 export { changeScreen } from './componentController/componentControllerActions'

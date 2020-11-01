@@ -2,14 +2,21 @@ import axios from 'axios'
 import { 
   SET_USERNAME,
   SET_EMAIL,
-  SET_PASSWORD,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-} from './loginRegisterTypes'
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE
+} from './sessionTypes'
+import {
+  BASE_URL, API_ENDPOINT_LOGIN, API_ENDPOINT_REGISTER,
+  API_IN_LOGIN_EMAIL, API_IN_LOGIN_PASSWORD, API_IN_REGISTER_EMAIL,
+  API_IN_REGISTER_PASSWORD, API_IN_REGISTER_USERNAME
+} from '../API_Types'
 
 export const setUsername = username => {
   return {
@@ -18,17 +25,10 @@ export const setUsername = username => {
   }
 }
 
-export const setEmail = email => {
+export const setEmail = emailobj => {
   return {
     type : SET_EMAIL,
-    payload : email
-  }
-}
-
-export const setPassword = password => {
-  return {
-    type : SET_PASSWORD,
-    payload : password
+    payload : emailobj
   }
 }
 
@@ -72,10 +72,35 @@ export const registerFailure = error => {
   }
 }
 
-export const login = body => {
+export const logoutRequest = () => {
+  return {
+    type: LOGOUT_REQUEST
+  }
+}
+
+export const logoutSuccess = msg => {
+  return {
+    type: LOGOUT_SUCCESS,
+    payload: msg
+  }
+}
+
+export const logoutFailure = error => {
+  return {
+    type: LOGOUT_FAILURE,
+    payload: error
+  }
+}
+
+export const login = (email, password) => {
+  const body = {
+    [API_IN_LOGIN_EMAIL]: email,
+    [API_IN_LOGIN_PASSWORD] : password
+  }
+  console.log("Sending POST to"+BASE_URL+API_ENDPOINT_LOGIN+" with body = " + JSON.stringify(body, null, 2))
   return (dispatch) => {
     dispatch(loginRequest)
-    axios.post ('https://jsonplaceholder.typicode.com/todos', body)
+    axios.post (BASE_URL+API_ENDPOINT_LOGIN, body)
       .then(response => {
         const authToken = response.data
         dispatch(loginSuccess(authToken))
@@ -87,11 +112,16 @@ export const login = body => {
   }
 }
 
-export const register = body => {
+export const register = (email, username, password) => {
+  const body = {
+    [API_IN_REGISTER_EMAIL]: email,
+    [API_IN_REGISTER_USERNAME] : username,
+    [API_IN_REGISTER_PASSWORD] : password
+  }
+  console.log("Sending POST to "+BASE_URL+API_ENDPOINT_REGISTER+" with body = " + JSON.stringify(body, null, 2))
   return (dispatch) => {
     dispatch(registerRequest)
-    //  endpoint: /user/
-    axios.post ('https://jsonplaceholder.typicode.com/todos', body)
+    axios.post (BASE_URL+API_ENDPOINT_REGISTER, body)
       .then(response => {
         const authToken = response.data
         dispatch(registerSuccess(authToken))

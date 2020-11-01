@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import loginRegisterReducer from './loginRegister/loginRegisterReducer'
+import sessionReducer from './session/sessionReducer'
 import componentControllerReducer from './componentController/componentControllerReducer'
 
 const rootReducer = combineReducers ({
   controller : componentControllerReducer,
-  loginRegister : loginRegisterReducer
+  session : sessionReducer
 })
 
 export default rootReducer
