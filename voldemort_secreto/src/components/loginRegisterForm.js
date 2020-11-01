@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUsername, setEmail, setPassword, login, register } from '../redux/loginRegister/loginRegisterActions'
+import nimbus from './../nimbus.svg';
 
 function LoginForm () {
   const [usr, setUsr] = useState('')
@@ -131,7 +132,16 @@ function LoginForm () {
       </div>
     )
   }
-  return isShowingLoginForm ? loginForm() : registerForm()  
+
+  return (
+    <header className="App-header">
+      <img src={nimbus} className="App-logo" alt="logo" />
+      <p>
+        Bienvenido a Secret Voldemort
+      </p>
+      {isShowingLoginForm ? loginForm() : registerForm()}
+    </header>
+  )
 }
 
 export default LoginForm
