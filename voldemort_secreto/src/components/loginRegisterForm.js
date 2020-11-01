@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setUsername, setEmail, setPassword, login, register } from '../redux/loginRegister/loginRegisterActions'
 import nimbus from './../nimbus.svg';
+import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { 
+  setUsername, setEmail, setPassword, 
+  login, register, changeScreen } from '../redux/reduxIndex'
 
 function LoginForm () {
   const [usr, setUsr] = useState('')
@@ -110,6 +113,7 @@ function LoginForm () {
         <br/><button name="Login" onClick={handleButton}>Login</button>
         <br/><label>{loading ? 'Loading' : stateMsg}</label>
         <br/><button onClick={() => setloginFrm(false)}>Register</button> 
+        <br/><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Mock Login</button> 
       </div>
     )
   }

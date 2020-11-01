@@ -5,6 +5,7 @@ import {
   JOIN_LOBBY_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 import LoginRegisterForm from './loginRegisterForm'
+import MainMenu from './mainMenu'
 
 function ComponentController() {
   const currentScreen = useSelector(state => state.controller.screen)
@@ -12,6 +13,7 @@ function ComponentController() {
   const getComponent = () => {
     switch (currentScreen) {
       case LOGIN_REGISTER_COMPONENT: return <LoginRegisterForm/>
+      case MAIN_MENU_COMPONENT: return <MainMenu/>
     
       default: return (
         <div>
