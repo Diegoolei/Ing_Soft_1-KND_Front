@@ -1,19 +1,21 @@
-import { 
+import {
   SET_USERNAME,
   SET_EMAIL,
-  SET_PASSWORD,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-} from './loginRegisterTypes'
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE
+} from './sessionTypes'
 
 const initialState = {
   username: '',
   email: '',
-  password: '',
+  isvalidEmail: false,
   loggedin: false,
   loading: false,
   authToken: '',
@@ -25,15 +27,15 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN_REQUEST: return {
       ...state,
       loading: true,
-      authToken : '',
+      authToken: '',
       error: ''
     }
 
     case LOGIN_SUCCESS: return {
       ...state,
-      loggedin : true,
+      loggedin: true,
       loading: false,
-      authToken : action.payload,
+      authToken: action.payload,
       error: ''
     }
 
@@ -54,7 +56,7 @@ const loginReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS: return {
       ...state,
       loading: false,
-      authToken : action.payload,
+      authToken: action.payload,
       error: ''
     }
 
@@ -65,6 +67,19 @@ const loginReducer = (state = initialState, action) => {
       error: action.payload
     }
 
+    case LOGOUT_REQUEST: return {
+      ...state,
+      loading: true,
+    }
+
+    case LOGOUT_SUCCESS: return initialState
+
+    case LOGOUT_FAILURE: return {
+      ...state,
+      loading: false,
+      error: action.payload
+    }
+
     case SET_USERNAME: return {
       ...state,
       username: action.payload
@@ -72,12 +87,8 @@ const loginReducer = (state = initialState, action) => {
 
     case SET_EMAIL: return {
       ...state,
-      email: action.payload
-    }
-
-    case SET_PASSWORD: return {
-      ...state,
-      password: action.payload
+      email: action.payload.email,
+      isvalidEmail: action.payload.validity
     }
 
     default: return state

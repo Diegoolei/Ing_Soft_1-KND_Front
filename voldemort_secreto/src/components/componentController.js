@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import {
-  LOGIN_REGISTER_COMPONENT, MAIN_MENU_COMPONENT, CREATE_LOBBY_COMPONENT,
-  JOIN_LOBBY_COMPONENT
+  LOGIN_COMPONENT, REGISTER_COMPONENT, MAIN_MENU_COMPONENT, CREATE_LOBBY_COMPONENT,
+  JOIN_LOBBY_COMPONENT,
 } from '../redux/componentController/componentControllerTypes'
-import LoginRegisterForm from './loginRegisterForm'
+import LoginForm from './loginForm'
+import RegisterForm from './registerForm'
 import MainMenu from './mainMenu'
 
 function ComponentController() {
@@ -12,12 +13,15 @@ function ComponentController() {
 
   const getComponent = () => {
     switch (currentScreen) {
-      case LOGIN_REGISTER_COMPONENT: return <LoginRegisterForm/>
+      case LOGIN_COMPONENT: return <LoginForm/>
+      case REGISTER_COMPONENT: return <RegisterForm/>
       case MAIN_MENU_COMPONENT: return <MainMenu/>
+      case CREATE_LOBBY_COMPONENT: return <div>Create Lobby Component not made yet</div>
+      case JOIN_LOBBY_COMPONENT: return <div>Join Lobby Component not made yet</div>
     
       default: return (
         <div>
-          EMPTY COMPONENT LOADED
+          ERROR DEFAULT CASE COMPONENT LOADED
         </div>
       )
     }
