@@ -16,5 +16,5 @@ export const API_IN_REGISTER_PASSWORD = 'userIn_password'
 //export const API_IN_REGISTER_PHOTO = 'userIn_photo'
 
   //LOGIN BODY:
-export const API_IN_LOGIN_EMAIL = 'logIn_email'
-export const API_IN_LOGIN_PASSWORD = 'logIn_password'
+export const API_IN_LOGIN_EMAIL = 'username'
+export const API_IN_LOGIN_PASSWORD = 'password'
