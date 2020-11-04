@@ -112,10 +112,12 @@ export const login = (email, password) => {
 }
 
 export const register = (email, username, password) => {
-  var body = new FormData()
-  body.append([API_IN_REGISTER_EMAIL], email)
-  body.append([API_IN_REGISTER_USERNAME], username)
-  body.append([API_IN_REGISTER_PASSWORD], password)
+  const body = {
+    [API_IN_REGISTER_EMAIL]: email,
+    [API_IN_REGISTER_USERNAME]: username,
+    [API_IN_REGISTER_PASSWORD]: password
+  }
+
   console.log("Sending POST to "+BASE_URL+API_ENDPOINT_REGISTER+" with body = " + JSON.stringify(body, null, 2))
   return (dispatch) => {
     dispatch(registerRequest)

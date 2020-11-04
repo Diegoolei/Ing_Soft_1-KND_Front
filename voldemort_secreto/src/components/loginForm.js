@@ -14,6 +14,10 @@ function LoginForm () {
   const [validPassword, setValidPassword] = useState(false)
   const [validityMsg, setValidityMsg] = useState('')
 
+  if (sessionState.loggedin) {
+    dispatch(changeScreen(MAIN_MENU_COMPONENT))
+  }
+
   function handleButton () {
     if (!validEmail) {
       setValidityMsg('Invalid email address')
@@ -62,7 +66,6 @@ function LoginForm () {
         <br/><button onClick={handleButton}>Login</button>
         <br/><label>{sessionState.loading ? 'Loading' : validityMsg}</label>
         <br/><button onClick={switchToRegister}>Register Instead</button> 
-        <br/><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Mock Login</button> 
       </div>
     )
   }
