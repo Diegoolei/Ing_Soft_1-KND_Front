@@ -15,16 +15,17 @@ function TestSocket() {
   }
 
   const askButton = () => {
-    axios.post("http://127.0.0.1:8000/ws2/")
+    axios.post("http://127.0.0.1:8000/wsmsg/1")
   }
 
 
   return (
     <div>
       <h1>Socket Test</h1>
-      <button onClick={openws}>Start Socket</button>
-      <button onClick={closews}>Disconnect</button>
-      <button onClick={() => dispatch(wsSendMessage("Message Front to back"))}>Ask for Number</button>
+      <button onClick={openws}>Open Socket</button>
+      <button onClick={closews}>Open Socket</button>
+      <br/><button onClick={askButton}>Trigger other Endpoint</button>
+      <br/><button onClick={() => dispatch(wsSendMessage("Chat message from Front through websocket"))}>Send Chat Msg</button>
     </div>
   )
 }

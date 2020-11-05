@@ -19,7 +19,20 @@ const socketMiddleware = () => {
   const onMessage = store => (event) => {
     //console.log("Received:"+event.data)
     //const payload = JSON.parse(event.data);
-    const payload = event.data
+    let payload = null
+    try {
+      const msg = JSON.parse(event.data);
+      payload = {
+        msgType: 'JSON',
+        msgContent: msg
+      }
+    } catch (error) {
+      const msg = event.data;
+      payload = {
+        msgType: 'string',
+        msgContent: msg
+      }
+    }
     store.dispatch(wsReceiveMessage(payload))
     console.log('receiving server message');
     console.log('showing::'+JSON.stringify(payload))
@@ -76,12 +89,10 @@ const socketMiddleware = () => {
         break;
 
       case WS_SEND_MESSAGE:
+        console.log("Sending message: "+action.payload)
         socket.send(action.payload)
         break;
-      // case 'NEW_MESSAGE':
-      //   console.log('sending a message', action.msg);
-      //   socket.send(JSON.stringify({ command: 'NEW_MESSAGE', message: action.msg }));
-      //   break;
+
       default:
         return next(action);
     }
