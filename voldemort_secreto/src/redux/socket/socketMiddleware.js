@@ -2,7 +2,7 @@ import {
   wsConnectSuccess, wsDisconnectSuccess, wsReceiveMessage,
 
 } from './socketActions'
-import { WS_OPEN_SOCKET, WS_CLOSE_SOCKET } from './socketTypes'
+import { WS_OPEN_SOCKET, WS_CLOSE_SOCKET, WS_SEND_MESSAGE } from './socketTypes'
 
 const socketMiddleware = () => {
   let socket = null;
@@ -17,7 +17,9 @@ const socketMiddleware = () => {
   };
 
   const onMessage = store => (event) => {
-    const payload = JSON.parse(event.data);
+    //console.log("Received:"+event.data)
+    //const payload = JSON.parse(event.data);
+    const payload = event.data
     store.dispatch(wsReceiveMessage(payload))
     console.log('receiving server message');
     console.log('showing::'+JSON.stringify(payload))
@@ -71,6 +73,10 @@ const socketMiddleware = () => {
         }
         socket = null;
         console.log('websocket closed');
+        break;
+
+      case WS_SEND_MESSAGE:
+        socket.send(action.payload)
         break;
       // case 'NEW_MESSAGE':
       //   console.log('sending a message', action.msg);

@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { wsConnect, wsDisconnect } from '../redux/socket/socketActions'
+import { wsConnect, wsDisconnect, wsSendMessage } from '../redux/socket/socketActions'
 import axios from 'axios'
 
 function TestSocket() {
   const dispatch = useDispatch()
 
   const openws = () => {
-    dispatch(wsConnect("ws://127.0.0.1:8000/ws2/"))
+    dispatch(wsConnect("ws://127.0.0.1:8000/wstest/"))
   }
 
   const closews = () => {
-    dispatch(wsDisconnect)
+    dispatch(wsDisconnect())
   }
 
   const askButton = () => {
-    axios.post("http://127.0.0.1:8000/ws3/4")
+    axios.post("http://127.0.0.1:8000/ws2/")
   }
 
 
@@ -24,7 +24,7 @@ function TestSocket() {
       <h1>Socket Test</h1>
       <button onClick={openws}>Start Socket</button>
       <button onClick={closews}>Disconnect</button>
-      <button onClick={askButton}>Ask for Number</button>
+      <button onClick={() => dispatch(wsSendMessage("Message Front to back"))}>Ask for Number</button>
     </div>
   )
 }
