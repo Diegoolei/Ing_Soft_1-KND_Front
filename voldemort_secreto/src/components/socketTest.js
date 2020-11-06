@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { wsConnect, wsDisconnect, wsSendMessage } from '../redux/socket/socketActions'
+import { wsConnect, wsDisconnect, wsSendMessage, wsConsumeMessage } from '../redux/reduxIndex'
 import axios from 'axios'
 
 function TestSocket() {
   const dispatch = useDispatch()
+  const unreadMsg = useSelector(state => state.socket.messages)
+
+  if (unreadMsg.length !== 0) {
+    const jsonmsg = unreadMsg[0]
+    const content = jsonmsg.content;
+    if (jsonmsg.type === 'JSON') {
+      console.log("Consuming Message:", JSON.stringify(content))
+    } else {
+      console.log("Consuming Message:", content)
+    }
+    dispatch(wsConsumeMessage())
+  }
 
   const openws = () => {
-    dispatch(wsConnect("ws://127.0.0.1:8000/wstest/"))
+    dispatch(wsConnect("ws://127.0.0.1:8000/ws/1"))
   }
 
   const closews = () => {
@@ -18,50 +30,15 @@ function TestSocket() {
     axios.post("http://127.0.0.1:8000/wsmsg/1")
   }
 
-
   return (
     <div>
       <h1>Socket Test</h1>
       <button onClick={openws}>Open Socket</button>
-      <button onClick={closews}>Open Socket</button>
-      <br/><button onClick={askButton}>Trigger other Endpoint</button>
+      <button onClick={closews}>Close Socket</button>
+      <br/><button onClick={askButton}>Trigger Different Endpoint</button>
       <br/><button onClick={() => dispatch(wsSendMessage("Chat message from Front through websocket"))}>Send Chat Msg</button>
     </div>
   )
 }
 
 export default TestSocket
-
-// import React, { useState } from 'react'
-
-// function TestSocket() {
-//   var stuff = false
-//   if (!stuff) {
-//     var ws = new WebSocket("ws://127.0.0.1:8000/ws/")
-//     stuff = true
-//   }
-//   ws.onmessage = function (event) {
-//     var content = document.createTextNode(event.data)
-//     console.log(content)
-//     console.log("Msg:", event.data)
-//     ws.send('Hello Server!');
-//   };
-
-//   ws.addEventListener('open', function (event) {
-//     console.log("Event: open!")
-//     //ws.send('Hello Server!');
-//   });
-
-//   // ws.addEventListener('message', function (event) {
-//   //   console.log('Message from server', event.data);
-//   //   //ws.send("Confirmed")
-//   // });
-
-//   return (
-//     <div>
-//       <button onClick={() => ws.send("I clicked on the browser")}>Send Socket Msg</button>
-//     </div>
-//   )
-// }
-
-// export default TestSocket

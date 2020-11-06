@@ -1,14 +1,12 @@
 import {
-  WS_CONNECT_REQUEST, WS_CONNECT_SUCCESS, WS_CONNECT_FAILURE,
-  WS_DISCONNECT_REQUEST, WS_DISCONNECT_SUCCESS, WS_DISCONNECT_FAILURE,
-  WS_OPEN_SOCKET, WS_CLOSE_SOCKET, WS_SEND_MESSAGE, WS_RECEIVE_MESSAGE
+  WS_CONNECT_SUCCESS,
+  WS_DISCONNECT_SUCCESS,
+  WS_OPEN_SOCKET,
+  WS_CLOSE_SOCKET,
+  WS_SEND_MESSAGE,
+  WS_RECEIVE_MESSAGE,
+  WS_CONSUME_MESSAGE
 } from './socketTypes'
-
-// const wsConnect      = host => ({ type: 'WS_CONNECT', host });
-// const wsConnecting   = host => ({ type: 'WS_CONNECTING', host });
-// const wsConnected    = host => ({ type: 'WS_CONNECTED', host });
-// const wsDisconnect   = host => ({ type: 'WS_DISCONNECT', host });
-// const wsDisconnected = host => ({ type: 'WS_DISCONNECTED', host });
 
 export const wsConnect = host => {
   return {
@@ -48,5 +46,11 @@ export const wsReceiveMessage = msg => {
   return {
     type: WS_RECEIVE_MESSAGE,
     payload : msg
+  }
+}
+
+export const wsConsumeMessage = () => {
+  return {
+    type: WS_CONSUME_MESSAGE
   }
 }

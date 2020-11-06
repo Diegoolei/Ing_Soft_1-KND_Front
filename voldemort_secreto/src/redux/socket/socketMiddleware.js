@@ -1,8 +1,14 @@
 import { 
-  wsConnectSuccess, wsDisconnectSuccess, wsReceiveMessage,
-
+  wsConnectSuccess,
+  wsDisconnectSuccess,
+  wsReceiveMessage
 } from './socketActions'
-import { WS_OPEN_SOCKET, WS_CLOSE_SOCKET, WS_SEND_MESSAGE } from './socketTypes'
+
+import { 
+  WS_OPEN_SOCKET, 
+  WS_CLOSE_SOCKET,
+  WS_SEND_MESSAGE,
+} from './socketTypes'
 
 const socketMiddleware = () => {
   let socket = null;
@@ -17,60 +23,31 @@ const socketMiddleware = () => {
   };
 
   const onMessage = store => (event) => {
-    //console.log("Received:"+event.data)
-    //const payload = JSON.parse(event.data);
     let payload = null
     try {
       const msg = JSON.parse(event.data);
       payload = {
-        msgType: 'JSON',
-        msgContent: msg
+        type: 'JSON',
+        content: msg
       }
     } catch (error) {
       const msg = event.data;
       payload = {
-        msgType: 'string',
-        msgContent: msg
+        type: 'STRING',
+        content: msg
       }
     }
+    console.log('Server sent: "'+JSON.stringify(payload.content)+'"')
     store.dispatch(wsReceiveMessage(payload))
-    console.log('receiving server message');
-    console.log('showing::'+JSON.stringify(payload))
-
-    // switch (payload.type) {
-    //   case 'update_game_players':
-    //     store.dispatch(updateGame(payload.game, payload.current_player));
-    //     break;
-    //   default:
-    //     break;
-    // }
-  };
-
-  // the middleware part of this function
-  // Do something in here, when each action is dispatched
-  /*
-  // The Structure of the middleware is slightly obscured by the arrow functions. This is another way of writing the same thing
-  function socketMiddleware(storeAPI) {
-    return function wrapDispatch(next) {
-      return function handleAction(action) {
-        console.log("Socket middleware running! I got the "+action.type+"s action")
-        // Do something in here, when each action is dispatched
-        // Do anything here: pass the action onwards with next(action),
-        // or restart the pipeline with storeAPI.dispatch(action)
-        // Can also use storeAPI.getState() here
-        return next(action)
-      }
-    }
   }
-  */
+
+  // The middleware part of this function
   return store => next => action => {
     switch (action.type) {
       case WS_OPEN_SOCKET:
-        console.log("WS_OPEN SOCKET ACTION DISPATCHED")
         if (socket !== null) {
           socket.close();
         }
-
         // connect to the remote host
         socket = new WebSocket(action.payload);
 
@@ -96,7 +73,7 @@ const socketMiddleware = () => {
       default:
         return next(action);
     }
-  };
-};
+  }
+}
 
 export default socketMiddleware();
