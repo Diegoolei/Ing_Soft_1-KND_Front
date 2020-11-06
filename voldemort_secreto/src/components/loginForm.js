@@ -11,7 +11,6 @@ function LoginForm () {
   const [privEmail, setPrivEmail] = useState(sessionState.email)
   const [privPassword, setPrivPassword] = useState('')
   const [validEmail, setValidEmail] = useState(sessionState.isvalidEmail)
-  const [validPassword, setValidPassword] = useState(false)
   const [validityMsg, setValidityMsg] = useState('')
 
   if (sessionState.loggedin) {
@@ -21,8 +20,8 @@ function LoginForm () {
   function handleButton () {
     if (!validEmail) {
       setValidityMsg('Invalid email address')
-    } else if (!validPassword) {
-      setValidityMsg('Invalid password. Should be between 8 and 32 characters')
+    } else if (privPassword.length === 0){
+      setValidityMsg('Input Password')
     } else {
       setValidityMsg('')
       dispatch(setEmail({email: privEmail, validity: true}))
@@ -40,7 +39,7 @@ function LoginForm () {
 
       case "password":
         setPrivPassword(value)
-        setValidPassword(validity.valid)
+        
         break;
     
       default:
