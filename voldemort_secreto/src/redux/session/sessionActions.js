@@ -10,13 +10,16 @@ import {
   REGISTER_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  RESET_RESPONSE
 } from './sessionTypes'
 import {
   BASE_URL, API_ENDPOINT_LOGIN, API_ENDPOINT_REGISTER,
   API_IN_LOGIN_EMAIL, API_IN_LOGIN_PASSWORD, API_IN_REGISTER_EMAIL,
   API_IN_REGISTER_PASSWORD, API_IN_REGISTER_USERNAME
 } from '../API_Types'
+import { changeScreen } from '../componentController/componentControllerActions'
+import { LOGIN_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
 
 export const setUsername = username => {
   return {
@@ -58,10 +61,10 @@ export const registerRequest = () => {
   }
 }
 
-export const registerSuccess = authToken => {
+export const registerSuccess = msg => {
   return {
     type : REGISTER_SUCCESS,
-    payload : authToken
+    payload : msg
   }
 }
 
@@ -92,6 +95,13 @@ export const logoutFailure = error => {
   }
 }
 
+export const resetResponse = (response = '') => {
+  return {
+    type: RESET_RESPONSE,
+    payload: response
+  }
+}
+
 export const login = (email, password) => {
   var body = new FormData()
   body.append([API_IN_LOGIN_EMAIL], email)
@@ -103,9 +113,13 @@ export const login = (email, password) => {
       .then(response => {
         const authToken = response.data
         dispatch(loginSuccess(authToken))
+        dispatch(changeScreen(MAIN_MENU_COMPONENT))
       })
       .catch(error => {
-        const errorMsg = error.message
+        let errorMsg = "Something went wrong"
+        if (error.message === "Request failed with status code 401") {
+          errorMsg = "Bad Email or password"
+        }
         dispatch(loginFailure(errorMsg))
       })
   }
@@ -118,16 +132,23 @@ export const register = (email, username, password) => {
     [API_IN_REGISTER_PASSWORD]: password
   }
 
-  console.log("Sending POST to "+BASE_URL+API_ENDPOINT_REGISTER+" with body = " + JSON.stringify(body, null, 2))
+  console.log("Sending POST to: '"+BASE_URL+API_ENDPOINT_REGISTER+"' with body = " + JSON.stringify(body, null, 2))
   return (dispatch) => {
     dispatch(registerRequest)
     axios.post (BASE_URL+API_ENDPOINT_REGISTER, body)
       .then(response => {
-        const authToken = response.data
-        dispatch(registerSuccess(authToken))
+        const detail = response.data.userOut_operation_result
+        dispatch(registerSuccess(detail))
+        dispatch(changeScreen(LOGIN_COMPONENT))
+        dispatch(resetResponse('Succesfully Created!'))
       })
       .catch(error => {
-        const errorMsg = error.message
+        let errorMsg
+        try {
+          errorMsg = error.response.data.detail
+          } catch (er) {
+            errorMsg = "Something went wrong"
+          }
         dispatch(registerFailure(errorMsg))
       })
   }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import nimbus from './../nimbus.svg';
-import { MAIN_MENU_COMPONENT, REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
-import { setEmail, login, changeScreen } from '../redux/reduxIndex'
+import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
 
 function LoginForm () {
   const sessionState = useSelector(state => state.session)
@@ -13,11 +13,8 @@ function LoginForm () {
   const [validEmail, setValidEmail] = useState(sessionState.isvalidEmail)
   const [validityMsg, setValidityMsg] = useState('')
 
-  if (sessionState.loggedin) {
-    dispatch(changeScreen(MAIN_MENU_COMPONENT))
-  }
-
   function handleButton () {
+    dispatch(resetResponse())
     if (!validEmail) {
       setValidityMsg('Invalid email address')
     } else if (privPassword.length === 0){
@@ -48,6 +45,7 @@ function LoginForm () {
   }
   
   const switchToRegister = () => {
+    dispatch(resetResponse())
     dispatch(setEmail({email: privEmail, validity: validEmail}))
     dispatch(changeScreen(REGISTER_COMPONENT))
   }
@@ -63,7 +61,7 @@ function LoginForm () {
         <input name='password' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input>
         
         <br/><button onClick={handleButton}>Login</button>
-        <br/><label>{sessionState.loading ? 'Loading' : validityMsg}</label>
+        <br/><label>{sessionState.response + " " + sessionState.error + " " + validityMsg}</label>
         <br/><button onClick={switchToRegister}>Register Instead</button> 
       </div>
     )

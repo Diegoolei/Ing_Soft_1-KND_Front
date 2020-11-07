@@ -9,7 +9,8 @@ import {
   REGISTER_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  RESET_RESPONSE
 } from './sessionTypes'
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   loggedin: false,
   loading: false,
   authToken: '',
+  response: '',
   error: ''
 }
 
@@ -28,6 +30,7 @@ const loginReducer = (state = initialState, action) => {
       ...state,
       loading: true,
       authToken: '',
+      response: '',
       error: ''
     }
 
@@ -36,6 +39,7 @@ const loginReducer = (state = initialState, action) => {
       loggedin: true,
       loading: false,
       authToken: action.payload,
+      response: 'You are loggued in',
       error: ''
     }
 
@@ -50,13 +54,15 @@ const loginReducer = (state = initialState, action) => {
       ...state,
       loading: true,
       authToken: '',
+      response: '',
       error: ''
     }
 
     case REGISTER_SUCCESS: return {
       ...state,
       loading: false,
-      authToken: action.payload,
+      authToken: '',
+      response: action.payload,
       error: ''
     }
 
@@ -64,6 +70,7 @@ const loginReducer = (state = initialState, action) => {
       ...state,
       loading: false,
       authToken: '',
+      response: '',
       error: action.payload
     }
 
@@ -89,6 +96,11 @@ const loginReducer = (state = initialState, action) => {
       ...state,
       email: action.payload.email,
       isvalidEmail: action.payload.validity
+    }
+
+    case RESET_RESPONSE: return {
+      ...state,
+      response: action.payload
     }
 
     default: return state
