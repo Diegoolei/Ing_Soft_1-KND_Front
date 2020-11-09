@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutSuccess, changeScreen } from '../redux/reduxIndex'
-import { LOGIN_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { LOGIN_COMPONENT, ENDPOINT_SOCKET_TEST_COMPONENT } from '../redux/componentController/componentControllerTypes'
 
 function MainMenu () {
   const dispatch = useDispatch()
@@ -19,6 +19,7 @@ function MainMenu () {
       <br/><button >Join Lobby</button>
       <br/><button >View History</button>
       <br/><button >Settings</button>
+      <br/><button onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
       <br/><button onClick={logout}>Log out</button>
     </div>
   )
