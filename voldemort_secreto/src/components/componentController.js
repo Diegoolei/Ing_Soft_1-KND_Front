@@ -2,12 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import {
   LOGIN_COMPONENT, REGISTER_COMPONENT, MAIN_MENU_COMPONENT, CREATE_LOBBY_COMPONENT,
-  JOIN_LOBBY_COMPONENT, END_GAME_MSG_COMPONENT
+  JOIN_LOBBY_COMPONENT, END_GAME_MSG_COMPONENT, ENDPOINT_SOCKET_TEST_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 import LoginForm from './loginForm'
 import RegisterForm from './registerForm'
 import MainMenu from './mainMenu'
 import EndGameMsg from './endGameMsg'
+import EndpointSocketTest from './endpointSocketTest'
 
 function ComponentController() {
   const currentScreen = useSelector(state => state.controller.screen)
@@ -20,6 +21,7 @@ function ComponentController() {
       case CREATE_LOBBY_COMPONENT: return <div>Create Lobby Component not made yet</div>
       case JOIN_LOBBY_COMPONENT: return <div>Join Lobby Component not made yet</div>
       case END_GAME_MSG_COMPONENT: return <EndGameMsg/>
+      case ENDPOINT_SOCKET_TEST_COMPONENT: return <EndpointSocketTest/>
     
       default: return (
         <div>
