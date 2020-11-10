@@ -112,9 +112,9 @@ return (
     
     </p><p>
     <button onClick={ChangePassword}>Change Password</button>
-        <input placeholder='Current Password' name='setcurrentpassword' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-        <input placeholder='New password' name='setnewpassword' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
-        <input placeholder='Repeat New password' name='setnewpassword2' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
+        <input placeholder='Current Password' name='setcurrentpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+        <input placeholder='New password' name='setnewpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
+        <input placeholder='Repeat New password' name='setnewpassword2' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
         <br/><label>{validityMsg}</label>
     </p>
     <br/><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
