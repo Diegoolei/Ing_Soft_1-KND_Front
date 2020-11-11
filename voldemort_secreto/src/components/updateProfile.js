@@ -19,7 +19,7 @@ function UpdateUserProfile() {
     function ChangeUsername() {
         const uri = "http://127.0.0.1:8000/users/change_profile/"
         console.log("Sending ChangeUsername request with usern_id:", userId)
-        const body = {"user_id": userId, "changeProfile_username": newUsername, "changeProfile_photo": newPhoto}
+        const body = {"user_id": userId, "username": newUsername, "photo": newPhoto}
         axios.patch(
         uri, body,
         { headers: {
@@ -47,7 +47,7 @@ function UpdateUserProfile() {
             setValidityMsg('')
             const uri = "http://127.0.0.1:8000/users/change_profile/change_password/"
             console.log("Sending ChangeUsername request with usern_id:", userId)
-            const body = {"user_id": userId, "changePassword_current_password": currentPassword, "changePassword_new_password": newPassword, "changePassword_new_password2": newPassword2}
+            const body = {"user_id": userId, "current_password": currentPassword, "new_password": newPassword}
             axios.patch(
             uri, body,
             { headers: {
