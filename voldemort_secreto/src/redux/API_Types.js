@@ -7,6 +7,7 @@ export const BASE_URL = 'http://127.0.0.1:8000'
 //ENDPOINTS
 export const API_ENDPOINT_REGISTER = '/users/'
 export const API_ENDPOINT_LOGIN = '/login'
+export const API_ENDPOINT_PROFILE_INFO = '/users/'
 
 //FORMS
   // REGISTER BODY:

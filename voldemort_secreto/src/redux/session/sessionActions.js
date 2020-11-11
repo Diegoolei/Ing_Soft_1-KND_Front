@@ -14,7 +14,7 @@ import {
   RESET_RESPONSE
 } from './sessionTypes'
 import {
-  BASE_URL, API_ENDPOINT_LOGIN, API_ENDPOINT_REGISTER,
+  BASE_URL, API_ENDPOINT_LOGIN, API_ENDPOINT_REGISTER, API_ENDPOINT_PROFILE_INFO,
   API_IN_LOGIN_EMAIL, API_IN_LOGIN_PASSWORD, API_IN_REGISTER_EMAIL,
   API_IN_REGISTER_PASSWORD, API_IN_REGISTER_USERNAME
 } from '../API_Types'
@@ -108,12 +108,12 @@ export const login = (email, password) => {
   body.append([API_IN_LOGIN_PASSWORD], password)
   console.log("Sending POST to"+BASE_URL+API_ENDPOINT_LOGIN+" with body = " + JSON.stringify(body, null, 2))
   return (dispatch) => {
+    let token = ''
     dispatch(loginRequest)
     axios.post (BASE_URL+API_ENDPOINT_LOGIN, body)
       .then(response => {
-        const authToken = response.data
-        dispatch(loginSuccess(authToken))
-        dispatch(changeScreen(MAIN_MENU_COMPONENT))
+        token = response.data
+        dispatch(loginSuccess(token))
       })
       .catch(error => {
         let errorMsg = "Something went wrong"
@@ -122,6 +122,17 @@ export const login = (email, password) => {
         }
         dispatch(loginFailure(errorMsg))
       })
+
+    axios.get(BASE_URL+API_ENDPOINT_PROFILE_INFO,
+      { 
+        headers: { 'Authorization': token.token_type + " " + token.access_token } 
+    }).then(response => {
+      const data = response.data
+      console.log(">>Response::", data)
+      dispatch(setUsername(data))
+    })
+
+    dispatch(changeScreen(MAIN_MENU_COMPONENT))
   }
 }
 

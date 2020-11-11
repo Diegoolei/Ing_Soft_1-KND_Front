@@ -1,7 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutSuccess, changeScreen } from '../redux/reduxIndex'
-import { LOGIN_COMPONENT, ENDPOINT_SOCKET_TEST_COMPONENT, UPDATE_PROFILE_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { 
+  LOGIN_COMPONENT,
+  ENDPOINT_SOCKET_TEST_COMPONENT,
+  UPDATE_PROFILE_COMPONENT,
+  CREATE_LOBBY_COMPONENT
+} from '../redux/componentController/componentControllerTypes'
 
 function MainMenu () {
   const dispatch = useDispatch()
@@ -18,7 +23,7 @@ function MainMenu () {
   return (
     <div>
       <h1>MAIN MENU</h1>
-      <br/><button >Create Lobby</button>
+      <br/><button onClick={() => dispatch(changeScreen(CREATE_LOBBY_COMPONENT))}>Create Lobby</button>
       <br/><button >Join Lobby</button>
       <br/><button onClick={data}>Update User Data</button>
       <br/><button >View History</button>

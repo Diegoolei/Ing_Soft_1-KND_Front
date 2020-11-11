@@ -102,6 +102,11 @@ const loginReducer = (state = initialState, action) => {
       ...state,
       response: action.payload
     }
+    
+    case SET_USERNAME: return {
+      ...state,
+      username: action.payload
+    }
 
     default: return state
   }
