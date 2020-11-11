@@ -5,7 +5,8 @@ import {
   LOGIN_COMPONENT,
   ENDPOINT_SOCKET_TEST_COMPONENT,
   UPDATE_PROFILE_COMPONENT,
-  CREATE_LOBBY_COMPONENT
+  CREATE_LOBBY_COMPONENT,
+  JOIN_LOBBY_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 
 function MainMenu () {
@@ -24,7 +25,7 @@ function MainMenu () {
     <div>
       <h1>MAIN MENU</h1>
       <br/><button onClick={() => dispatch(changeScreen(CREATE_LOBBY_COMPONENT))}>Create Lobby</button>
-      <br/><button >Join Lobby</button>
+      <br/><button onClick={() => dispatch(changeScreen(JOIN_LOBBY_COMPONENT))}>Join Lobby</button>
       <br/><button onClick={data}>Update User Data</button>
       <br/><button >View History</button>
       <br/><button >Settings</button>
