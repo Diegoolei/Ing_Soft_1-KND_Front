@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logoutSuccess, changeScreen, renderLobbyPage } from '../redux/reduxIndex'
 import { 
   LOGIN_COMPONENT,
@@ -10,6 +10,7 @@ import {
 } from '../redux/componentController/componentControllerTypes'
 
 function MainMenu () {
+  const lists = useSelector(state => state.joinlists)
   const dispatch = useDispatch()
 
   function logout() {
@@ -23,7 +24,7 @@ function MainMenu () {
   }
 
   function joinlobby() {
-    dispatch(renderLobbyPage(1))
+    dispatch(renderLobbyPage(0))
     dispatch(changeScreen(JOIN_LOBBY_COMPONENT))
   }
 

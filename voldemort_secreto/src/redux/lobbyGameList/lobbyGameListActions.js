@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {
+  LG_LISTS_PAGE_SIZE,
   LG_LISTS_REQUEST_LOBBY_PAGE,
   LG_LISTS_REQUEST_GAME_PAGE,
   LG_LISTS_SET_LOBBY_LIST,
@@ -48,20 +49,27 @@ export const setResponse = response => {
 export const renderLobbyPage = pageNumber => {
   const state = store.getState()
   const token = state.session.authToken
+
   return dispatch => {
     dispatch(requestLobbyPage(pageNumber))
     axios.get(BASE_URL+API_ENDPOINT_LIST_LOBBIES,
       {
-        headers: {'Authorization': token.token_type + " " + token.access_token}
+        headers: {
+          'Authorization': token.token_type + " " + token.access_token
+        }, 
+        params: { 
+          start_from: LG_LISTS_PAGE_SIZE*pageNumber, 
+          end_at: LG_LISTS_PAGE_SIZE*(pageNumber + 1 )
+        }
       }).then(response => {
         const lobbies = response.data
         const resp = {
           content: lobbies,
-          entries: lobbies.lobbyDict.length,
+          entries: Object.keys(lobbies.lobbyDict).length,
           date: Date.now()
         }
         dispatch(setLobbyPage(resp))
-        console.log("-Response :" + JSON.stringify(response.data.lobbyDict))
+        //console.log("-Response :" + JSON.stringify(response.data.lobbyDict))
       }).catch(error => {
         let errorMsg
         try {
