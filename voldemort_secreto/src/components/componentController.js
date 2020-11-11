@@ -36,7 +36,6 @@ function ComponentController() {
 
   return (
     <div>
-      Current Component Loaded: {currentScreen}
       {getComponent()}
     </div>
   )

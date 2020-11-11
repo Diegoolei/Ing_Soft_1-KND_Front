@@ -1,46 +1,56 @@
 import react, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
 import { changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { renderLobbyPage } from '../redux/reduxIndex'
 
-function JoinLobby () {
-  const ENTRIES_PER_PAGE = 10
+function JoinLobby() {
   const dispatch = useDispatch()
-  const token = useSelector(state => state.session.authToken)
-  const [page, setPage] = useState(1)
-  const [entries, setEntries] = useState('')
+  const lists = useSelector(state => state.joinlists)
+  const max_players = "max players"
+  const actual_players = "actual players"
 
-  // const data =[{"name":"test1"},{"name":"test2"}];
-  // const listItems = data.map((d) => <li key={d.name}>{d.name}</li>);
+  function handleJoinButton(lobby_id) {
+    console.log("Attempting to join Lobby", lobby_id)    
+  }
 
-  function getLobbies(from, to) {
-    console.log("Getting lobbies from", from, "to", to)
-    axios.get(
-      "http://127.0.0.1:8000/lobby/list_lobbies/",
-      {
-        headers: {
-          'Authorization': token.token_type + " " + token.access_token
-        }
-      }
-    ).then(response => {
-      console.log("-Response :" + JSON.stringify(response.data))
-    }).catch(error => {
-      let errorMsg
-      try {
-        errorMsg = error.response.data.detail
-        } catch (er) {
-          errorMsg = "Something went wrong"
-        }
-        console.log("-Response :" + JSON.stringify(errorMsg))
-    })
+  function formatedList() {
+    const unformatedLobbies = lists.lobbyPageContent.lobbyDict
+    let formatedLobby = null
+    let lobbiesArray = []
+    for (let key in unformatedLobbies) {
+      let lobby_id = unformatedLobbies.[key].lobby_id
+      let name = key
+      let currPlay = unformatedLobbies.[key].[actual_players]
+      let maxPlay = unformatedLobbies.[key].[max_players]
+      let owner = unformatedLobbies.[key].lobby_creator
+      formatedLobby = (
+      <div>
+        <br/><button onClick={() => handleJoinButton(lobby_id)}>Join</button>
+        <l1>    {name}  (owner: {owner})  ({currPlay}/{maxPlay})</l1>
+      </div>)
+      lobbiesArray.push(formatedLobby)
+    }
+    return lobbiesArray
+  }
+
+  function nextpage () {
+    console.log("NOT DOING ANYTHING")
+    //   dispatch(renderLobbyPage(1))
+  }
+
+  function prevpage () {
+    console.log("NOT DOING ANYTHING")
+    //   dispatch(renderLobbyPage(1))
   }
 
   return (
     <div>
       <h1>JOIN LOBBY</h1>
-      <br/><button onClick={() => getLobbies(1,10)}>Get Lobbies</button>
-      <br/><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
+      <br/>{formatedList()}
+      <br/><button onClick={prevpage}>Prev</button>
+      <button onClick={nextpage}>Next</button>
+      <br/><br /><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
     </div>
   )
 }
