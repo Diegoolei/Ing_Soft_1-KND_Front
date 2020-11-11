@@ -1,5 +1,5 @@
 
-export const SET_USERNAME = 'SET_USERNAME'
+export const SET_USERINFO = 'SET_USERINFO'
 export const SET_EMAIL = 'SET_EMAIL'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { 
-  SET_USERNAME,
+  SET_USERINFO,
   SET_EMAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -21,10 +21,10 @@ import {
 import { changeScreen } from '../componentController/componentControllerActions'
 import { LOGIN_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
 
-export const setUsername = username => {
+export const setUserinfo = userinfo => {
   return {
-    type : SET_USERNAME,
-    payload : username
+    type : SET_USERINFO,
+    payload : userinfo
   }
 }
 
@@ -114,6 +114,8 @@ export const login = (email, password) => {
       .then(response => {
         token = response.data
         dispatch(loginSuccess(token))
+        dispatch(getProfile(token))
+        dispatch(changeScreen(MAIN_MENU_COMPONENT))
       })
       .catch(error => {
         let errorMsg = "Something went wrong"
@@ -122,17 +124,26 @@ export const login = (email, password) => {
         }
         dispatch(loginFailure(errorMsg))
       })
+  }
+}
 
+export const getProfile = token => {
+  return (dispatch) => {
     axios.get(BASE_URL+API_ENDPOINT_PROFILE_INFO,
       { 
         headers: { 'Authorization': token.token_type + " " + token.access_token } 
-    }).then(response => {
+    }).then( response => {
       const data = response.data
-      console.log(">>Response::", data)
-      dispatch(setUsername(data))
+      dispatch(setUserinfo(data))
+    }).catch(error => {
+      let errorMsg = "Something went wrong"
+      if (error.message === "Request failed with status code 401") {
+        errorMsg = "Bad Email or password"
+      }
+      else {
+        console.log("Something went wrong with getting profile")
+      }
     })
-
-    dispatch(changeScreen(MAIN_MENU_COMPONENT))
   }
 }
 

@@ -6,7 +6,7 @@ function NewLobby () {
   const sessionState = useSelector(state => state.session)
   const token = useSelector(state => state.session.authToken)
 
-  const [privGname, setPrivGname] = useState(sessionState.gname)
+  const [privNick, setPrivNick] = useState(sessionState.userinfo.profile_username)
   const [privLobbyName, setPrivLobbyName] = useState('')
   const [privMaxPlayers, setPrivMaxPlayers] = useState(10)
   const [privMinPlayers, setPrivMinPlayers] = useState(5)
@@ -16,7 +16,7 @@ function NewLobby () {
   function handleButton(){
     if (privLobbyName == '') {
       setValidityMsg('Lobby name must not be empty. Should be between 3 and 16 characters')
-    }  else if (privGname === '') {
+    }  else if (privNick === '') {
       setValidityMsg('Game name must not be empty')
     } else {
       axios.post(
@@ -57,7 +57,7 @@ function NewLobby () {
         break;
 
       case 'gname':
-        setPrivGname(value)
+        setPrivNick(value)
         break;
     
       default:
@@ -93,7 +93,7 @@ function NewLobby () {
         </form>
           
         <br/><label>Name during the game:</label>
-          <input placeholder='nick' name='nick' type='text' defaultValue={privGname} onBlur={takeInput} onChange={takeInput}></input>
+          <input placeholder='nick' name='nick' type='text' defaultValue={privNick} onBlur={takeInput} onChange={takeInput}></input>
        
         <br/><button name="Create Lobby" onClick={handleButton}>Create Lobby</button>
       </div>

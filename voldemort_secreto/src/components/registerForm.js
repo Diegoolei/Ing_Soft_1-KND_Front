@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import nimbus from './../nimbus.svg';
 import { LOGIN_COMPONENT } from '../redux/componentController/componentControllerTypes'
-import { setUsername, setEmail, register, resetResponse, changeScreen } from '../redux/reduxIndex'
+import { setUserinfo, setEmail, register, resetResponse, changeScreen } from '../redux/reduxIndex'
 
 function LoginForm () {
   const sessionState = useSelector(state => state.session)
@@ -29,7 +29,7 @@ function LoginForm () {
     } else {
       setValidityMsg('')
       dispatch(setEmail({email: privEmail, validity: true}))
-      dispatch(setUsername(privUsername))
+      dispatch(setUserinfo(privUsername))
       dispatch(register(privEmail, privUsername, privPassword1))
     }    
   }
@@ -65,7 +65,7 @@ function LoginForm () {
     dispatch(setEmail({email: privEmail, validity: validEmail}))
     dispatch(resetResponse())
     if (privUsername !== '') {
-      dispatch(setUsername(privUsername))
+      dispatch(setUserinfo(privUsername))
     }
     dispatch(changeScreen(LOGIN_COMPONENT))
   }
