@@ -141,8 +141,9 @@ export const getProfile = token => {
         errorMsg = "Bad Email or password"
       }
       else {
-        console.log("Something went wrong with getting profile")
+        errorMsg = "Something went wrong with getting profile"
       }
+      console.log("-Response: ", errorMsg)
     })
   }
 }
