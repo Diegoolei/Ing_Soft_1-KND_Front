@@ -1,8 +1,8 @@
-import react, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { renderLobbyPage } from '../redux/reduxIndex'
+import { LG_LISTS_PAGE_SIZE } from '../redux/lobbyGameList/lobbyGameListTypes'
 
 function JoinLobby() {
   const dispatch = useDispatch()
@@ -35,13 +35,18 @@ function JoinLobby() {
   }
 
   function nextpage () {
-    console.log("NOT DOING ANYTHING")
-    //   dispatch(renderLobbyPage(1))
+    const currentAmountEntries = lists.lobbyPageAmountEntries
+    const currentPageNumber = lists.lobbyPageNumber
+    if (currentAmountEntries === LG_LISTS_PAGE_SIZE) {
+      dispatch(renderLobbyPage(currentPageNumber + 1)) 
+    }
   }
 
   function prevpage () {
-    console.log("NOT DOING ANYTHING")
-    //   dispatch(renderLobbyPage(1))
+    const currentPageNumber = lists.lobbyPageNumber
+    if (currentPageNumber > 0) {
+      dispatch(renderLobbyPage(currentPageNumber - 1)) 
+    }
   }
 
   return (
