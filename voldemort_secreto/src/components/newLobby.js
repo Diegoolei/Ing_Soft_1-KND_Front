@@ -10,12 +10,16 @@ function NewLobby () {
   const [privLobbyName, setPrivLobbyName] = useState('')
   const [privMaxPlayers, setPrivMaxPlayers] = useState(10)
   const [privMinPlayers, setPrivMinPlayers] = useState(5)
-  const [validityState, setValidityMsg] = useState('')
+  const [validityMsg, setValidityMsg] = useState('')
 
 
   function handleButton(){
-    if (privLobbyName == '') {
+    setValidityMsg('')
+    if (privMinPlayers > privMaxPlayers) {
+      setValidityMsg('Min Players must not be greater than Max Players')
+    } else if (privLobbyName === '') {
       setValidityMsg('Lobby name must not be empty. Should be between 3 and 16 characters')
+      return
     }  else if (privNick === '') {
       setValidityMsg('Game name must not be empty')
     } else {
@@ -30,7 +34,7 @@ function NewLobby () {
           }
         }
       ).then(response => {
-        console.log("-Response :" + JSON.stringify(response.data))
+        console.log("-Response :" + JSON.stringify(response.data)) // dispatch for when we have the lobby redux
       }).catch(error => {
         let errorMsg
         try {
@@ -38,13 +42,8 @@ function NewLobby () {
           } catch (er) {
             errorMsg = "Something went wrong"
           }
-          console.log("-Response :" + JSON.stringify(errorMsg))
+          setValidityMsg(errorMsg)
       })
-
-
-      // dispatch(setLobby(privLobby))
-      // dispatch(setGname(privGname))
-      // dispatch(register(privLobby, privGname)) //I don't know how to pass on the result of the drop-down list :c
   }
 }
   
@@ -59,6 +58,12 @@ function NewLobby () {
       case 'gname':
         setPrivNick(value)
         break;
+      
+      case 'minPlayers':
+        setPrivMinPlayers(value)
+
+      case 'maxPlayers':
+        setPrivMaxPlayers(value)
     
       default:
         break;
@@ -73,7 +78,7 @@ function NewLobby () {
         <br/>
         <form>
             <label>Min Players: </label>
-            <select defaultValue="5" onChange={takeInput}>
+            <select name="minPlayers" defaultValue="5" onChange={takeInput}>
               <option value="5">5</option>
               <option value="6">6</option>
               <option value="7">7</option>
@@ -82,7 +87,7 @@ function NewLobby () {
               <option value="10">10</option>
             </select>
             <br/><label>Max Players: </label>
-            <select defaultValue="10" onChange={takeInput}>
+            <select name="maxPlayers" defaultValue="10" onChange={takeInput}>
               <option value="5">5</option>
               <option value="6">6</option>
               <option value="7">7</option>
@@ -96,6 +101,7 @@ function NewLobby () {
           <input placeholder='nick' name='nick' type='text' defaultValue={privNick} onBlur={takeInput} onChange={takeInput}></input>
        
         <br/><button name="Create Lobby" onClick={handleButton}>Create Lobby</button>
+        <br/>{validityMsg}
       </div>
     )
   }
