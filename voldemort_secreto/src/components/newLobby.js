@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 
 function NewLobby () {
-  const sessionState = useSelector(state => state.session)
   const token = useSelector(state => state.session.authToken)
 
-  const [privNick, setPrivNick] = useState(sessionState.userinfo.profile_username)
   const [privLobbyName, setPrivLobbyName] = useState('')
+  const [privLobbyNameLen, setPrivLobbyNameLen] = useState(0)
   const [privMaxPlayers, setPrivMaxPlayers] = useState(10)
   const [privMinPlayers, setPrivMinPlayers] = useState(5)
   const [validityMsg, setValidityMsg] = useState('')
@@ -17,12 +16,11 @@ function NewLobby () {
     setValidityMsg('')
     if (privMinPlayers > privMaxPlayers) {
       setValidityMsg('Min Players must not be greater than Max Players')
-    } else if (privLobbyName === '') {
-      setValidityMsg('Lobby name must not be empty. Should be between 3 and 16 characters')
-      return
-    }  else if (privNick === '') {
-      setValidityMsg('Game name must not be empty')
-    } else {
+    } 
+    else if (privLobbyNameLen < 2 || privLobbyNameLen > 16) {
+      setValidityMsg('Lobby name must be between 2 and 16 characters, inclusive')
+    } 
+    else {
       axios.post(
         "http://127.0.0.1:8000/lobby/",
         { lobbyIn_name: privLobbyName, 
@@ -35,6 +33,7 @@ function NewLobby () {
         }
       ).then(response => {
         console.log("-Response :" + JSON.stringify(response.data)) // dispatch for when we have the lobby redux
+        setValidityMsg("Lobby Created! You will be redirected ẅ̵̧̩̯͉́̉̓h̶͈̀͂e̵̛̹͗͊ṅ̴̜ ̵̫̙̃t̵̢͈̰̠͛̄̍͝h̶͕̪̞̠̆̈e̵̝̟̙͋̎̏ ̸̛̞͎̙̱͂̒́s̵̢͕̘͓͊̈́̏͝ù̵̱̓̕͝ņ̸͎͝ ̵͖̀̆̎ğ̴̢̡̼͔̀̀ǒ̴̦ẻ̵̪̣͔͋͜š̶̩ ̶̨̹̗̂͑ȯ̵̢͙̳͚̂̀̋u̵̡̥̗̪̇̀t̶͔̄")
       }).catch(error => {
         let errorMsg
         try {
@@ -50,20 +49,18 @@ function NewLobby () {
   function takeInput(inp) {
     const { name, value } = inp.target;
     switch (name) {
-
       case 'lobby':
         setPrivLobbyName(value)
-        break;
-
-      case 'gname':
-        setPrivNick(value)
+        setPrivLobbyNameLen(value.length)
         break;
       
       case 'minPlayers':
         setPrivMinPlayers(value)
+        break;
 
       case 'maxPlayers':
         setPrivMaxPlayers(value)
+        break;
     
       default:
         break;
@@ -96,10 +93,6 @@ function NewLobby () {
               <option value="10">10</option>
             </select>
         </form>
-          
-        <br/><label>Name during the game:</label>
-          <input placeholder='nick' name='nick' type='text' defaultValue={privNick} onBlur={takeInput} onChange={takeInput}></input>
-       
         <br/><button name="Create Lobby" onClick={handleButton}>Create Lobby</button>
         <br/>{validityMsg}
       </div>
