@@ -1,5 +1,5 @@
 import {
-  SET_USERNAME,
+  SET_USERINFO,
   SET_EMAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -14,7 +14,7 @@ import {
 } from './sessionTypes'
 
 const initialState = {
-  username: '',
+  userinfo: '',
   email: '',
   isvalidEmail: false,
   loggedin: false,
@@ -87,9 +87,9 @@ const loginReducer = (state = initialState, action) => {
       error: action.payload
     }
 
-    case SET_USERNAME: return {
+    case SET_USERINFO: return {
       ...state,
-      username: action.payload
+      userinfo: action.payload
     }
 
     case SET_EMAIL: return {
@@ -101,11 +101,6 @@ const loginReducer = (state = initialState, action) => {
     case RESET_RESPONSE: return {
       ...state,
       response: action.payload
-    }
-    
-    case SET_USERNAME: return {
-      ...state,
-      username: action.payload
     }
 
     default: return state
