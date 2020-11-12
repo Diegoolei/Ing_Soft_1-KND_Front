@@ -16,20 +16,6 @@ function ChangeNickOnLobby(){
     const [playerId, setPlayer_id] = useState('')
     const [validityMsg, setValidityMsg] = useState('')
 
-    function ClickMeNick(){
-        console.log("Hola")
-    }
-
-    /* @app.post(
-    "/lobby/{lobby_id}/change_nick",
-    status_code=status.HTTP_202_ACCEPTED,
-    response_model=md.ChangeNick
-    )
-    async def change_nick(
-        lobby_id: int, 
-        new_nick: md.Nick, 
-        user_id: int = Depends(auth.get_current_active_user)):
-    */
     function ChangeNick(){
         console.log("Sending ChangeUsername request with usern_id:", userId)
         console.log("ChangeNick")
@@ -78,9 +64,13 @@ function ChangeNickOnLobby(){
     function ShowMyButtons(){
         return(
             <div>
-                <br/><button className="button" onClick={ClickMeNick}>Test me Nick!</button>
-                <br/><button className="button" onClick={BackToMenu}>Back to Main Menu</button>
-                <p>This is some text in a div element.</p>
+                <input placeholder='Test: User ID' name='setuser_id' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <input placeholder='Test: Lobby ID' name='setLobby_id' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <input placeholder='Test: Player ID' name='setPlayer_id' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <input placeholder='New player nick' name='setNewPlayerNick' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input><br/>
+                <br/><button className="button" onClick={ChangeNick}>Change Nick</button>
+                <br/><label>{validityMsg}</label><br/>
+                <br/>
             </div>
         )
     }
@@ -88,7 +78,8 @@ function ChangeNickOnLobby(){
     function TestMyDiv(){
         return(
             <div className="App-div">
-                <h1 className="brown">Change your nick On Lobby</h1>
+                <h1 className="brown">Change your nickname on Lobby</h1>
+                {ShowMyButtons()}
             </div>
         )
     }
@@ -97,17 +88,9 @@ function ChangeNickOnLobby(){
         <header className="App-header_Hufflepuff">
         <img src={dobby} className="App-logo-without-animation" alt="logo" />
         <div>
-            {TestMyDiv()} 
-            {ShowMyButtons()}
+            <br/>{TestMyDiv()}<br/>
         </div>
-        <div>
-            <br/><button className="button" onClick={ChangeNick}>Change Nick</button>
-            <input placeholder='Test: User ID' name='setuser_id' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-            <input placeholder='Test: Lobby ID' name='setLobby_id' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-            <input placeholder='Test: Player ID' name='setPlayer_id' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-            <input placeholder='New player nick' name='setNewPlayerNick' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-            <br/><label>{validityMsg}</label>
-        </div>
+        <button className="button" onClick={BackToMenu}>Back to Main Menu</button>
         </header>
     )
 }
