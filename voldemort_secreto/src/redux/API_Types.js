@@ -8,6 +8,8 @@ export const BASE_URL = 'http://127.0.0.1:8000'
 export const API_ENDPOINT_REGISTER = '/users/'
 export const API_ENDPOINT_LOGIN = '/login'
 export const API_ENDPOINT_PROFILE_INFO = '/users/'
+//export const API_ENDPOINT_LOBBY = '/lobby/'
+//export const API_ENDPOINT_GAME = '/games/'
 
 //FORMS
   // REGISTER BODY:
@@ -19,3 +21,8 @@ export const API_IN_REGISTER_PASSWORD = 'userIn_password'
   //LOGIN BODY:
 export const API_IN_LOGIN_EMAIL = 'username'
 export const API_IN_LOGIN_PASSWORD = 'password'
+
+//LOBBY BODY:
+  // CREATE LOBBY:
+
+/* lobbyIn_name: str, lobbyIn_max_players: Optional[int], lobbyIn_min_players: Optional[int] */
