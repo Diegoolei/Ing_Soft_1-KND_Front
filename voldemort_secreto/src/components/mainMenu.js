@@ -1,15 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { logoutSuccess, changeScreen } from '../redux/reduxIndex'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutSuccess, changeScreen, renderLobbyPage } from '../redux/reduxIndex'
 import { 
   LOGIN_COMPONENT,
   ENDPOINT_SOCKET_TEST_COMPONENT,
   UPDATE_PROFILE_COMPONENT,
   CREATE_LOBBY_COMPONENT,
+  JOIN_LOBBY_COMPONENT,
   CHANGE_NICK_ON_LOBBY
 } from '../redux/componentController/componentControllerTypes'
 
 function MainMenu () {
+  const lists = useSelector(state => state.joinlists)
   const dispatch = useDispatch()
 
   function logout() {
@@ -21,11 +23,17 @@ function MainMenu () {
   function data() {
     dispatch(changeScreen(UPDATE_PROFILE_COMPONENT))
   }
+
+  function joinlobby() {
+    dispatch(renderLobbyPage(0))
+    dispatch(changeScreen(JOIN_LOBBY_COMPONENT))
+  }
+
   return (
     <div>
       <h1>MAIN MENU</h1>
       <br/><button onClick={() => dispatch(changeScreen(CREATE_LOBBY_COMPONENT))}>Create Lobby</button>
-      <br/><button >Join Lobby</button>
+      <br/><button onClick={joinlobby}>Join Lobby</button>
       <br/><button onClick={data}>Update User Data</button>
       <br/><button >View History</button>
       <br/><button >Settings</button>

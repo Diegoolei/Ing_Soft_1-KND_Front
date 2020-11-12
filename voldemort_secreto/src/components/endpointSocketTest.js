@@ -27,8 +27,15 @@ function TestSocket() {
   }
 
   const openws = () => {
-    dispatch(wsConnect("ws://127.0.0.1:8000/ws/"+String(currentPlayer_id)))
+    const uri = "ws://127.0.0.1:8000/websocket/"+String(currentPlayer_id)
+    dispatch(wsConnect(uri))
   }
+
+  const sendAuth = () => {
+    console.log("Sending auth to socket. Token: ",token.access_token)
+    dispatch(wsSendMessage(token.access_token))
+  }
+
   const closews = () => {
     dispatch(wsDisconnect())
   }
@@ -181,6 +188,7 @@ function TestSocket() {
       <h1>Endpoint/Socket Tests</h1>
       <p>
         {":>>Current IDs<<:"}
+        <br/>Player_id:<input name='playerid' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
         <br/>Lobby_id:<input name='lobbyid' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
         <br/>Game_id:<input name='gameid' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
       </p>
@@ -190,8 +198,8 @@ function TestSocket() {
         <br/><button onClick={joinlobby}>Join Lobby</button>
         <button onClick={leavelobby}>Leave Lobby</button>
         <br/><button onClick={openws}>Open Socket</button>
+        <button onClick={sendAuth}>Auth Socket</button>
         <button onClick={closews}>Close Socket</button>
-        {/* <br/><button onClick={askButton}>Trigger Different Endpoint</button> */}
         <br/><button onClick={() => dispatch(wsSendMessage(chatmsg))}>Chat</button>
         <input placeholder='message' name='setchatmsg' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
       </p>

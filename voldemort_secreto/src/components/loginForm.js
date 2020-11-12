@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import nimbus from './../nimbus.svg';
+import nimbus from '../metaMedia/nimbus.svg'
 import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
 

@@ -12,6 +12,8 @@ import EndpointSocketTest from './endpointSocketTest'
 import UpdateUserProfile from './updateProfile'
 import NewLobby from './newLobby'
 import ChangeNickOnLobby from './changeNickLobby'
+import JoinLobby from './joinLobby'
+
 
 function ComponentController() {
   const currentScreen = useSelector(state => state.controller.screen)
@@ -22,7 +24,7 @@ function ComponentController() {
       case REGISTER_COMPONENT: return <RegisterForm/>
       case MAIN_MENU_COMPONENT: return <MainMenu/>
       case CREATE_LOBBY_COMPONENT: return <NewLobby/>
-      case JOIN_LOBBY_COMPONENT: return <div>Join Lobby Component not made yet</div>
+      case JOIN_LOBBY_COMPONENT: return <JoinLobby/>
       case END_GAME_MSG_COMPONENT: return <EndGameMsg/>
       case ENDPOINT_SOCKET_TEST_COMPONENT: return <EndpointSocketTest/>
       case UPDATE_PROFILE_COMPONENT: return <UpdateUserProfile/>
@@ -37,7 +39,6 @@ function ComponentController() {
 
   return (
     <div>
-      Current Component Loaded: {currentScreen}
       {getComponent()}
     </div>
   )
