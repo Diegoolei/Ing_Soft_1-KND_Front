@@ -6,7 +6,8 @@ import {
   ENDPOINT_SOCKET_TEST_COMPONENT,
   UPDATE_PROFILE_COMPONENT,
   CREATE_LOBBY_COMPONENT,
-  JOIN_LOBBY_COMPONENT
+  JOIN_LOBBY_COMPONENT,
+  CHANGE_NICK_ON_LOBBY
 } from '../redux/componentController/componentControllerTypes'
 
 function MainMenu () {
@@ -37,6 +38,7 @@ function MainMenu () {
       <br/><button >View History</button>
       <br/><button >Settings</button>
       <br/><button onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
+      <br/><button onClick={() => dispatch(changeScreen(CHANGE_NICK_ON_LOBBY))}>Change Nick on Lobby</button>
       <br/><button onClick={logout}>Log out</button>
     </div>
   )
