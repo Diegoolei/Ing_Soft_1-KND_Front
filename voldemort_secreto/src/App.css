@@ -1,4 +1,3 @@
-/* Don't change <3 */
 .App {
   text-align: center;
 }
@@ -12,47 +11,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-logo-without-animation {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.button_dark_gray {
-  background-color: #555555;
-  border-radius: 12px;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-.button_red {
-  background-color: #f44336;
-  border-radius: 12px;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-.button {
-  display: inline-block;
-  padding: 8px 8px;
-  font-size: 20px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #555555; /*#f44336*/
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 5px #999;
-  margin-bottom: 20px;
-}
-
-.button:hover {background-color: #373333} /*#c93126*/
-
-.button:active {
-  background-color: #131010;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
 }
 
 .App-header {
@@ -71,17 +29,6 @@
     color: black;
   }
 
-.App-header_Hufflepuff {
-  background-color: #f5e59c;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
-} 
-
 .App-link {
   color: #61dafb;
 }
@@ -93,154 +40,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/* Box, you can use how:
-<div className="App-div">
-                <h2>This is a heading in a div element</h2>
-                <p>This is some text in a div element.</p>
-</div>*/
-.App-div{
-  border: 5px outset rgb(14, 13, 13);
-  background-color: rgb(241, 243, 118);    
-  text-align: center;
-}
-
-.App-accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.icon-bar {
-  width: 100%; /* Full-width */
-  background-color: #555; /* Dark-grey background */
-  overflow: auto; /* Overflow due to float */
-}
-
-.icon-bar a {
-  float: left; /* Float links side by side */
-  text-align: center; /* Center-align text */
-  width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
-  padding: 12px 0; /* Some top and bottom padding */
-  transition: all 0.3s ease; /* Add transition for hover effects */
-  color: white; /* White text color */
-  font-size: 36px; /* Increased font size */
-}
-
-.icon-bar a:hover {
-  background-color: #000; /* Add a hover color */
-}
-
-.active {
-  background-color: #4CAF50; /* Add an active/current color */
-}
-
-.green {
-  color: rgb(122, 228, 87);
-}
-
-.red {
-  color: rgb(255, 8, 0);
-}
-
-.blue {
-  color: rgb(0, 81, 255);
-}
-
-.white {
-  color: rgb(232, 235, 242);
-}
-
-.orange {
-  color: rgb(255, 132, 0);
-}
-
-.violet {
-  color: rgb(149, 0, 255);
-}
-
-.brown {
-  color: rgb(121, 69, 13);
-}
-
-.yellow {
-  color: rgb(247, 226, 108);
-}
-
-.antiquewhite {
-  color: antiquewhite;
-}
-
-.brown2 {
-  color: #674d3c,
-}
-
-/* PASTEL COLORS */
-.pink-pastel {
-  color: rgb(121, 69, 13);
-}
-
-.blue-pastel {
-  color: rgb(121, 69, 13);
-}
-
-.green-pastel {
-  color: #FFCCCC;
-}
-
-.light-steel-blue {
-  color: lightsteelblue;
-}
-
-.gainsboro {
-  color: gainsboro;
-}
-
-/* */
-.maroon {
-  color: maroon;
-}
-
-.peru {
-  color: peru;
-}
-
-.gold {
-  color: gold;
-}
-
-.palegoldenrod {
-  color: palegoldenrod;
 }
