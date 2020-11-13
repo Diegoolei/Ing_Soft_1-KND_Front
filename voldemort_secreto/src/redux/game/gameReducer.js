@@ -1,7 +1,7 @@
 
 const initialState = {
-  on_lobby: true,
-  on_game: false,
+  lobby_id: 0,
+  game_id: 0,
   turn_step: -1,
   player_id: -1,
   player_number: -1,
@@ -13,7 +13,8 @@ const initialState = {
   cards_in_deck: 17,
   proclaimed_phoenix: 0,
   proclaimed_death_eater: 0,
-  actions : []
+  actions : [],
+  loading: false
 }
 
 // Endpoint refresh state
