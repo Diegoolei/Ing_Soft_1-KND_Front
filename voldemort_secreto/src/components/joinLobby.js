@@ -27,10 +27,10 @@ function JoinLobby() {
       let maxPlay = unformatedLobbies.[key].[max_players]
       let owner = unformatedLobbies.[key].lobby_creator
       formatedLobby = (
-      <div>
+      <li>
         <br/><button className="button-shadow-red" onClick={() => handleJoinButton(lobby_id)}>Join</button>
-        <l1>    {name}  (owner: {owner})  ({currPlay}/{maxPlay})</l1>
-      </div>)
+        {name}  (owner: {owner})  ({currPlay}/{maxPlay})
+      </li>)
       lobbiesArray.push(formatedLobby)
     }
     return lobbiesArray
@@ -54,7 +54,7 @@ function JoinLobby() {
   return (
     <div className="App-div-pastel-pink">
       <h1 className="white">JOIN LOBBY</h1>
-      {formatedList()}
+      <ul>{formatedList()}</ul>
       <br/><button onClick={prevpage}>Prev</button>
       <button onClick={nextpage}>Next</button>
       <br/><br /><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
