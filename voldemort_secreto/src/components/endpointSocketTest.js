@@ -130,7 +130,7 @@ function TestSocket() {
 
   function selectdirector() {
     console.log("Sending request to game: '"+ currentGame_id  +"' select director selecting player_number :"+String(selectDirector_number))
-    const uri = "http://127.0.0.1:8000/games/"+String(selectDirector_number)+"/select_director/"
+    const uri = "http://127.0.0.1:8000/games/"+String(currentGame_id)+"/select_director/"
     console.log("Making POST Request::", uri)
     const body = { "playerNumber" : selectDirector_number }
     axios.post(
