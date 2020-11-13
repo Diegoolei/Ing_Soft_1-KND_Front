@@ -102,24 +102,26 @@ function UpdateUserProfile() {
     
 
 return (
-    <div>
-    <h1>UpdateUserProfile</h1>
-    <p>
-    <br/><button onClick={ChangeUsername}>Change Username</button>
-        <input placeholder='New Username' name='setusername' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-        <input placeholder='New Photo (optional)' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-    <br/>
-    
-    </p><p>
-    <button onClick={ChangePassword}>Change Password</button>
-        <input placeholder='Current Password' name='setcurrentpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-        <input placeholder='New password' name='setnewpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
-        <input placeholder='Repeat New password' name='setnewpassword2' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
-        <br/><label>{validityMsg}</label>
-    </p>
-    <br/><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
-    
-    </div>
+    <header className="App-header-blue">
+        <div className="App-div-lightsteelblue"><br/>
+            <h1>UpdateUserProfile</h1>
+            <p>
+            <br/>
+                <input placeholder='New Username' name='setusername' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <input placeholder='New Photo (optional)' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <button className="button-shadow-blue" onClick={ChangeUsername}>Change Username</button>            
+            <br/>
+            
+            </p><p>
+                <input placeholder='Current Password' name='setcurrentpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <input placeholder='New password' name='setnewpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
+                <input placeholder='Repeat New password' name='setnewpassword2' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input><br/>
+                <br/><button className="button-shadow-blue" onClick={ChangePassword}>Change Password</button>
+                <br/><label>{validityMsg}</label>
+            </p>
+            <br/><button className="button-shadow-blue" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
+        <br/></div>
+    </header>
 )
 }
 export default UpdateUserProfile

@@ -26,7 +26,7 @@ function JoinLobby() {
       let owner = unformatedLobbies.[key].lobby_creator
       formatedLobby = (
       <div>
-        <br/><button onClick={() => handleJoinButton(lobby_id)}>Join</button>
+        <br/><button className="button-shadow-red" onClick={() => handleJoinButton(lobby_id)}>Join</button>
         <l1>    {name}  (owner: {owner})  ({currPlay}/{maxPlay})</l1>
       </div>)
       lobbiesArray.push(formatedLobby)
@@ -50,9 +50,9 @@ function JoinLobby() {
   }
 
   return (
-    <div>
-      <h1>JOIN LOBBY</h1>
-      <br/>{formatedList()}
+    <div className="App-div-pastel-pink">
+      <h1 className="white">JOIN LOBBY</h1>
+      {formatedList()}
       <br/><button onClick={prevpage}>Prev</button>
       <button onClick={nextpage}>Next</button>
       <br/><br /><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>

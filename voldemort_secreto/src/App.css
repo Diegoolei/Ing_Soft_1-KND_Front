@@ -51,7 +51,55 @@
 
 .button:active {
   background-color: #131010;
-  box-shadow: 0 5px #666;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.button-shadow-red {
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #c22a2a; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-bottom: 20px;
+}
+
+.button-shadow-red:hover {background-color: #a51d1d} /*#c93126*/
+
+.button-shadow-red:active {
+  background-color: #8f1010;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.button-shadow-blue {
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4182d6; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-bottom: 20px;
+}
+
+.button-shadow-blue:hover {background-color: #1c64c2} /*#c93126*/
+
+.button-shadow-blue:active {
+  background-color: #0b438c;
+  box-shadow: 0 2px #666;
   transform: translateY(4px);
 }
 
@@ -70,6 +118,33 @@
     font-size: calc(10px + 2vmin);
     color: black;
   }
+
+.App-header-test {
+  background-color: #3c0505;  
+  /*background-image: url('../metaMedia/fondo_lobby.jpg');*/
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* width height  */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.App-header-blue {
+  background-color: rgb(18, 87, 133);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* width height  */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
 
 .App-header_Hufflepuff {
   background-color: #f5e59c;
@@ -103,6 +178,24 @@
 .App-div{
   border: 5px outset rgb(14, 13, 13);
   background-color: rgb(241, 243, 118);    
+  text-align: center;
+}
+
+.App-div-blue{
+  border: 5px outset rgb(14, 13, 13);
+  background-color: rgb(18, 87, 133);    
+  text-align: center;
+}
+
+.App-div-pastel-pink{
+  border: 5px outset rgb(14, 13, 13);
+  background-color: #ffcfe2;    
+  text-align: center;
+}
+
+.App-div-lightsteelblue{
+  border: 5px outset rgb(14, 13, 13);
+  background-color: lightsteelblue;    
   text-align: center;
 }
 
@@ -209,7 +302,7 @@
 
 /* PASTEL COLORS */
 .pink-pastel {
-  color: rgb(121, 69, 13);
+  color: #ffcfe2;
 }
 
 .blue-pastel {
