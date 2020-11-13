@@ -3,6 +3,7 @@ import { changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { renderLobbyPage } from '../redux/reduxIndex'
 import { LG_LISTS_PAGE_SIZE } from '../redux/lobbyGameList/lobbyGameListTypes'
+import {joinLobby } from '../redux/reduxIndex'
 
 function JoinLobby() {
   const dispatch = useDispatch()
@@ -11,7 +12,8 @@ function JoinLobby() {
   const actual_players = "actual players"
 
   function handleJoinButton(lobby_id) {
-    console.log("Attempting to join Lobby", lobby_id)    
+    console.log("Attempting to join Lobby", lobby_id)  
+    dispatch(joinLobby(lobby_id))  
   }
 
   function formatedList() {

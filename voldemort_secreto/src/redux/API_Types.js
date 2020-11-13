@@ -11,6 +11,8 @@ export const API_ENDPOINT_PROFILE_INFO = '/users/'
 
 export const API_ENDPOINT_LIST_LOBBIES = '/lobby/list_lobbies/'
 export const API_ENDPOINT_LIST_GAMES = '/lobby/list_games/'
+export const API_ENDPOINT_JOIN_LOBBY = '/lobby/'
+export const API_ENDPOINT_LOBBY_INFO = '/lobby/'
 
 //export const API_ENDPOINT_LOBBY = '/lobby/'
 //export const API_ENDPOINT_GAME = '/games/'
