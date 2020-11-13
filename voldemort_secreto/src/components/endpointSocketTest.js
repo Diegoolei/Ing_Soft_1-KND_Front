@@ -107,7 +107,7 @@ function TestSocket() {
 
   function startgame() {
     console.log("Starting game " + currentGame_id + " from lobby " + String(currentLobby_id))
-    const uri = "http://127.0.0.1:8000/lobby/"+String(currentLobby_id)+"/start_game/"
+    const uri = "http://127.0.0.1:8000/lobby/"+String(currentGame_id)+"/start_game/"
     console.log("Making POST Request::", uri)
     axios.delete(
       uri,
@@ -126,6 +126,26 @@ function TestSocket() {
         }
         console.log("-Response :" + JSON.stringify(errorMsg))
     })
+  }
+
+  function getgameinfo() {
+    axios.get(
+      "http://127.0.0.1:8000/games/"+String(currentGame_id),
+      { 
+        headers: { 'Authorization': token.token_type + " " + token.access_token }
+      }
+    ).then(response => {
+      console.log("-Response :" + JSON.stringify(response.data))
+    }).catch(error => {
+      let errorMsg
+      try {
+        errorMsg = error.response.data.detail
+        } catch (er) {
+          errorMsg = "Something went wrong"
+        }
+        console.log("-Response :" + JSON.stringify(errorMsg))
+    })
+    
   }
 
   function selectdirector() {
@@ -205,6 +225,7 @@ function TestSocket() {
       </p>
       <p>
         <button onClick={startgame}>Start Game</button>
+        <button onClick={getgameinfo}>Get Game Info</button>
         <br/><button onClick={selectdirector}>Select Director</button>
         <input name='selectdirector' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
       </p>
