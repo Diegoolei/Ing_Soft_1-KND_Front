@@ -15,14 +15,11 @@ function TestSocket() {
   const [selectDirector_number, setselectDirector_number] = useState('')
   const [chatmsg, setchatmsg] = useState('')
 
+  const echoMsg = { "TYPE": "START_GAME", "PAYLOAD": currentGame_id }
+
   if (unreadMsg.length !== 0) {
     const jsonmsg = unreadMsg[0]
-    const content = jsonmsg.content;
-    if (jsonmsg.type === 'JSON') {
-      console.log("Message from the server: ", JSON.stringify(content))
-    } else {
-      console.log("Message from the server: ", content)
-    }
+    console.log(JSON.stringify(jsonmsg))
     dispatch(wsConsumeMessage())
   }
 
@@ -31,13 +28,29 @@ function TestSocket() {
     dispatch(wsConnect(uri))
   }
 
-  const sendAuth = () => {
-    console.log("Sending auth to socket. Token: ",token.access_token)
-    dispatch(wsSendMessage(token.access_token))
-  }
+  // const sendAuth = () => {
+  //   console.log("Sending auth to socket. Token: ",token.access_token)
+  //   dispatch(wsSendMessage(token.access_token))
+  // }
 
   const closews = () => {
     dispatch(wsDisconnect())
+  }
+
+  const echoSingle = () => {
+    const body = {
+      player_id: currentPlayer_id,
+      message: echoMsg
+    }
+    axios.post("http://127.0.0.1:8000/echo/", body)
+  }
+
+  const echoBroadcast = () => {
+    const body = {
+      game_id: currentGame_id,
+      message: echoMsg
+    }
+    axios.post("http://127.0.0.1:8000/echo/", body)
   }
 
   function createlobby () {
@@ -218,7 +231,7 @@ function TestSocket() {
         <br/><button onClick={joinlobby}>Join Lobby</button>
         <button onClick={leavelobby}>Leave Lobby</button>
         <br/><button onClick={openws}>Open Socket</button>
-        <button onClick={sendAuth}>Auth Socket</button>
+        {/* <button onClick={sendAuth}>Auth Socket</button> */}
         <button onClick={closews}>Close Socket</button>
         <br/><button onClick={() => dispatch(wsSendMessage(chatmsg))}>Chat</button>
         <input placeholder='message' name='setchatmsg' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
@@ -228,6 +241,11 @@ function TestSocket() {
         <button onClick={getgameinfo}>Get Game Info</button>
         <br/><button onClick={selectdirector}>Select Director</button>
         <input name='selectdirector' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+      </p>
+      <p>
+        Message to echo: {JSON.stringify(echoMsg)}
+        <br/><button onClick={echoSingle}>Send to Player {currentPlayer_id}</button>
+        <br/><button onClick={echoBroadcast}>Send to Game {currentGame_id}</button>
       </p>
       <br/><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
     
