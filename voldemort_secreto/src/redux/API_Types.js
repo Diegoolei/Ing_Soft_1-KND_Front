@@ -1,6 +1,7 @@
 
 //export const BASE_URL = 'https://jsonplaceholder.typicode.com/'
 export const BASE_URL = 'http://127.0.0.1:8000'
+export const BASE_WS_URL = 'ws://127.0.0.1:8000'
 
 // Here we save the names of the endpoints and parameters passed for ease of change if the API changes
 

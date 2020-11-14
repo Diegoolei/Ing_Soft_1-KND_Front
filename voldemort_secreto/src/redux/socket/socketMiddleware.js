@@ -8,6 +8,7 @@ import {
   WS_OPEN_SOCKET, 
   WS_CLOSE_SOCKET,
   WS_SEND_MESSAGE,
+  REQUEST_AUTH,
 } from './socketTypes'
 
 const socketMiddleware = () => {
@@ -37,8 +38,14 @@ const socketMiddleware = () => {
         content: msg
       }
     }
-    console.log('Server sent: "'+JSON.stringify(payload.content)+'"')
-    store.dispatch(wsReceiveMessage(payload))
+    if (payload.type === 'JSON' && payload.content.TYPE === REQUEST_AUTH) {
+      const state = store.getState()
+      const token = state.session.authToken.access_token
+      socket.send(token)
+    } else {
+      console.log('Server sent: "'+JSON.stringify(payload.content)+'"')
+      store.dispatch(wsReceiveMessage(payload))
+    }
   }
 
   // The middleware part of this function
