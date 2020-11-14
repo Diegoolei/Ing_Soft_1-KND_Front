@@ -13,7 +13,6 @@ function Lobby () {
   const getPlayerLists = () => {
     let players = []
     for (let nick in game.player_array) {
-      console.log(nick)
       players.push(formatedPlayer(nick))
     }
     return <ul>{players}</ul>
