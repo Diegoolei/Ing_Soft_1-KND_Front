@@ -24,27 +24,31 @@ const socketMiddleware = () => {
   };
 
   const onMessage = store => (event) => {
-    let payload = null
     try {
-      const msg = JSON.parse(event.data);
-      payload = {
-        type: 'JSON',
-        content: msg
+      const websocket_message = JSON.parse(event.data);
+      if (websocket_message.TYPE === REQUEST_AUTH) {
+        const state = store.getState()
+        const token = state.session.authToken.access_token
+        socket.send(token)
+        console.log("Authenticating websocket connection...")
+      } else {
+        //console.log('Server sent: "'+JSON.stringify(websocket_message)+'"')
+        store.dispatch(wsReceiveMessage(websocket_message))
       }
     } catch (error) {
-      const msg = event.data;
-      payload = {
-        type: 'STRING',
-        content: msg
+      switch (event.data) {
+        case "Connection Accepted":
+          console.log("Server accepted Socket Auth.")
+          break
+
+        case "Connection rejected":
+          console.log("Server rejected Socket connection.")
+          break
+      
+        default:
+          console.log('ERROR: Could not parse or got raw string. Server sent: ', event.data)
+          break
       }
-    }
-    if (payload.type === 'JSON' && payload.content.TYPE === REQUEST_AUTH) {
-      const state = store.getState()
-      const token = state.session.authToken.access_token
-      socket.send(token)
-    } else {
-      console.log('Server sent: "'+JSON.stringify(payload.content)+'"')
-      store.dispatch(wsReceiveMessage(payload))
     }
   }
 
