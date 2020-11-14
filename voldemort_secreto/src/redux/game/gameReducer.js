@@ -3,12 +3,14 @@ import {
   CGL_SET_GAME_IMFORMATION,
   CGL_PLAYER_JOINED_LOBBY,
   CGL_PROCLAIM_PHOENIX,
+  CGL_CLEAN_STATE,
   CGL_PROCLAIM_DEATH_EATER
 } from './gameTypes'
 
 const initialState = {
   lobby_id: 0,
   lobby_name: '',
+  is_owner: false,
   game_id: 0,
   turn_step: -1,
   player_id: -1,
@@ -38,11 +40,14 @@ const getInitialPlayer = nick => {
 
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CGL_SET_LOBBY_INFORMATION: return {
+    case CGL_SET_LOBBY_INFORMATION: 
+    console.log("Payload::  "+JSON.stringify(action))
+    return {
       ...state,
       lobby_id: action.payload.lobby_id,
       lobby_name: action.payload.lobby_name,
-      player_id: action.payload.player_id
+      player_id: action.payload.player_id,
+      is_owner: action.payload.is_owner
     }
       
     case CGL_SET_GAME_IMFORMATION: return state
@@ -54,6 +59,8 @@ const gameReducer = (state = initialState, action) => {
         [action.payload]: getInitialPlayer(action.payload)
       }
     }
+
+    case CGL_CLEAN_STATE: return initialState
 
     case CGL_PROCLAIM_PHOENIX: return {
       ...state,

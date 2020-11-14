@@ -118,7 +118,7 @@ export const login = (email, password) => {
         dispatch(changeScreen(MAIN_MENU_COMPONENT))
       })
       .catch(error => {
-        let errorMsg = "Something went wrong"
+        let errorMsg = "Something went wrong:: " + error
         if (error.message === "Request failed with status code 401") {
           errorMsg = "Bad Email or password"
         }
@@ -136,12 +136,12 @@ export const getProfile = token => {
       const data = response.data
       dispatch(setUserinfo(data))
     }).catch(error => {
-      let errorMsg = "Something went wrong"
+      let errorMsg = "Something went wrong:: " + error
       if (error.message === "Request failed with status code 401") {
         errorMsg = "Bad Email or password"
       }
       else {
-        errorMsg = "Something went wrong with getting profile"
+        errorMsg = "Something went wrong with getting profile:: " + error
       }
       console.log("-Response: ", errorMsg)
     })
@@ -170,7 +170,7 @@ export const register = (email, username, password) => {
         try {
           errorMsg = error.response.data.detail
           } catch (er) {
-            errorMsg = "Something went wrong"
+            errorMsg = "Something went wrong:: " + er
           }
         dispatch(registerFailure(errorMsg))
       })

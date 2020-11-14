@@ -76,7 +76,7 @@ export const renderLobbyPage = pageNumber => {
           errorMsg = error.response.data.detail
         }
         catch (er) {
-          errorMsg = "Something went wrong  " + JSON.stringify(er)
+          errorMsg = "Something went wrong:: " + er
         }
         dispatch(setResponse(errorMsg))
       })

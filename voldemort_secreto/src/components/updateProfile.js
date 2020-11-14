@@ -33,7 +33,7 @@ function UpdateUserProfile() {
         try {
             errorMsg = error.response.data.detail
             } catch (er) {
-            errorMsg = "Something went wrong"
+                errorMsg = "Something went wrong"
             }
             console.log("-Response :" + JSON.stringify(errorMsg))
         })
@@ -61,7 +61,7 @@ function UpdateUserProfile() {
             try {
                 errorMsg = error.response.data.detail
                 } catch (er) {
-                errorMsg = "Something went wrong"
+                    errorMsg = "Something went wrong"
                 }
                 console.log("-Response :" + JSON.stringify(errorMsg))
             })

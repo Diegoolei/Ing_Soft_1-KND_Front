@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
+import { changeScreen } from '../redux/reduxIndex'
+import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 
 function NewLobby () {
   const token = useSelector(state => state.session.authToken)
+  const dispatch = useDispatch()
 
   const [privLobbyName, setPrivLobbyName] = useState('')
   const [privLobbyNameLen, setPrivLobbyNameLen] = useState(0)
@@ -93,7 +96,7 @@ function NewLobby () {
               <option value="10">10</option>
             </select>
         </form>
-        <br/><button name="Create Lobby" onClick={handleButton}>Create Lobby</button>
+        <br/><button className="button" name="Create Lobby" onClick={handleButton}>Create Lobby</button>
         <br/>{validityMsg}
       </div>
     )
@@ -108,6 +111,7 @@ function NewLobby () {
         Please, fill in the following fields to create your lobby
       </label>
       {lobbyForm()}
+      <br/><button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Cancel</button>
     </header>
   )
 
