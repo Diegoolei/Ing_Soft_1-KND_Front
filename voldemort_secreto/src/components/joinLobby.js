@@ -12,7 +12,7 @@ function JoinLobby() {
   const actual_players = "actual players"
 
   function handleJoinButton(lobby_id) {
-    console.log("Attempting to join Lobby", lobby_id)  
+    //console.log("Attempting to join Lobby", lobby_id)  
     dispatch(joinLobby(lobby_id))  
   }
 
@@ -55,9 +55,9 @@ function JoinLobby() {
     <div className="App-div-pastel-pink">
       <h1 className="white">JOIN LOBBY</h1>
       <ul>{formatedList()}</ul>
-      <br/><button onClick={prevpage}>Prev</button>
-      <button onClick={nextpage}>Next</button>
-      <br/><br /><button onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
+      <br/><button className="button" onClick={prevpage}>Prev</button>
+      <button className="button" onClick={nextpage}>Next</button>
+      <br/><br/><button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
     </div>
   )
 }

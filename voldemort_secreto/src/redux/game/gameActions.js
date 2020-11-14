@@ -51,6 +51,21 @@ export const cleanState = () => {
   }
 }
 
+export const createLobby = response_data => {
+  //console.log("Dispathing createLobby::  " + JSON.stringify(response_data))
+  return dispatch => {
+    const info = {
+      lobby_id: response_data.lobbyOut_Id,
+      lobby_name: response_data.lobbyOut_name,
+      player_id: response_data.lobbyOut_player_id,
+      is_owner: true
+    }
+    dispatch(setLobbyInfo(info))
+    dispatch(wsConnect(BASE_WS_URL+API_ENDPOINT_WEBSOCKET+String(response_data.lobbyOut_player_id)))
+    dispatch(changeScreen(LOBBY_COMPONENT))
+  }
+}
+
 export const joinLobby = lobby_id => {
   const state = store.getState()
   const token = state.session.authToken
@@ -61,12 +76,7 @@ export const joinLobby = lobby_id => {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
     ).then(response => {
-      console.log("-Response :" + JSON.stringify(response.data))
-      /*{    "joinLobby_name":"Example1",
-             "joinLobby_player_id":35,
-             "joinLobby_result":" Welcome to Example1",
-             "joinLobby_nicks":["lao4","laoPrime","lao1"]}
-             "joinLobby_is_owner": false */
+      //console.log("-Response :" + JSON.stringify(response.data))
       const info = {
         lobby_id: lobby_id,
         lobby_name: response.data.joinLobby_name,

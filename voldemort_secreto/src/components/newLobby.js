@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
-import { changeScreen } from '../redux/reduxIndex'
+import { changeScreen, createLobby } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 
 function NewLobby () {
@@ -35,8 +35,8 @@ function NewLobby () {
           }
         }
       ).then(response => {
-        console.log("-Response :" + JSON.stringify(response.data)) // dispatch for when we have the lobby redux
-        setValidityMsg("Lobby Created! You will be redirected ẅ̵̧̩̯͉́̉̓h̶͈̀͂e̵̛̹͗͊ṅ̴̜ ̵̫̙̃t̵̢͈̰̠͛̄̍͝h̶͕̪̞̠̆̈e̵̝̟̙͋̎̏ ̸̛̞͎̙̱͂̒́s̵̢͕̘͓͊̈́̏͝ù̵̱̓̕͝ņ̸͎͝ ̵͖̀̆̎ğ̴̢̡̼͔̀̀ǒ̴̦ẻ̵̪̣͔͋͜š̶̩ ̶̨̹̗̂͑ȯ̵̢͙̳͚̂̀̋u̵̡̥̗̪̇̀t̶͔̄")
+        dispatch(createLobby(response.data))
+        //console.log("-Response :" + JSON.stringify(response.data)) // dispatch for when we have the lobby redux
       }).catch(error => {
         let errorMsg
         try {
