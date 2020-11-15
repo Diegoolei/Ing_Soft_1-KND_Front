@@ -3,4 +3,4 @@ export { setUserinfo, setEmail, login, logoutSuccess, register, resetResponse } 
 export { changeScreen } from './componentController/componentControllerActions'
 export { wsConnect, wsDisconnect, wsSendMessage, wsConsumeMessage } from './socket/socketActions'
 export { renderLobbyPage } from './lobbyGameList/lobbyGameListActions'
-export { createLobby, joinLobby, leaveLobby, joinGame } from './game/gameActions'
+export { createLobby, joinLobby, leaveLobby, startGame, joinGame } from './game/gameActions'

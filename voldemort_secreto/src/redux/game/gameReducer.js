@@ -121,7 +121,7 @@ const gameReducer = (state = initialState, action) => {
     }
 
     case CGL_CONSUME_LOG:
-      let messages = [...state.messages_log]
+      messages = [...state.messages_log]
       messages.shift()
       return {
       ...state,
