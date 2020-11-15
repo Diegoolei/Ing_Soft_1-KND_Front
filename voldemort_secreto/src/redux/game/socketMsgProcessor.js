@@ -14,8 +14,6 @@ import {
 
 import { wsConsumeMessage } from '../reduxIndex'
 
-
-
 export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
   const type = jsonMsg.TYPE
@@ -25,7 +23,6 @@ export const processSocketMessage = jsonMsg => {
       case "NEW_PLAYER_JOINED":
         dispatch(playerJoinedLobby(payload))
         dispatch(logAction("Player "+ payload + " joined the lobby."))
-        dispatch(wsConsumeMessage())
         break;
   
       case "CHANGED_NICK":
@@ -33,72 +30,55 @@ export const processSocketMessage = jsonMsg => {
         const newnick = "NEW_NICK"
         dispatch(updateNick(payload[oldnick], payload[newnick]))
         dispatch(logAction("Player " + payload[oldnick] + " is now " + payload[newnick]))
-        dispatch(wsConsumeMessage())
         break;
   
       case "PLAYER_LEFT":
         dispatch(playerLeftLobby(payload))
         dispatch(logAction("Player "+ payload + " left the lobby."))
-        dispatch(wsConsumeMessage())
         break;
 
       case "LEAVE_LOBBY":
         dispatch(closeLobby(payload))
-        dispatch(wsConsumeMessage())
         break;
   
       case "START_GAME":
         dispatch(joinGame(payload))
-        dispatch(wsConsumeMessage())
         break;
   
       case "NEW_MINISTER":
-        dispatch(wsConsumeMessage())
         break;
       case "REQUEST_CANDIDATE":
-        dispatch(wsConsumeMessage())
         break;
       case "REQUEST_VOTE":
-        dispatch(wsConsumeMessage())
         break;
       case "ELECTION_RESULT":
-        dispatch(wsConsumeMessage())
         break;
       case "MINISTER_DISCARD":
-        dispatch(wsConsumeMessage())
         break;
       case "CAOS_PROCLAMATION":
-        dispatch(wsConsumeMessage())
         break;
       case "DIRECTOR_DISCARD":
-        dispatch(wsConsumeMessage())
         break;
       case "PROCLAMATION":
-        dispatch(wsConsumeMessage())
         break;
       case "END_GAME":
-        dispatch(wsConsumeMessage())
         break;
       case "MINISTER_DISCARD":
-        dispatch(wsConsumeMessage())
         break;
       case "REQUEST_SPELL":
-        dispatch(wsConsumeMessage())
         break;
       case "ADIVINATION_NOTICE":
-        dispatch(wsConsumeMessage())
         break;
       case "AVADA_KEDAVRA":
-        dispatch(wsConsumeMessage())
         break;
       case "CHAT":
         dispatch(logAction(payload))
-        dispatch(wsConsumeMessage())
         break;
   
       default:
         break;
     }
+    dispatch(wsConsumeMessage())
   }
 }
 
