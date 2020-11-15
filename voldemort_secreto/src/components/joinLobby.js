@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { changeScreen } from '../redux/reduxIndex'
+import { changeScreen, renderLobbyPage, joinLobby } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
-import { renderLobbyPage } from '../redux/reduxIndex'
 import { LG_LISTS_PAGE_SIZE } from '../redux/lobbyGameList/lobbyGameListTypes'
-import {joinLobby } from '../redux/reduxIndex'
 
 function JoinLobby() {
   const dispatch = useDispatch()
@@ -27,7 +25,7 @@ function JoinLobby() {
       let maxPlay = unformatedLobbies.[key].[max_players]
       let owner = unformatedLobbies.[key].lobby_creator
       formatedLobby = (
-      <li>
+      <li key={lobby_id}>
         <br/><button className="button-shadow-red" onClick={() => handleJoinButton(lobby_id)}>Join</button>
         {name}  (owner: {owner})  ({currPlay}/{maxPlay})
       </li>)
