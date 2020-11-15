@@ -4,7 +4,13 @@ import {
   CGL_SET_LOBBY_INFORMATION,
   CGL_SET_GAME_IMFORMATION,
   CGL_CLEAN_STATE,
-  CGL_PLAYER_JOINED_LOBBY
+  CGL_PLAYER_JOINED_LOBBY,
+  CGL_PLAYER_LEFT_LOBBY,
+  CGL_UPDATE_NICK,
+  CGL_START_WAITING_FOR_USER,
+  CGL_USER_DONE_WITH_ACTION,
+  CGL_LOG_ACTION,
+  CGL_CONSUME_LOG
 } from './gameTypes'
 
 import {
@@ -22,6 +28,13 @@ import { changeScreen, wsConnect } from '../reduxIndex'
 export const playerJoinedLobby = nick => {
   return {
     type: CGL_PLAYER_JOINED_LOBBY,
+    payload: nick
+  }
+}
+
+export const playerLeftLobby = nick => {
+  return {
+    type: CGL_PLAYER_LEFT_LOBBY,
     payload: nick
   }
 }
@@ -48,6 +61,41 @@ export const setGameInfo = info => {
 export const cleanState = () => {
   return {
     type: CGL_CLEAN_STATE
+  }
+}
+
+export const updateNick = (oldnick, newnick) => {
+  return {
+    type: CGL_UPDATE_NICK,
+    payload: {
+      oldnick: oldnick,
+      newnick: newnick
+    }
+  }
+}
+
+export const startWaiting = () => {
+  return {
+    type: CGL_START_WAITING_FOR_USER
+  }
+}
+
+export const userDoneWithAction = () => {
+  return {
+    type: CGL_USER_DONE_WITH_ACTION
+  }
+}
+
+export const logAction = msg => {
+  return {
+    type: CGL_LOG_ACTION,
+    payload: msg
+  }
+}
+
+export const consumeLog = () => {
+  return {
+    type: CGL_CONSUME_LOG
   }
 }
 
