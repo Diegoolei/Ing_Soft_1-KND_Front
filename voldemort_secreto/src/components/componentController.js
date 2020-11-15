@@ -11,7 +11,8 @@ import {
   ENDPOINT_SOCKET_TEST_COMPONENT,
   UPDATE_PROFILE_COMPONENT,
   CHANGE_NICK_ON_LOBBY,
-  LOBBY_COMPONENT
+  LOBBY_COMPONENT,
+  GAME_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 
 import LoginForm from './loginForm'
@@ -24,6 +25,7 @@ import NewLobby from './newLobby'
 import JoinLobby from './joinLobby'
 import ChangeNickOnLobby from './changeNickLobby'
 import Lobby from './lobby'
+import Game from './game'
 
 function ComponentController() {
   const currentScreen = useSelector(state => state.controller.screen)
@@ -40,6 +42,7 @@ function ComponentController() {
       case UPDATE_PROFILE_COMPONENT: return <UpdateUserProfile/>
       case CHANGE_NICK_ON_LOBBY: return <ChangeNickOnLobby/>
       case LOBBY_COMPONENT: return <Lobby/>
+      case GAME_COMPONENT: return <Game/>
       default: return (
         <div>
           ERROR DEFAULT CASE COMPONENT LOADED

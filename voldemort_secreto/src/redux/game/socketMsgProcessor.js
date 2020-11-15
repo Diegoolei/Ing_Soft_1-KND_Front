@@ -7,78 +7,102 @@ import {
   startWaiting,
   userDoneWithAction,
   logAction,
-  consumeLog
+  consumeLog,
+  joinGame,
+  closeLobby
 } from './gameActions'
 
 import { wsConsumeMessage } from '../reduxIndex'
 
 
-const socketProcessor = jsonMsg => {
-  const dispatch = useDispatch()
+
+export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
-  const type = jsonMsg.type
+  const type = jsonMsg.TYPE
   const payload = jsonMsg.PAYLOAD
+  return dispatch => {
+    switch (type) {
+      case "NEW_PLAYER_JOINED":
+        dispatch(playerJoinedLobby(payload))
+        dispatch(logAction("Player "+ payload + " joined the lobby."))
+        dispatch(wsConsumeMessage())
+        break;
+  
+      case "CHANGED_NICK":
+        const oldnick = "OLD_NICK"
+        const newnick = "NEW_NICK"
+        dispatch(updateNick(payload[oldnick], payload[newnick]))
+        dispatch(logAction("Player " + payload[oldnick] + " is now " + payload[newnick]))
+        dispatch(wsConsumeMessage())
+        break;
+  
+      case "PLAYER_LEFT":
+        dispatch(playerLeftLobby(payload))
+        dispatch(logAction("Player "+ payload + " left the lobby."))
+        dispatch(wsConsumeMessage())
+        break;
 
-  switch (type) {
-    case "NEW_PLAYER_JOINED":
-      dispatch(playerJoinedLobby(payload))
-      dispatch(logAction("Player "+ payload + " joined the lobby."))
-      dispatch(wsConsumeMessage())
-      break;
-
-    case "CHANGED_NICK":
-      const oldnick = "OLD_NICK"
-      const newnick = "NEW_NICK"
-      dispatch(updateNick(payload[oldnick], payload[newnick]))
-      dispatch(logAction("Player " + payload[oldnick] + " is now " + payload[newnick]))
-      dispatch(wsConsumeMessage())
-      break;
-
-    case "PLAYER_LEFT":
-      dispatch(playerLeftLobby(payload))
-      dispatch(logAction("Player "+ payload + " left the lobby."))
-      dispatch(wsConsumeMessage())
-      break;
-
-    case "START_GAME":
-      break;
-    case "NEW_MINISTER":
-      break;
-    case "REQUEST_CANDIDATE":
-      break;
-    case "REQUEST_VOTE":
-      break;
-    case "ELECTION_RESULT":
-      break;
-    case "MINISTER_DISCARD":
-      break;
-    case "CAOS_PROCLAMATION":
-      break;
-    case "DIRECTOR_DISCARD":
-      break;
-    case "PROCLAMATION":
-      break;
-    case "ENDGAME":
-      break;
-    case "MINISTER_DISCARD":
-      break;
-    case "REQUEST_SPELL":
-      break;
-    case "ADIVINATION_NOTICE":
-      break;
-    case "AVADA_KEDAVRA":
-      break;
-    case "CHAT":
-      dispatch(logAction(payload))
-      dispatch(wsConsumeMessage())
-      break;
-
-    default:
-      break;
+      case "LEAVE_LOBBY":
+        dispatch(closeLobby(payload))
+        dispatch(wsConsumeMessage())
+        break;
+  
+      case "START_GAME":
+        dispatch(joinGame(payload))
+        dispatch(wsConsumeMessage())
+        break;
+  
+      case "NEW_MINISTER":
+        dispatch(wsConsumeMessage())
+        break;
+      case "REQUEST_CANDIDATE":
+        dispatch(wsConsumeMessage())
+        break;
+      case "REQUEST_VOTE":
+        dispatch(wsConsumeMessage())
+        break;
+      case "ELECTION_RESULT":
+        dispatch(wsConsumeMessage())
+        break;
+      case "MINISTER_DISCARD":
+        dispatch(wsConsumeMessage())
+        break;
+      case "CAOS_PROCLAMATION":
+        dispatch(wsConsumeMessage())
+        break;
+      case "DIRECTOR_DISCARD":
+        dispatch(wsConsumeMessage())
+        break;
+      case "PROCLAMATION":
+        dispatch(wsConsumeMessage())
+        break;
+      case "END_GAME":
+        dispatch(wsConsumeMessage())
+        break;
+      case "MINISTER_DISCARD":
+        dispatch(wsConsumeMessage())
+        break;
+      case "REQUEST_SPELL":
+        dispatch(wsConsumeMessage())
+        break;
+      case "ADIVINATION_NOTICE":
+        dispatch(wsConsumeMessage())
+        break;
+      case "AVADA_KEDAVRA":
+        dispatch(wsConsumeMessage())
+        break;
+      case "CHAT":
+        dispatch(logAction(payload))
+        dispatch(wsConsumeMessage())
+        break;
+  
+      default:
+        break;
+    }
   }
 }
 
-export default socketProcessor
+export default processSocketMessage
 
 
 /*

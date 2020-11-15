@@ -18,11 +18,12 @@ import {
   BASE_WS_URL,
   API_ENDPOINT_JOIN_LOBBY,
   API_ENDPOINT_LEAVE_LOBBY,
+  API_ENDPOINT_START_GAME,
   API_ENDPOINT_GAME_INFO,
   API_ENDPOINT_WEBSOCKET
 } from '../API_Types'
 
-import { LOBBY_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
+import { LOBBY_COMPONENT, GAME_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
 import { changeScreen, wsConnect } from '../reduxIndex'
 
 export const playerJoinedLobby = nick => {
@@ -165,15 +166,23 @@ export const leaveLobby = lobby_id => {
       }
     ).then(response => {
       console.log("-Response :" + JSON.stringify(response.data))
-      dispatch(cleanState())
-      dispatch(changeScreen(MAIN_MENU_COMPONENT))
+      dispatch(closeLobby("LEFT"))
     }).catch(error => {
       let errorMsg
       try {
         errorMsg = error.response.data.detail
-        if(errorMsg === " You are not in the provided lobby") {
-          dispatch(cleanState())
-          dispatch(changeScreen(MAIN_MENU_COMPONENT))
+        switch (errorMsg) {
+          case " You are not in the provided lobby":
+            dispatch(closeLobby("LEFT"))
+            break;
+          
+          case " The lobby you selected does not exist":
+            dispatch(closeLobby("LEFT"))
+            break;
+        
+          default:
+            console.log("Unexpected error: ", errorMsg)
+            break;
         }
       } catch (er) {
         errorMsg = "Something went wrong:: " + er
@@ -183,10 +192,51 @@ export const leaveLobby = lobby_id => {
   }
 }
 
+export const closeLobby = reason => {
+  return dispatch => {
+    switch (reason) {
+      case "LEFT":
+        dispatch(cleanState())
+        dispatch(changeScreen(MAIN_MENU_COMPONENT))
+        break;
+    
+      default:
+        console.log("Closing lobby by reason of "+reason)
+        dispatch(cleanState())
+        dispatch(changeScreen(MAIN_MENU_COMPONENT))
+        break;
+    }
+  }
+}
+
+export const startGame = lobby_id => {
+  const state = store.getState()
+  const token = state.session.authToken
+  const uri = BASE_URL+API_ENDPOINT_START_GAME+String(lobby_id)+"/start_game"
+  return dispatch => {
+    axios.delete(uri,
+      {
+        headers: { 'Authorization': token.token_type + " " + token.access_token }
+      }
+    ).then(response => {
+      console.log("-Response :" + JSON.stringify(response.data))
+    }).catch(error => {
+      let errorMsg
+      try {
+        errorMsg = error.response.data.detail
+      } catch (er) {
+        errorMsg = "Something went wrong:: " + er
+      }
+      console.log("-Response :" + JSON.stringify(errorMsg))
+    })
+  }
+}
+
+
 export const joinGame = game_id => {
   const state = store.getState()
   const token = state.session.authToken
-  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+game_id+"/"
+  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+String(game_id)
   return dispatch => {
     axios.get(uri,
       {
@@ -194,7 +244,32 @@ export const joinGame = game_id => {
       }
     ).then(response => {
       console.log("-Response :" + JSON.stringify(response.data))
-      dispatch(changeScreen(LOBBY_COMPONENT))
+      dispatch(cleanState())
+      //dispatch(setGameInfo(response.data))
+      /*
+      -Response :{
+        "game_id":12,
+        "game_step_turn":-1,
+        "player_id":83,
+        "player_nick":"lao2",
+        "chat_blocked":false,
+        "current_minister":0,
+        "current_director":-1,
+        "player_array": 
+          {
+            "lao5":{"nick":"lao5","player_number":3,"connected":true,"role":2,"is_alive":true,"is_candidate":false,"vote":false},
+            "lao1":{"nick":"lao1","player_number":0,"connected":true,"role":0,"is_alive":true,"is_candidate":false,"vote":false},
+            "lao2":{"nick":"lao2","player_number":1,"connected":true,"role":1,"is_alive":true,"is_candidate":false,"vote":false},
+            "lao3":{"nick":"lao3","player_number":4,"connected":true,"role":0,"is_alive":true,"is_candidate":false,"vote":false},
+            "lao4":{"nick":"lao4","player_number":2,"connected":true,"role":0,"is_alive":true,"is_candidate":false,"vote":false}
+          },
+          "election_counter":0,
+          "cards_in_deck":17,
+          "proclaimed_phoenix":0,
+          "proclaimed_death_eater":0
+        }
+      */
+      dispatch(changeScreen(GAME_COMPONENT))
     }).catch(error => {
       let errorMsg
       try {
