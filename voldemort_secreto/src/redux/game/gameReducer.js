@@ -2,9 +2,15 @@ import {
   CGL_SET_LOBBY_INFORMATION,
   CGL_SET_GAME_IMFORMATION,
   CGL_PLAYER_JOINED_LOBBY,
+  CGL_PLAYER_LEFT_LOBBY,
   CGL_PROCLAIM_PHOENIX,
   CGL_CLEAN_STATE,
-  CGL_PROCLAIM_DEATH_EATER
+  CGL_PROCLAIM_DEATH_EATER,
+  CGL_UPDATE_NICK,
+  CGL_START_WAITING_FOR_USER,
+  CGL_USER_DONE_WITH_ACTION,
+  CGL_LOG_ACTION,
+  CGL_CONSUME_LOG
 } from './gameTypes'
 
 const initialState = {
@@ -23,6 +29,8 @@ const initialState = {
   cards_in_deck: 17,
   proclaimed_phoenix: 0,
   proclaimed_death_eater: 0,
+  messages_log: [],
+  waiting_for_user: false,
   loading: false
 }
 
@@ -60,6 +68,14 @@ const gameReducer = (state = initialState, action) => {
       }
     }
 
+    case CGL_PLAYER_LEFT_LOBBY: 
+      let new_players = {...state.player_array}
+      delete new_players[action.payload]
+      return {
+      ...state,
+      player_array: new_players
+    }
+
     case CGL_CLEAN_STATE: return initialState
 
     case CGL_PROCLAIM_PHOENIX: return {
@@ -71,7 +87,47 @@ const gameReducer = (state = initialState, action) => {
       ...state, 
       proclaimed_death_eater: state.proclaimed_death_eater + 1
     }
-  
+
+    case CGL_UPDATE_NICK:
+      const oldnick = action.payload.oldnick
+      const newnick = action.payload.newnick
+      let players = {
+        ...state.player_array,
+        [newnick]: state.player_array[oldnick]
+      }
+      players[newnick].nick = newnick
+      delete players[oldnick]
+      return {
+        ...state,
+        player_array: players
+    }
+
+    case CGL_START_WAITING_FOR_USER: return {
+      ...state,
+      waiting_for_user: true
+    }
+
+    case CGL_USER_DONE_WITH_ACTION: return {
+      ...state,
+      waiting_for_user: false
+    }
+
+    case CGL_LOG_ACTION:
+      let messages = [...state.messages_log]
+      messages.push(action.payload)
+      return {
+      ...state,
+      messages_log: messages
+    }
+
+    case CGL_CONSUME_LOG:
+      let messages = [...state.messages_log]
+      messages.shift()
+      return {
+      ...state,
+      messages_log: messages
+    }
+
     default:  return state
 
   }
