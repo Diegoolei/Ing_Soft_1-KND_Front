@@ -281,3 +281,29 @@ export const joinGame = game_id => {
     })
   }
 }
+
+
+export const voteInGame = (vote_recive, game_id) => {
+  const state = store.getState()
+  const token = state.session.authToken
+  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+game_id+"/vote/"
+
+  return dispatch => {
+    axios.get(uri,
+      {
+        headers: { 'Authorization': token.token_type + " " + token.access_token }
+      }
+    ).then(response => {
+      console.log("-Response :" + JSON.stringify(response.data))
+    }).catch(error => {
+      let errorMsg
+      try {
+        errorMsg = error.response.data.detail
+      } catch (er) {
+        errorMsg = "Something went wrong:: " + er
+      }
+      console.log("-Response :" + JSON.stringify(errorMsg))
+    })
+  }
+}
+

@@ -1,5 +1,6 @@
 
 // CGL == Current Game Lobby
+<<<<<<< HEAD
 // Actions
 export const CGL_SET_LOBBY_INFORMATION    = 'CGL_SET_LOBBY_INFORMATION'
 export const CGL_SET_GAME_IMFORMATION     = 'CGL_SET_GAME_IMFORMATION'
@@ -21,3 +22,18 @@ export const CGL_USER_DONE_WITH_ACTION    = 'CGL_USER_DONE_WITH_ACTION'
 // For when we simply must show some text to the user informing something
 export const CGL_LOG_ACTION               = 'CGL_LOG_ACTION'
 export const CGL_CONSUME_LOG              = 'CGL_CONSUME_LOG'
+=======
+export const CGL_SET_LOBBY_INFORMATION = 'CGL_SET_LOBBY_INFORMATION'
+export const CGL_SET_GAME_IMFORMATION = 'CGL_SET_GAME_IMFORMATION'
+export const CGL_CLEAN_STATE = 'CGL_CLEAN_STATE'
+export const CGL_PLAYER_JOINED_LOBBY = 'CGL_PLAYER_JOINED_LOBBY'
+export const CGL_PROCLAIM_PHOENIX = 'CGL_PROCLAIM_PHOENIX'
+export const CGL_PROCLAIM_DEATH_EATER = 'CGL_PROCLAIM_DEATH_EATER'
+export const CGL_BLOCK_CHAT = 'CGL_BLOCK_CHAT'
+export const CGL_UNBLOCK_CHAT = 'CGL_BLOCK_CHAT'
+export const CGL_SWITCH_TO_GAME = 'CGL_SWITCH_TO_GAME'
+export const CGL_LUMOS = 'CGL_LUMOS'
+export const CGL_NOX = 'CGL_NOX'
+export const CGL_REJECTED_ELECTION = 'CGL_REJECTED_ELECTION'
+export const CGL_ACEPTED_ELECTION = 'CGL_ACEPTED_ELECTION'
+>>>>>>> c73ec89... start Vote implementation

@@ -10,7 +10,11 @@ import {
   CGL_START_WAITING_FOR_USER,
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
-  CGL_CONSUME_LOG
+  CGL_CONSUME_LOG,
+  CGL_LUMOS,
+  CGL_NOX,
+  CGL_REJECTED_ELECTION,
+  CGL_ACEPTED_ELECTION
 } from './gameTypes'
 
 const initialState = {
@@ -78,6 +82,7 @@ const gameReducer = (state = initialState, action) => {
 
     case CGL_CLEAN_STATE: return initialState
 
+    
     case CGL_PROCLAIM_PHOENIX: return {
       ...state,
       proclaimed_phoenix: state.proclaimed_phoenix + 1
@@ -87,7 +92,7 @@ const gameReducer = (state = initialState, action) => {
       ...state, 
       proclaimed_death_eater: state.proclaimed_death_eater + 1
     }
-
+  
     case CGL_UPDATE_NICK:
       const oldnick = action.payload.oldnick
       const newnick = action.payload.newnick
@@ -127,6 +132,27 @@ const gameReducer = (state = initialState, action) => {
       ...state,
       messages_log: messages
     }
+
+    case CGL_LUMOS: return {
+      ...state,
+      player_array: {
+        ...state.player_array,
+        vote: 1
+      }
+    }
+
+    case CGL_NOX: return {
+      ...state,
+      player_array: {
+        ...state.player_array,
+        vote: 0
+      }
+    }
+
+    case CGL_REJECTED_ELECTION: return {
+      ...state,
+      election_counter: election_counter + 1,
+      current_minister: (current_minister + 1) % player_array.length
 
     default:  return state
 
