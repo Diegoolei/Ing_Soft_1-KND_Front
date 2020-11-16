@@ -95,7 +95,6 @@ const gameReducer = (state = initialState, action) => {
 
     case CGL_CLEAN_STATE: return initialState
 
-    
     case CGL_PROCLAIM_PHOENIX: return {
       ...state,
       proclaimed_phoenix: state.proclaimed_phoenix + 1
@@ -106,13 +105,6 @@ const gameReducer = (state = initialState, action) => {
       proclaimed_death_eater: state.proclaimed_death_eater + 1
     }
   
-    case CGL_REJECTED_ELECTION: return {
-      ...state,
-        election_counter: (election_counter + 1),
-        current_minister: (current_minister + 1) % player_array.length,
-        turn_step: 0
-    }
-
     case CGL_ACCEPTED_ELECTION: return {
       ...state,
       turn_step: 3

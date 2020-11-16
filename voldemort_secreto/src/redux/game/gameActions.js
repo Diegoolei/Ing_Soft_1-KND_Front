@@ -289,7 +289,7 @@ export const voteInGame = (vote_recive, game_id) => {
   const uri = BASE_URL+API_ENDPOINT_GAME_INFO+game_id+"/vote/"
 
   return dispatch => {
-    axios.get(uri,
+    axios.put(uri,
       {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }

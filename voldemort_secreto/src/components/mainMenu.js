@@ -9,7 +9,8 @@ import {
   CREATE_LOBBY_COMPONENT,
   JOIN_LOBBY_COMPONENT,
   CHANGE_NICK_ON_LOBBY,
-  SHOW_VOTATION_RESULTS_COMPONENT
+  SHOW_VOTATION_RESULTS_COMPONENT,
+  GAME_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 
 console.log(hp_logo);
@@ -46,6 +47,10 @@ function MainMenu () {
     dispatch(changeScreen(SHOW_VOTATION_RESULTS_COMPONENT))
   }
 
+  function game() {
+    dispatch(changeScreen(GAME_COMPONENT))
+  }
+
   return (
     <header className="App-header-test">
       <div className="App-div"> 
@@ -57,6 +62,7 @@ function MainMenu () {
         <br/><button className="button" onClick={joinlobby}>Join Lobby</button>
         <br/><button className="button" onClick={data}>Update User Data</button>
         <br/><button className="button">View History</button>
+        <br/><button className="button" onClick={game}>Game</button>
         <br/><button className="button">Settings</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(CHANGE_NICK_ON_LOBBY))}>Change Nick on Lobby</button>
