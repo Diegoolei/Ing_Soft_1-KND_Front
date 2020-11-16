@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { leaveLobby, startGame, joinGame } from '../redux/reduxIndex'
+import { leaveLobby, startGame,joinGame } from '../redux/reduxIndex'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
+import ChangeNickOnLobby from './changeNickLobby'
 
 function Lobby () {
   const game = useSelector(state => state.game)
@@ -32,6 +33,7 @@ function Lobby () {
       {getPlayerLists()}
       <button className="button" onClick={() => dispatch(leaveLobby(game.lobby_id))}>Leave Lobby</button>
       {game.is_owner ? startGameButton() : null}
+      <br/><button className="button" onClick={() => dispatch(changeScreen(CHANGE_NICK_ON_LOBBY))}>Change Nick on Lobby</button>
     </div>
   )
 }

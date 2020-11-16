@@ -212,6 +212,22 @@
   transition: 0.4s;
 }
 
+/* Desplegable con opciones seleccionables 
+<form>
+  <select id="country" name="country">
+  <option value="au">Australia</option>
+  <option value="ca">Canada</option>
+  <option value="usa">USA</option>
+  </select>
+</form>*/
+.App-select{
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
