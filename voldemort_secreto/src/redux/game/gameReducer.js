@@ -11,11 +11,10 @@ import {
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
-  CGL_LUMOS,
-  CGL_NOX,
   CGL_REJECTED_ELECTION,
-  CGL_ACEPTED_ELECTION
+  CGL_ACCEPTED_ELECTION
 } from './gameTypes'
+
 
 const initialState = {
   lobby_id: 0,
@@ -37,6 +36,20 @@ const initialState = {
   waiting_for_user: false,
   loading: false
 }
+
+/*
+ turn_step : 
+-1 : Turno inicial cuando recién empieza el juego
+0 : Nuevo turno 
+1 : Seleccionar director 
+2 : Votar
+3 : si => Ministro obtiene 3 cartas y descarta 1
+    no => Incrementar marcador de elecciones, salta a 0 (con caos salta a 5)
+4 : Director recibe 2 cartas y descarta 1
+5 : Se proclama la carta
+6 : Si hay hechizos se lanzan
+7 : Gana fenix o mortífagos
+*/
 
 const getInitialPlayer = nick => {
   return {
@@ -93,6 +106,18 @@ const gameReducer = (state = initialState, action) => {
       proclaimed_death_eater: state.proclaimed_death_eater + 1
     }
   
+    case CGL_REJECTED_ELECTION: return {
+      ...state,
+        election_counter: (election_counter + 1),
+        current_minister: (current_minister + 1) % player_array.length,
+        turn_step: 0
+    }
+
+    case CGL_ACCEPTED_ELECTION: return {
+      ...state,
+      turn_step: 3
+    }
+
     case CGL_UPDATE_NICK:
       const oldnick = action.payload.oldnick
       const newnick = action.payload.newnick
@@ -132,28 +157,7 @@ const gameReducer = (state = initialState, action) => {
       ...state,
       messages_log: messages
     }
-
-    case CGL_LUMOS: return {
-      ...state,
-      player_array: {
-        ...state.player_array,
-        vote: 1
-      }
-    }
-
-    case CGL_NOX: return {
-      ...state,
-      player_array: {
-        ...state.player_array,
-        vote: 0
-      }
-    }
-
-    case CGL_REJECTED_ELECTION: return {
-      ...state,
-      election_counter: election_counter + 1,
-      current_minister: (current_minister + 1) % player_array.length
-
+    
     default:  return state
 
   }
