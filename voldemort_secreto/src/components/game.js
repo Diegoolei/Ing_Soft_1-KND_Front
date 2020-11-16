@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { joinGame, voteInGame } from '../redux/reduxIndex'
-import MainMenu from './mainMenu'
-import processSocketMessage from '../redux/game/socketMsgProcessor'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
@@ -12,20 +10,20 @@ import { changeScreen } from '../redux/reduxIndex'
 function Game () {
   const dispatch = useDispatch()
   const game = useSelector(state => state.game)
-  const vote = useSelector(state => state.voteInGame)
   const [active, setActive] = useState(false)
 
   function Vote () {
     confirmAlert({
-      title: 'It is time to Vote',
-      message: 'Are you sure to do this.',
+      title: 'It is time to Vote!',
+      message: 'Vote Lumos to accept government or Nox to reject it',
       buttons: [
         {
           label: 'Lumos',
-          onClick: voteInGame(1, game.game_id)
+          onClick: () => dispatch(voteInGame(true, game.game_id))
         },
         {
           label: 'Nox',
+          onClick: () => dispatch(voteInGame(false, game.game_id))
         }
       ]
     });
@@ -38,13 +36,13 @@ function Game () {
   return (
     <div>
       <h1>GAME</h1>
-      <button onClick={() => setActive(!active)}>It's time to Vote!</button>
-      <br/>{active ? 
-        <div>
-          <br/><button className="button" onClick={Vote}>It's time to Vote!</button>
-          <br/><button className="button" onClick={BackToMenu}>Back to Main Menu</button>
-        </div> : null}
-      {active ? <MainMenu/> : null}
+      {/*<button onClick={() => setActive(!active)}>Vote</button>*/}
+        <div class="custom-ui">
+          <br/><button className="button" onClick={Vote}>Vote</button>    
+        </div>
+      {/*<br/>{active ? 
+          </div> : null} */}
+      <br/><button className="button" onClick={BackToMenu}>Back to Main Menu</button>
     </div>
   )
 }

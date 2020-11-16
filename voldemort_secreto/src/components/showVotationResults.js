@@ -3,11 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import axios from 'axios'
+import processSocketMessage from '../redux/game/socketMsgProcessor'
+
 
 function ShowVotationResults() {
   const dispatch = useDispatch()
   const recvMsg = useSelector(state => state.socket.messages)
   const token = useSelector(state => state.session.authToken)
+  const [active, setActive] = useState(false)
   //const votes = useSelector(state => state.player_array)
   const [results, setResults] = useState('')
   const [election, setElection] = useState('')
@@ -64,9 +67,14 @@ function ShowVotationResults() {
   return (
     <div >
       <h1 className="brown">VOTATION RESULTS</h1>
-        <br/><button className="button-votation-red" onClick={votationResults}>Show Results</button>
-        {results}
-        {election}
+      {/*<button onClick={() => setActive(!active)}>Show Results</button>*/}
+        <button className="button-votation-red" onClick={() => setActive(!active) }>Show Results</button>
+        <br/>{active ? 
+          <div>
+            votationResults(votes)
+            {results}
+            {election}
+          </div> : null}
         <br/><br/><button className="button" onClick={BackToMenu}>Back to Main Menu</button>
     </div>
   )

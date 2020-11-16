@@ -2,6 +2,7 @@ import {
   CGL_SET_LOBBY_INFORMATION,
   CGL_SET_GAME_IMFORMATION,
   CGL_PLAYER_JOINED_LOBBY,
+  CGL_PLAYER_JOINED_GAME,
   CGL_PLAYER_LEFT_LOBBY,
   CGL_PROCLAIM_PHOENIX,
   CGL_CLEAN_STATE,
@@ -65,9 +66,7 @@ const getInitialPlayer = nick => {
 
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CGL_SET_LOBBY_INFORMATION: 
-    console.log("Payload::  "+JSON.stringify(action))
-    return {
+    case CGL_SET_LOBBY_INFORMATION: return {
       ...state,
       lobby_id: action.payload.lobby_id,
       lobby_name: action.payload.lobby_name,
@@ -75,13 +74,42 @@ const gameReducer = (state = initialState, action) => {
       is_owner: action.payload.is_owner
     }
       
-    case CGL_SET_GAME_IMFORMATION: return state
+    case CGL_SET_GAME_IMFORMATION: return {
+      ...state,
+      game_id: action.payload.game_id,
+      game_step_turn: action.payload.game_step_turn,
+      player_id: action.payload.player_id,
+      player_nick: action.payload.player_nick,
+      chat_blocked: action.payload.chat_blocked,
+      current_minister: action.payload.current_minister,
+      current_director: action.payload.current_director,
+      election_counter: action.payload.election_counter,
+      cards_in_deck: action.payload.cards_in_deck,
+      proclaimed_phoenix: action.payload.proclaimed_phoenix,
+      proclaimed_death_eater: action.payload.proclaimed_death_eater
+    }
 
     case CGL_PLAYER_JOINED_LOBBY: return {
       ...state,
       player_array: {
         ...state.player_array,
         [action.payload]: getInitialPlayer(action.payload)
+      }
+    }
+
+    case CGL_PLAYER_JOINED_GAME: return {
+      ...state,
+      player_array: {
+        ...state.player_array,
+        [action.payload.nick] : {
+          nick: action.payload.nick,
+          player_number: action.payload.player_number,
+          connected: action.payload.connected,
+          role: action.payload.role,
+          is_alive: action.payload.is_alive,
+          is_candidate: action.payload.is_candidate,
+          vote: action.payload.vote
+        }
       }
     }
 

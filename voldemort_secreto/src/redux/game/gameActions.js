@@ -5,6 +5,7 @@ import {
   CGL_SET_GAME_IMFORMATION,
   CGL_CLEAN_STATE,
   CGL_PLAYER_JOINED_LOBBY,
+  CGL_PLAYER_JOINED_GAME,
   CGL_PLAYER_LEFT_LOBBY,
   CGL_UPDATE_NICK,
   CGL_START_WAITING_FOR_USER,
@@ -37,6 +38,13 @@ export const playerLeftLobby = nick => {
   return {
     type: CGL_PLAYER_LEFT_LOBBY,
     payload: nick
+  }
+}
+
+export const playerJoinedGame = player_info => {
+  return {
+    type: CGL_PLAYER_JOINED_GAME,
+    payload: player_info
   }
 }
 
@@ -245,30 +253,33 @@ export const joinGame = game_id => {
     ).then(response => {
       console.log("-Response :" + JSON.stringify(response.data))
       dispatch(cleanState())
-      //dispatch(setGameInfo(response.data))
-      /*
-      -Response :{
-        "game_id":12,
-        "game_step_turn":-1,
-        "player_id":83,
-        "player_nick":"lao2",
-        "chat_blocked":false,
-        "current_minister":0,
-        "current_director":-1,
-        "player_array": 
-          {
-            "lao5":{"nick":"lao5","player_number":3,"connected":true,"role":2,"is_alive":true,"is_candidate":false,"vote":false},
-            "lao1":{"nick":"lao1","player_number":0,"connected":true,"role":0,"is_alive":true,"is_candidate":false,"vote":false},
-            "lao2":{"nick":"lao2","player_number":1,"connected":true,"role":1,"is_alive":true,"is_candidate":false,"vote":false},
-            "lao3":{"nick":"lao3","player_number":4,"connected":true,"role":0,"is_alive":true,"is_candidate":false,"vote":false},
-            "lao4":{"nick":"lao4","player_number":2,"connected":true,"role":0,"is_alive":true,"is_candidate":false,"vote":false}
-          },
-          "election_counter":0,
-          "cards_in_deck":17,
-          "proclaimed_phoenix":0,
-          "proclaimed_death_eater":0
+      const info = {
+        game_id: game_id,
+        game_step_turn: response.data.game_step_turn,
+        player_id: response.data.player_id,
+        player_nick: response.data.player_nick,
+        chat_blocked: response.data.chat_blocked,
+        current_minister: response.data.current_minister,
+        current_director: response.data.current_director,
+        election_counter: response.data.election_counter,
+        cards_in_deck: response.data.cards_in_deck,
+        proclaimed_phoenix: response.data.proclaimed_phoenix,
+        proclaimed_death_eater: response.data.proclaimed_death_eater
+      }
+      dispatch(setGameInfo(info))
+      const player_array = response.data.player_array
+      for (let key in player_array) {
+        const player_info = {
+          nick: key,
+          player_number: player_array[key].player_number,
+          connected: player_array[key].connected,
+          role: player_array[key].role,
+          is_alive: player_array[key].is_alive,
+          is_candidate: player_array[key].is_candidate,
+          vote: player_array[key].vote
         }
-      */
+        dispatch(playerJoinedGame(player_info))
+      }
       dispatch(changeScreen(GAME_COMPONENT))
     }).catch(error => {
       let errorMsg
@@ -286,10 +297,10 @@ export const joinGame = game_id => {
 export const voteInGame = (vote_recive, game_id) => {
   const state = store.getState()
   const token = state.session.authToken
+  const body = { "vote": vote_recive }
   const uri = BASE_URL+API_ENDPOINT_GAME_INFO+game_id+"/vote/"
-
   return dispatch => {
-    axios.put(uri,
+    axios.put(uri, body,
       {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }

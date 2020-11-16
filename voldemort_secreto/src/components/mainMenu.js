@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutSuccess, changeScreen, renderLobbyPage } from '../redux/reduxIndex'
+import { logoutSuccess, changeScreen, renderLobbyPage, joinGame, voteInGame } from '../redux/reduxIndex'
 import hp_logo from '../metaMedia/hp_logo.svg'
 import { 
   LOGIN_COMPONENT,
@@ -48,7 +48,7 @@ function MainMenu () {
   }
 
   function game() {
-    dispatch(changeScreen(GAME_COMPONENT))
+    dispatch(joinGame(1))
   }
 
   return (
@@ -62,7 +62,7 @@ function MainMenu () {
         <br/><button className="button" onClick={joinlobby}>Join Lobby</button>
         <br/><button className="button" onClick={data}>Update User Data</button>
         <br/><button className="button">View History</button>
-        <br/><button className="button" onClick={game}>Game</button>
+        <br/><button className="button" onClick={game}>Join Game</button>
         <br/><button className="button">Settings</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(CHANGE_NICK_ON_LOBBY))}>Change Nick on Lobby</button>

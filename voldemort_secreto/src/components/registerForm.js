@@ -96,7 +96,7 @@ function LoginForm () {
     <header className="App-header">
       <img src={nimbus} className="App-logo" alt="logo" />
       <p>
-        Bienvenido a Secret Voldemort
+        Welcome to Secret Voldemort
       </p>
       {registerForm()}
     </header>
