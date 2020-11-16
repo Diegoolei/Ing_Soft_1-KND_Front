@@ -73,8 +73,8 @@ function NewLobby () {
   const lobbyForm = () => {
     return (
       <div>
+        <br/>
         <input placeholder='lobby name' name='lobby' type='text' onBlur={takeInput} onChange={takeInput}/>
-        
         <br/>
         <form>
             <label>Min Players: </label>
@@ -104,14 +104,12 @@ function NewLobby () {
 
   return (
     <header className="App-header">
-      <h2>
-        Create Lobby
-      </h2>
-      <label>
-        Please, fill in the following fields to create your lobby
-      </label>
-      {lobbyForm()}
-      <br/><button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Cancel</button>
+      <div className="App-div">
+        <h2 className="brown">Create Lobby</h2>
+        <label>Please, fill in the following fields to create your lobby</label>
+        {lobbyForm()}
+        <button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Cancel</button>
+      </div>
     </header>
   )
 

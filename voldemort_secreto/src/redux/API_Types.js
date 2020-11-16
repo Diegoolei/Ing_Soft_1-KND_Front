@@ -17,9 +17,8 @@ export const API_ENDPOINT_START_GAME = '/lobby/'
 export const API_ENDPOINT_LEAVE_LOBBY = '/lobby/'
 export const API_ENDPOINT_GAME_INFO = '/games/'
 export const API_ENDPOINT_WEBSOCKET = '/websocket/'
-
-//export const API_ENDPOINT_LOBBY = '/lobby/'
-//export const API_ENDPOINT_GAME = '/games/'
+export const API_ENDPOINT_LOBBY = '/lobby/'
+export const API_ENDPOINT_GAME = '/games/'
 
 //FORMS
   // REGISTER BODY:
@@ -37,3 +36,6 @@ export const API_IN_LOGIN_PASSWORD = 'password'
   // CREATE LOBBY:
 
 /* lobbyIn_name: str, lobbyIn_max_players: Optional[int], lobbyIn_min_players: Optional[int] */
+
+//GAME BODY:
+export const API_SELECT_DIRECTOR_NICK = 'player_number'
