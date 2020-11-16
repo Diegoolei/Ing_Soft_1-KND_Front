@@ -12,12 +12,12 @@ function Director(){
     //const [userId, setUser_id] = useState('') // Test
     //const [gameId, setGame_id] = useState('') // Test
     //const [playerId, setPlayer_id] = useState('') // Test
-    //const [playerNumber, setPlayer_number] = useState('')
+    const [playerNumber, setPlayer_number] = useState('')
     const [validityMsg, setValidityMsg] = useState('')
 
     function SelectDirectorCandidate(){
         console.log("Minister are electing a Director candidate...")
-        const uri= "http://127.0.0.1:8000/games/"+String(gameId)+"/select_director/"
+        const uri= "http://127.0.0.1:8000/games/"+String(game_id)+"/select_director/"
         const body = { "player_number": playerNumber } // Checks if better player_nick 
         axios.post(
             uri, body, { headers: {'Authorization' : token.token_type + " " + token.access_token}}
@@ -41,7 +41,7 @@ function Director(){
         const {name, value} = inp.target;
         switch(name){
             case "setPlayer_number":
-                setPlayer_id(value)
+                setPlayer_number(value)
                 break;
             default:
                 break;

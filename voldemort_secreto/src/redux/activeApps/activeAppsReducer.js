@@ -3,10 +3,6 @@ import {
   APPS_DESACTIVE_CHANGE_NICK
 } from './activeAppsTypes'
 
-// const activateChangeNick = () => {
-// export const deactivateChangeNick = () => {
-
-
   const initialState = {
     is_changeNick_active: false
   }
@@ -15,14 +11,16 @@ import {
     switch (action.type) {
       case APPS_ACTIVATE_CHANGE_NICK: return {
         ...state,
-        //algo
+        is_changeNick_active: true
       }
 
       case APPS_DESACTIVE_CHANGE_NICK: return {
         ...state,
-        //algo
+        is_changeNick_active: false
       }
 
       default: return state
     }
   }
+
+  export default activeAppsReducer

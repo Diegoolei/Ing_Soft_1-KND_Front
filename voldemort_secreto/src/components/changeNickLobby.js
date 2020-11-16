@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import dobby from './../dobby.svg';
-import { changeScreen } from '../redux/reduxIndex'
-import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { activateChangeNick, deactivateChangeNick } from '../redux/activeApps/activeAppsActions'
 import axios from 'axios' // For use change_nick POST Endpoint
 
 function ChangeNickOnLobby(){
+    const is_active_change_nick = useSelector(state => state.active_apps) 
     const dispatch = useDispatch()
     const lobby_id = useSelector(state => state.game.lobby_id)
     const token = useSelector(state => state.session.authToken)
@@ -28,7 +28,7 @@ function ChangeNickOnLobby(){
             try {
                 errorMsg = error.response.data.detail
                 } catch (er) {
-                errorMsg = "The nick is already selected by another player"
+                errorMsg = "The nick is already selected by another player " + er
                 }
                 console.log("-Response :" + JSON.stringify(errorMsg))
                 setValidityMsg(errorMsg)
@@ -46,15 +46,12 @@ function ChangeNickOnLobby(){
         }
     }
 
-    function BackToMenu() {
-        dispatch(changeScreen(MAIN_MENU_COMPONENT))
-    }
-
     function ShowMyButtons(){
         return(
             <div>
                 <input placeholder='New player nick' name='setNewPlayerNick' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input><br/>
-                <br/><button className="button" onClick={ChangeNick}>Change Nick</button>
+                <br/><button className="button" onClick={ChangeNick}>Check and confirm</button><br/>
+                <button className="button" onClick={() => dispatch(deactivateChangeNick())}>Close</button>
                 <br/><label>{validityMsg}</label><br/>
                 <br/>
             </div>
@@ -70,14 +67,20 @@ function ChangeNickOnLobby(){
         )
     }
 
-    return(
-        <header className="App-header_Hufflepuff">
-        <img src={dobby} className="App-logo-without-animation" alt="logo" />
-        <div>
-            <br/>{TestMyDiv()}<br/>
-        </div>
-        <button className="button" onClick={BackToMenu}>Back to Main Menu</button>
-        </header>
-    )
+    function RenderMe(){
+        return(
+            <div className="App-div-up">
+                <img src={dobby} className="App-logo-without-animation" alt="logo" />
+                <h1 className="brown">Change your nickname on Lobby</h1>
+                <input placeholder='New player nick' name='setNewPlayerNick' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input><br/>
+                <br/><button className="button" onClick={ChangeNick}>Check and confirm</button><br/>
+                <button className="button" onClick={() => dispatch(deactivateChangeNick())}>Close</button>
+                <br/><label>{validityMsg}</label><br/>
+                <br/>
+            </div>
+        )
+    }
+
+    return RenderMe()
 }
 export default ChangeNickOnLobby

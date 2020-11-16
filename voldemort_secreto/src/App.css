@@ -44,7 +44,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .button:hover {background-color: #373333} /*#c93126*/
@@ -101,6 +101,13 @@
   background-color: #0b438c;
   box-shadow: 0 2px #666;
   transform: translateY(4px);
+}
+
+.App-h3{
+  position: absolute;
+  top: 68%;
+  margin-top: -25px; /* half this element's height */
+  margin-bottom: 5px;
 }
 
 .App-header {
@@ -176,24 +183,45 @@
                 <p>This is some text in a div element.</p>
 </div>*/
 .App-div{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: rgb(241, 243, 118);    
   text-align: center;
 }
 
+.App-div-login{
+  padding: 50px; /**/
+  border: 5px outset rgb(14, 13, 13);
+  background-color: rgb(241, 243, 118);    
+  text-align: center;
+}
+
+.App-div-up{
+  width: 800px; /**/
+  height: 600px;
+  border: none; /*5px outset rgb(14, 13, 13);*/
+  padding: 10px; /**/
+  transform: translate(35%, -4%);
+  background-color: rgb(241, 243, 118);    
+  text-align: center;
+}
+
 .App-div-blue{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: rgb(18, 87, 133);    
   text-align: center;
 }
 
 .App-div-pastel-pink{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: #ffcfe2;    
   text-align: center;
 }
 
 .App-div-lightsteelblue{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: lightsteelblue;    
   text-align: center;

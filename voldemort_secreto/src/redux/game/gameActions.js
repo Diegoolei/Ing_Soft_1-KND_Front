@@ -134,7 +134,7 @@ export const joinLobby = lobby_id => {
       }
       dispatch(setLobbyInfo(info))
       for (let key in response.data.joinLobby_nicks) {
-        dispatch(playerJoinedLobby(response.data.joinLobby_nicks.[key]))
+        dispatch(playerJoinedLobby(response.data.joinLobby_nicks[key])) //dispatch(playerJoinedLobby(response.data.joinLobby_nicks.[key]))
       }
       console.log(response.data.joinLobby_result)
       dispatch(wsConnect(BASE_WS_URL+API_ENDPOINT_WEBSOCKET+String(response.data.joinLobby_player_id)))
