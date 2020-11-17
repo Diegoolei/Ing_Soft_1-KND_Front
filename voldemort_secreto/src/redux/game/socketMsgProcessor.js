@@ -1,13 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux'
-
 import {
   playerJoinedLobby,
   playerLeftLobby,
   updateNick,
-  startWaiting,
-  userDoneWithAction,
   logAction,
-  consumeLog,
   joinGame,
   closeLobby,
   voteInGame
@@ -66,14 +61,13 @@ export const processSocketMessage = jsonMsg => {
         break;
       case "END_GAME":
         break;
-      case "MINISTER_DISCARD":
-        break;
       case "REQUEST_SPELL":
         break;
       case "ADIVINATION_NOTICE":
         break;
       case "AVADA_KEDAVRA":
         break;
+
       case "CHAT":
         dispatch(logAction(payload))
         break;
