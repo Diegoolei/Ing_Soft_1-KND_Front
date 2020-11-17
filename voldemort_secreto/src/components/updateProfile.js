@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import axios from 'axios'
+import {BASE_URL} from '../redux/API_Types'
 
 function UpdateUserProfile() {
     //const sessionState = useSelector(state => state.session)
@@ -17,7 +18,7 @@ function UpdateUserProfile() {
     const [validityMsg, setValidityMsg] = useState('')
 
     function ChangeUsername() {
-        const uri = "http://127.0.0.1:8000/users/change_profile/"
+        const uri = BASE_URL + "/users/change_profile/"
         console.log("Sending ChangeUsername request with usern_id:", userId)
         const body = {"user_id": userId, "username": newUsername, "photo": newPhoto}
         axios.patch(
@@ -47,7 +48,7 @@ function UpdateUserProfile() {
             setValidityMsg('Passwords don\'t match')
         }else {
             setValidityMsg('')
-            const uri = "http://127.0.0.1:8000/users/change_profile/change_password/"
+            const uri = BASE_URL + "/users/change_profile/change_password/"
             console.log("Sending ChangeUsername request with usern_id:", userId)
             const body = {"user_id": userId, "current_password": currentPassword, "new_password": newPassword}
             axios.patch(
