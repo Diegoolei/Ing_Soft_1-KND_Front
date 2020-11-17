@@ -11,6 +11,7 @@ import {
   CHANGE_NICK_ON_LOBBY,
   SHOW_VOTATION_RESULTS_COMPONENT,
   GAME_COMPONENT
+  SELECT_DIRECTOR
 } from '../redux/componentController/componentControllerTypes'
 
 console.log(hp_logo);
@@ -64,8 +65,10 @@ function MainMenu () {
         <br/><button className="button">View History</button>
         <br/><button className="button" onClick={game}>Join Game</button>
         <br/><button className="button">Settings</button>
+        <br/><button className="button" onClick={data}>Setting</button>
+        <br/><button className="button">In construction... View History</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
-        <br/><button className="button" onClick={() => dispatch(changeScreen(CHANGE_NICK_ON_LOBBY))}>Change Nick on Lobby</button>
+        {/*<br/><button className="button" onClick={() => dispatch(changeScreen(SELECT_DIRECTOR))}>Select Director</button>*/}
         <br/><button className="button" onClick={logout}>Log out</button>
       </div>
     </header>

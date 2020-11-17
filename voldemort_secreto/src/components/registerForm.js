@@ -85,9 +85,10 @@ function LoginForm () {
         
         <br/><label>repeat password:</label>
         <input name='password2' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input>
-        <br/><button name="Register" onClick={handleButton}>Register</button>
+        <br/>
+        <br/><button className="button-shadow-red" name="Register" onClick={handleButton}>Register</button>
         <br/><label>{validityMsg !== "" ? validityMsg : sessionState.response + " " + sessionState.error}</label>
-        <br/><button onClick={switchToLogin}>Login Instead</button> 
+        <button className="button-shadow-red" onClick={switchToLogin}>Login Instead</button> 
       </div>
     )
   }
@@ -99,6 +100,13 @@ function LoginForm () {
         Welcome to Secret Voldemort
       </p>
       {registerForm()}
+      <div className="App-div">
+        <img src={nimbus} className="App-logo" alt="logo" />
+        <p>
+          Bienvenido a Secret Voldemort
+        </p>
+        {registerForm()}
+      </div>
     </header>
   )
 }

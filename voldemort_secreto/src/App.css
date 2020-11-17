@@ -15,7 +15,7 @@
 }
 
 .App-logo-without-animation {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -44,7 +44,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .button:hover {background-color: #373333} /*#c93126*/
@@ -68,14 +68,14 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .button-shadow-red:hover {background-color: #a51d1d} /*#c93126*/
 
 .button-shadow-red:active {
   background-color: #8f1010;
-  box-shadow: 0 2px #666;
+  box-shadow: 0 3px #666;
   transform: translateY(4px);
 }
 
@@ -103,7 +103,6 @@
   transform: translateY(4px);
 }
 
-
 .button-votation-red {
   background-color: #f44336;
   padding: 6px 14px;
@@ -124,6 +123,13 @@
 
 .button-votation-red:hover {background-color: #db4545}
 
+
+.App-h3{
+  position: absolute;
+  top: 68%;
+  margin-top: -25px; /* half this element's height */
+  margin-bottom: 5px;
+}
 .App-header {
     background-color: #630303;
 /*  
@@ -197,24 +203,46 @@
                 <p>This is some text in a div element.</p>
 </div>*/
 .App-div{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: rgb(241, 243, 118);    
   text-align: center;
 }
 
+.App-div-login{
+  padding: 50px; /**/
+  border: 5px outset rgb(14, 13, 13);
+  background-color: rgb(241, 243, 118);    
+  text-align: center;
+}
+
+.App-div-up{
+  width: 800px; /**/
+  height: 460px;
+  border: none; /*5px outset rgb(14, 13, 13);*/
+  padding: 10px; /**/
+  transform: translate(0%, -4%);
+  background-color: rgb(243, 232, 149);
+  border: 5px outset rgb(14, 13, 13);
+  text-align: center;
+}
+
 .App-div-blue{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: rgb(18, 87, 133);    
   text-align: center;
 }
 
 .App-div-pastel-pink{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: #ffcfe2;    
   text-align: center;
 }
 
 .App-div-lightsteelblue{
+  padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: lightsteelblue;    
   text-align: center;
@@ -231,6 +259,22 @@
   outline: none;
   font-size: 15px;
   transition: 0.4s;
+}
+
+/* Desplegable con opciones seleccionables 
+<form>
+  <select id="country" name="country">
+  <option value="au">Australia</option>
+  <option value="ca">Canada</option>
+  <option value="usa">USA</option>
+  </select>
+</form>*/
+.App-select{
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
 }
 
 /* Modal Content */

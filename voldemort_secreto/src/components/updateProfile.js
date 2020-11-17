@@ -104,12 +104,12 @@ function UpdateUserProfile() {
 return (
     <header className="App-header-blue">
         <div className="App-div-lightsteelblue"><br/>
-            <h1>UpdateUserProfile</h1>
+            <h1>Update your profile</h1>
             <p>
             <br/>
                 <input placeholder='New Username' name='setusername' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-                <input placeholder='New Photo (optional)' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-                <button className="button-shadow-blue" onClick={ChangeUsername}>Change Username</button>            
+                <input placeholder='New Photo' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                <button className="button-shadow-blue" onClick={ChangeUsername}>Update current data</button>            
             <br/>
             
             </p><p>
@@ -119,9 +119,10 @@ return (
                 <br/><button className="button-shadow-blue" onClick={ChangePassword}>Change Password</button>
                 <br/><label>{validityMsg}</label>
             </p>
-            <br/><button className="button-shadow-blue" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
+            <button className="button-shadow-blue" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
         <br/></div>
     </header>
 )
 }
+
 export default UpdateUserProfile
