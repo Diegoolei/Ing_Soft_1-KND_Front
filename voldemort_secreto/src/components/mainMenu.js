@@ -8,7 +8,7 @@ import {
   UPDATE_PROFILE_COMPONENT,
   CREATE_LOBBY_COMPONENT,
   JOIN_LOBBY_COMPONENT,
-  CHANGE_NICK_ON_LOBBY
+  SELECT_DIRECTOR
 } from '../redux/componentController/componentControllerTypes'
 
 console.log(hp_logo);
@@ -52,6 +52,7 @@ function MainMenu () {
         <br/><button className="button" onClick={data}>Setting</button>
         <br/><button className="button">In construction... View History</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
+        <br/><button className="button" onClick={() => dispatch(changeScreen(SELECT_DIRECTOR))}>Select Director</button>
         <br/><button className="button" onClick={logout}>Log out</button>
       </div>
     </header>

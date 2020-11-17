@@ -19,6 +19,7 @@ export const API_ENDPOINT_GAME_INFO = '/games/'
 export const API_ENDPOINT_WEBSOCKET = '/websocket/'
 export const API_ENDPOINT_LOBBY = '/lobby/'
 export const API_ENDPOINT_GAME = '/games/'
+export const API_ENDPOIT_SELECT_DIRECTOR = '/select_director/'
 
 //FORMS
   // REGISTER BODY:
@@ -38,4 +39,4 @@ export const API_IN_LOGIN_PASSWORD = 'password'
 /* lobbyIn_name: str, lobbyIn_max_players: Optional[int], lobbyIn_min_players: Optional[int] */
 
 //GAME BODY:
-export const API_SELECT_DIRECTOR_NICK = 'player_number'
+export const API_SELECT_DIRECTOR_NICK = 'candidate_nick'

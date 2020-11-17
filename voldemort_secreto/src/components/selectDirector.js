@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 //import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 //import { useDispatch } from 'react-redux'
+import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes' // TEST
+import { changeScreen } from '../redux/reduxIndex' // TEST
 import axios from 'axios'
 
 function Director(){
     const dispatch = useDispatch()
     const token = useSelector(state => state.session.authToken)
-    //const player_id = useSelector(state => state.player.player_id)
     const game_id = useSelector(state => state.game.game_id)
-    //const [userId, setUser_id] = useState('') // Test
-    //const [gameId, setGame_id] = useState('') // Test
-    //const [playerId, setPlayer_id] = useState('') // Test
     const [playerNumber, setPlayer_number] = useState('')
     const [validityMsg, setValidityMsg] = useState('')
 
@@ -60,6 +58,7 @@ function Director(){
             </form>
             <br/><button className="button" onClick={SelectDirectorCandidate}>Select player as Director candidate</button>
             <br/><label>{validityMsg}</label><br/>
+            <button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Main menu</button>
         </div>
     )
 }
