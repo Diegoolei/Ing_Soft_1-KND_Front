@@ -4,7 +4,7 @@ import componentControllerReducer from './componentController/componentControlle
 import socketReducer from './socket/socketReducer'
 import lobbyGameListReducer from './lobbyGameList/lobbyGameListReducer'
 import gameReducer from './game/gameReducer'
-import activeAppsReducer from './activeApps/activeAppsReducer'
+import activeAppsReducer from './game/activeApps/activeAppsReducer'
 
 const rootReducer = combineReducers ({
   controller : componentControllerReducer,

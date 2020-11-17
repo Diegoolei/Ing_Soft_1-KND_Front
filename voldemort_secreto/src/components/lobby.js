@@ -1,9 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { leaveLobby, startGame, joinGame } from '../redux/reduxIndex'
+import { leaveLobby, startGame, activateChangeNick } from '../redux/reduxIndex'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
-import { changeScreen } from '../redux/reduxIndex'
-import { activateChangeNick, deactivateChangeNick } from '../redux/activeApps/activeAppsActions'
 import ChangeNickOnLobby from './changeNickLobby'
 
 function Lobby () {

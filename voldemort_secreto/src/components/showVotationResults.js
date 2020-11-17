@@ -1,9 +1,7 @@
 import React, { useState }  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
+import { wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
-import axios from 'axios'
-import processSocketMessage from '../redux/game/socketMsgProcessor'
 
 
 function ShowVotationResults() {

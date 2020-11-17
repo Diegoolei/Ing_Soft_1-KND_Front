@@ -1,8 +1,34 @@
 
-export { setUserinfo, setEmail, login, logoutSuccess, register, resetResponse } from './session/sessionActions'
 export { changeScreen } from './componentController/componentControllerActions'
-export { wsConnect, wsDisconnect, wsSendMessage, wsConsumeMessage } from './socket/socketActions'
 export { renderLobbyPage } from './lobbyGameList/lobbyGameListActions'
-export { createLobby, joinLobby, leaveLobby, startGame, joinGame, voteInGame } from './game/gameActions'
-export { createLobby, joinLobby, leaveLobby, startGame, joinGame } from './game/gameActions'
 export { selectMyDirector } from './game/selectDirector/selectDirectorActions'
+
+export { 
+  setUserinfo,
+  setEmail,
+  login,
+  logoutSuccess,
+  register,
+  resetResponse
+} from './session/sessionActions'
+
+export { 
+  wsConnect,
+  wsDisconnect,
+  wsSendMessage,
+  wsConsumeMessage
+} from './socket/socketActions'
+
+export {
+  createLobby,
+  joinLobby,
+  leaveLobby,
+  startGame,
+  joinGame,
+  voteInGame
+} from './game/gameActions'
+
+export {
+  activateChangeNick,
+  deactivateChangeNick
+} from './game/activeApps/activeAppsActions'
