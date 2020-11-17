@@ -65,6 +65,7 @@ const getInitialPlayer = nick => {
 }
 
 const gameReducer = (state = initialState, action) => {
+  let messages = [...state.messages_log]
   switch (action.type) {
     case CGL_SET_LOBBY_INFORMATION: return {
       ...state,
@@ -163,7 +164,6 @@ const gameReducer = (state = initialState, action) => {
     }
 
     case CGL_LOG_ACTION:
-      let messages = [...state.messages_log]
       messages.push(action.payload)
       return {
       ...state,
@@ -171,7 +171,6 @@ const gameReducer = (state = initialState, action) => {
     }
 
     case CGL_CONSUME_LOG:
-      messages = [...state.messages_log]
       messages.shift()
       return {
       ...state,

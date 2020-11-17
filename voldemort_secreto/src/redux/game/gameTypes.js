@@ -1,4 +1,7 @@
 
+// Const
+export const CGL_CHAT_MEMORY_LENGTH       = 50
+
 // CGL == Current Game Lobby
 // Actions
 export const CGL_SET_LOBBY_INFORMATION    = 'CGL_SET_LOBBY_INFORMATION'

@@ -276,6 +276,36 @@
   border-radius: 4px;
   background-color: #f1f1f1;
 }
+.Chat-container {
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(242, 255, 0);    
+  display: contents;
+  padding: 0;
+  margin: 3;
+}
+
+.Chat-history {
+  color: rgb(0, 0, 0);
+  border: 2px outset rgb(14, 13, 13);
+  text-align: left;
+  font-size: small;
+  background-color: rgb(255, 225, 126);    
+  width:500px;
+  height:80px;
+  overflow-x:auto;
+  list-style-type: none;
+  padding: 1;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.Chat-input {
+  padding: 1;
+  margin: 1;
+  width:533px;
+}
 
 /* Modal Content */
 .modal-content {

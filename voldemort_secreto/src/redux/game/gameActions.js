@@ -1,6 +1,7 @@
 import store from '../store'
 import axios from 'axios'
 import {
+  CGL_CHAT_MEMORY_LENGTH,
   CGL_SET_LOBBY_INFORMATION,
   CGL_SET_GAME_IMFORMATION,
   CGL_CLEAN_STATE,
@@ -95,7 +96,7 @@ export const userDoneWithAction = () => {
   }
 }
 
-export const logAction = msg => {
+export const addLog = msg => {
   return {
     type: CGL_LOG_ACTION,
     payload: msg
@@ -105,6 +106,16 @@ export const logAction = msg => {
 export const consumeLog = () => {
   return {
     type: CGL_CONSUME_LOG
+  }
+}
+
+export const logAction = msg => {
+  const state = store.getState()
+  return dispatch => {
+    dispatch(addLog(msg))
+    if(state.game.messages_log.length > CGL_CHAT_MEMORY_LENGTH) {
+      dispatch(consumeLog())
+    }
   }
 }
 

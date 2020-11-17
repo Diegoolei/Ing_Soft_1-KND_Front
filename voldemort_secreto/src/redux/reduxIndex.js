@@ -25,7 +25,8 @@ export {
   leaveLobby,
   startGame,
   joinGame,
-  voteInGame
+  voteInGame,
+  logAction
 } from './game/gameActions'
 
 export {

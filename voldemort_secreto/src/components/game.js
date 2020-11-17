@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { voteInGame } from '../redux/reduxIndex'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
+import Chat from './chat'
 
 function Game() {
-  const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
@@ -79,12 +79,13 @@ function Game() {
       </div>
       <button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
       {showingSecretInfo ? secretInfo() : null}
-      <br /><br />Current Minister: {currentMinisterString()}
-      <br />{currentDirectorString()}
-      <br />Order Proclamations: {gameState.proclaimed_phoenix}
-      <br />Death Eater Proclamations: {gameState.proclaimed_death_eater}
-      <br />Cards in Deck: {gameState.cards_in_deck}
-      <br />Election Counter: {gameState.election_counter}
+      <br/><br/>Current Minister: {currentMinisterString()}
+      <br/>{currentDirectorString()}
+      <br/>Order Proclamations: {gameState.proclaimed_phoenix}
+      <br/>Death Eater Proclamations: {gameState.proclaimed_death_eater}
+      <br/>Cards in Deck: {gameState.cards_in_deck}
+      <br/>Election Counter: {gameState.election_counter}
+      <Chat/>
     </div>
   )
 }
