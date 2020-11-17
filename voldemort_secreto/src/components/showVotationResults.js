@@ -9,7 +9,7 @@ function ShowVotationResults() {
   const recvMsg = useSelector(state => state.socket.messages)
   const token = useSelector(state => state.session.authToken)
   const [active, setActive] = useState(false)
-  //const votes = useSelector(state => state.player_array)
+  const votes = useSelector(state => state.player_array)
   const [results, setResults] = useState('')
   const [election, setElection] = useState('')
 
@@ -25,14 +25,14 @@ function ShowVotationResults() {
     dispatch(wsConsumeMessage())
   }
 
-  function votationResults(votes) {
-//    const votes = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
+  function votationResults(vote_results) {
+    //const results = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
     let vote = null
     let arrayResultsOfVotes = []
     let countLumos = 0
     let countNox = 0
-    for (let key in votes) {
-      let player_vote = votes.[key]
+    for (let key in vote_results) {
+      let player_vote = vote_results[key]
       if (player_vote) { 
         player_vote = "Lumos" 
         countLumos += 1
@@ -69,7 +69,7 @@ function ShowVotationResults() {
         <button className="button-votation-red" onClick={() => setActive(!active) }>Show Results</button>
         <br/>{active ? 
           <div>
-            votationResults(votes)
+            {votationResults(votes)}
             {results}
             {election}
           </div> : null}
