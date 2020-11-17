@@ -28,6 +28,7 @@ function UpdateUserProfile() {
         }
         ).then(response => {
         console.log("-Response :" + JSON.stringify(response.data))
+        setValidityMsg("Your changes was changed correctly")
         }).catch(error => {
         let errorMsg
         try {
@@ -36,6 +37,7 @@ function UpdateUserProfile() {
                 errorMsg = "Something went wrong"
             }
             console.log("-Response :" + JSON.stringify(errorMsg))
+            setValidityMsg(errorMsg)
         })
     }
 
@@ -56,14 +58,16 @@ function UpdateUserProfile() {
             }
             ).then(response => {
             console.log("-Response :" + JSON.stringify(response.data))
+            setValidityMsg("Your password was changed correctly")
             }).catch(error => {
             let errorMsg
             try {
                 errorMsg = error.response.data.detail
                 } catch (er) {
-                    errorMsg = "Something went wrong"
+                    errorMsg = "Something went wrong:: " + er
                 }
                 console.log("-Response :" + JSON.stringify(errorMsg))
+                setValidityMsg(errorMsg)
             })
         }
     }
@@ -109,7 +113,7 @@ return (
             <br/>
                 <input placeholder='New Username' name='setusername' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
                 <input placeholder='New Photo' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-                <button className="button-shadow-blue" onClick={ChangeUsername}>Update current data</button>            
+                <button className="button-shadow-blue" onClick={ChangeUsername}>Update current data</button>        
             <br/>
             
             </p><p>
@@ -117,7 +121,7 @@ return (
                 <input placeholder='New password' name='setnewpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
                 <input placeholder='Repeat New password' name='setnewpassword2' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input><br/>
                 <br/><button className="button-shadow-blue" onClick={ChangePassword}>Change Password</button>
-                <br/><label>{validityMsg}</label>
+                <br/><label>{validityMsg}</label><br />
             </p>
             <button className="button-shadow-blue" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
         <br/></div>
