@@ -234,7 +234,8 @@ function TestSocket() {
       <p>
         <button onClick={startgame}>Start Game</button>
         <button onClick={() => dispatch(joinGame(currentGame_id))}>Rejoin Game '{currentGame_id}'</button>
-        <button onClick={getgameinfo}>Get Game '{currentGame_id}' Info</button>        <br/><button onClick={selectdirector}>Select Director</button>
+        <button onClick={getgameinfo}>Get Game '{currentGame_id}' Info</button>
+        <br/><button onClick={selectdirector}>Select Director</button>
         <input name='selectdirector' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
       </p>
       <p>
