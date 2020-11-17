@@ -1,7 +1,9 @@
 import React, { useState }  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
+import { wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import axios from 'axios'
+import processSocketMessage from '../redux/game/socketMsgProcessor'
 
 
 function ShowVotationResults() {
@@ -13,16 +15,22 @@ function ShowVotationResults() {
   const [results, setResults] = useState('')
   const [election, setElection] = useState('')
 
-  if (recvMsg.length !== 0) {
-    const jsonmsg = recvMsg[0]
-    const votes = jsonmsg.PAYLOAD
 
-    if (jsonmsg.TYPE === "ELECTION_RESULT") {
-      votationResults(votes)
+  function recive_message() {
+    if (recvMsg.length !== 0) {
+      const jsonmsg = recvMsg[0]
+      const votes = jsonmsg.PAYLOAD
+
+      if (jsonmsg.TYPE === "ELECTION_RESULT") {
+        votationResults(votes)
+      }
+
+      console.log("Message from the server: ", results)
+      dispatch(wsConsumeMessage())
     }
-
-    console.log("Message from the server: ", votes)
-    dispatch(wsConsumeMessage())
+    else {
+      console.log()
+    }
   }
 
   function votationResults(votes) {
@@ -55,7 +63,7 @@ function ShowVotationResults() {
       setElection("\r\nAccepted government")
     }
     setResults(arrayResultsOfVotes)
-    return arrayResultsOfVotes
+//    return arrayResultsOfVotes
   }
 
   function BackToMenu() {
@@ -65,11 +73,10 @@ function ShowVotationResults() {
   return (
     <div >
       <h1 className="brown">VOTATION RESULTS</h1>
-      {/*<button onClick={() => setActive(!active)}>Show Results</button>*/}
-        <button className="button-votation-red" onClick={() => setActive(!active) }>Show Results</button>
+      <button onClick={() => setActive(!active)}>Show Results</button>
         <br/>{active ? 
           <div>
-            votationResults(votes)
+            <br/><button className="button-votation-red" onClick={votationResults}>Show Results</button>
             {results}
             {election}
           </div> : null}
