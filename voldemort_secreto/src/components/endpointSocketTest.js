@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { wsConnect, wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
+import { wsConnect, wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen, joinGame } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import axios from 'axios'
 
@@ -238,8 +238,8 @@ function TestSocket() {
       </p>
       <p>
         <button onClick={startgame}>Start Game</button>
-        <button onClick={getgameinfo}>Get Game Info</button>
-        <br/><button onClick={selectdirector}>Select Director</button>
+        <button onClick={() => dispatch(joinGame(currentGame_id))}>Rejoin Game '{currentGame_id}'</button>
+        <button onClick={getgameinfo}>Get Game '{currentGame_id}' Info</button>        <br/><button onClick={selectdirector}>Select Director</button>
         <input name='selectdirector' type='number' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
       </p>
       <p>

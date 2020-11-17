@@ -9,7 +9,8 @@ import {
   logAction,
   consumeLog,
   joinGame,
-  closeLobby
+  closeLobby,
+  voteInGame
 } from './gameActions'
 
 import { wsConsumeMessage } from '../reduxIndex'
@@ -52,6 +53,8 @@ export const processSocketMessage = jsonMsg => {
       case "REQUEST_VOTE":
         break;
       case "ELECTION_RESULT":
+        dispatch(voteInGame(payload))
+        dispatch(logAction("Votation results: " + payload))
         break;
       case "MINISTER_DISCARD":
         break;

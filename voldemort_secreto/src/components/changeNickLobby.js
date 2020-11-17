@@ -46,6 +46,9 @@ function ChangeNickOnLobby(){
         }
     }
 
+    function BackToMenu() {
+        dispatch(changeScreen(MAIN_MENU_COMPONENT))
+    }
     function ShowMyButtons(){
         return(
             <div>
