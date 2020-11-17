@@ -71,8 +71,7 @@ function LoginForm () {
     <header className="App-header">
       <div className="App-div-login">
         <img src={nimbus} className="App-logo" alt="logo" />
-        <p></p>
-        <h1>Bienvenido a Secret Voldemort</h1>
+        <h1>Welcome to Secret Voldemort</h1>
         {loginForm()}
       </div>
     </header>
