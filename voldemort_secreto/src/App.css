@@ -15,7 +15,7 @@
 }
 
 .App-logo-without-animation {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -68,14 +68,14 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .button-shadow-red:hover {background-color: #a51d1d} /*#c93126*/
 
 .button-shadow-red:active {
   background-color: #8f1010;
-  box-shadow: 0 2px #666;
+  box-shadow: 0 3px #666;
   transform: translateY(4px);
 }
 
@@ -198,11 +198,12 @@
 
 .App-div-up{
   width: 800px; /**/
-  height: 600px;
+  height: 460px;
   border: none; /*5px outset rgb(14, 13, 13);*/
   padding: 10px; /**/
-  transform: translate(35%, -4%);
-  background-color: rgb(241, 243, 118);    
+  transform: translate(0%, -4%);
+  background-color: rgb(243, 232, 149);
+  border: 5px outset rgb(14, 13, 13);
   text-align: center;
 }
 

@@ -71,10 +71,10 @@ function ChangeNickOnLobby(){
         return(
             <div className="App-div-up">
                 <img src={dobby} className="App-logo-without-animation" alt="logo" />
-                <h1 className="brown">Change your nickname on Lobby</h1>
+                <h1 className="black">Change your nickname on Lobby</h1>
                 <input placeholder='New player nick' name='setNewPlayerNick' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input><br/>
-                <br/><button className="button" onClick={ChangeNick}>Check and confirm</button><br/>
-                <button className="button" onClick={() => dispatch(deactivateChangeNick())}>Close</button>
+                <br/><button className="button-shadow-red" onClick={ChangeNick}>Check and confirm</button><br/>
+                <button className="button-shadow-red" onClick={() => dispatch(deactivateChangeNick())}>Close</button>
                 <br/><label>{validityMsg}</label><br/>
                 <br/>
             </div>

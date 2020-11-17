@@ -27,15 +27,17 @@ function Lobby () {
   }
 
   return (
-    <div>
-      <h2>Lobby: {game.lobby_name}</h2>
-      <p>Currently on this lobby:</p>
-      {getPlayerLists()}
-      <br/>{is_active_change_nick ? <ChangeNickOnLobby/> : null}
-      <button className="button" onClick={() => dispatch(leaveLobby(game.lobby_id))}>Leave Lobby</button>
-      {game.is_owner ? startGameButton() : null}
-      <button className="button" onClick={() => dispatch(activateChangeNick())}>Change Nick</button>
-    </div>
+    <header className="App-header">
+      <div className="App-div-login">
+        <h2>Lobby: {game.lobby_name}</h2>
+        <p>Currently on this lobby:</p>
+        {getPlayerLists()}
+        <br/>{is_active_change_nick ? <ChangeNickOnLobby/> : null}
+        <button className="button" onClick={() => dispatch(leaveLobby(game.lobby_id))}>Leave Lobby</button>
+        {game.is_owner ? startGameButton() : null}
+        <button className="button" onClick={() => dispatch(activateChangeNick())}>Change Nick</button>
+      </div>
+    </header>
   )
 }
 
