@@ -28,11 +28,6 @@ function TestSocket() {
     dispatch(wsConnect(uri))
   }
 
-  // const sendAuth = () => {
-  //   console.log("Sending auth to socket. Token: ",token.access_token)
-  //   dispatch(wsSendMessage(token.access_token))
-  // }
-
   const closews = () => {
     dispatch(wsDisconnect())
   }
