@@ -53,27 +53,28 @@ function LoginForm () {
   function loginForm() {
     return (
       <div>
-        <h2>Login:</h2>
-        <label>email:</label>
+        <h3>Login:</h3>
+        <br/><label>email: </label>
         <input placeholder='email' name='email' type='email' defaultValue={sessionState.email} onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
         
-        <br/><label>Password:</label>
-        <input name='password' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input>
+        <br/><label>Password: </label>
+        <input name='password' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input><br/>
         
-        <br/><button onClick={handleButton}>Login</button>
+        <br/><button className="button" onClick={handleButton}>Login</button>
+        <button className="button" onClick={switchToRegister}>Register Instead</button>
         <br/><label>{sessionState.response + " " + sessionState.error + " " + validityMsg}</label>
-        <br/><button onClick={switchToRegister}>Register Instead</button> 
       </div>
     )
   }
 
   return (
     <header className="App-header">
-      <img src={nimbus} className="App-logo" alt="logo" />
-      <p>
-        Bienvenido a Secret Voldemort
-      </p>
-      {loginForm()}
+      <div className="App-div-login">
+        <img src={nimbus} className="App-logo" alt="logo" />
+        <p></p>
+        <h1>Bienvenido a Secret Voldemort</h1>
+        {loginForm()}
+      </div>
     </header>
   )
 }

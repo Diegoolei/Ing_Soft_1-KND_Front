@@ -4,13 +4,15 @@ import componentControllerReducer from './componentController/componentControlle
 import socketReducer from './socket/socketReducer'
 import lobbyGameListReducer from './lobbyGameList/lobbyGameListReducer'
 import gameReducer from './game/gameReducer'
+import activeAppsReducer from './activeApps/activeAppsReducer'
 
 const rootReducer = combineReducers ({
   controller : componentControllerReducer,
   session : sessionReducer,
   socket: socketReducer,
   joinlists: lobbyGameListReducer,
-  game: gameReducer
+  game: gameReducer,
+  active_apps: activeAppsReducer
 })
 
 export default rootReducer

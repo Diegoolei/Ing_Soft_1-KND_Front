@@ -2,16 +2,17 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { leaveLobby, startGame, joinGame } from '../redux/reduxIndex'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
+import { changeScreen } from '../redux/reduxIndex'
+import { activateChangeNick, deactivateChangeNick } from '../redux/activeApps/activeAppsActions'
+import ChangeNickOnLobby from './changeNickLobby'
 
 function Lobby () {
   const game = useSelector(state => state.game)
+  const is_active_change_nick = useSelector(state => state.active_apps.is_changeNick_active) 
   const unprocessed_socket_messages = useSelector(state => state.socket.messages)
   const dispatch = useDispatch()
-
-
   const startGameButton = () => <button className="button" onClick={() => dispatch(startGame(game.lobby_id))}>Start Game</button>
-
-  const formatedPlayer = nick => <li key={nick}> {nick} ({game.player_array.[nick].connected ? "connected" : "disconnected"})</li>
+  const formatedPlayer = nick => <li key={nick}> {nick} ({game.player_array[nick].connected ? "connected" : "disconnected"})</li>
 
   const getPlayerLists = () => {
     let players = []
@@ -24,15 +25,19 @@ function Lobby () {
   if (unprocessed_socket_messages.length !== 0) {
     dispatch(processSocketMessage(unprocessed_socket_messages[0]))
   }
-  
+
   return (
-    <div>
-      <h2>Lobby: {game.lobby_name}</h2>
-      <p>Currently on this lobby:</p>
-      {getPlayerLists()}
-      <button className="button" onClick={() => dispatch(leaveLobby(game.lobby_id))}>Leave Lobby</button>
-      {game.is_owner ? startGameButton() : null}
-    </div>
+    <header className="App-header">
+      <div className="App-div-login">
+        <h2>Lobby: {game.lobby_name}</h2>
+        <p>Currently on this lobby:</p>
+        {getPlayerLists()}
+        <br/>{is_active_change_nick ? <ChangeNickOnLobby/> : null}
+        <button className="button" onClick={() => dispatch(leaveLobby(game.lobby_id))}>Leave Lobby</button>
+        {game.is_owner ? startGameButton() : null}
+        <button className="button" onClick={() => dispatch(activateChangeNick())}>Change Nick</button>
+      </div>
+    </header>
   )
 }
 
