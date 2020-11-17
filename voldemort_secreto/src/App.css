@@ -286,6 +286,12 @@
   margin: 3;
 }
 
+.Error-text {
+  color: red;
+  font-size: smaller;
+  font: italic;
+}
+
 .Chat-history {
   color: rgb(0, 0, 0);
   border: 2px outset rgb(14, 13, 13);

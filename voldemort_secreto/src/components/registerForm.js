@@ -87,23 +87,18 @@ function LoginForm () {
         <input name='password2' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input>
         <br/>
         <br/><button className="button-shadow-red" name="Register" onClick={handleButton}>Register</button>
-        <br/><label>{validityMsg !== "" ? validityMsg : sessionState.response + " " + sessionState.error}</label>
-        <button className="button-shadow-red" onClick={switchToLogin}>Login Instead</button> 
+        <br/><label className="Error-text">{validityMsg !== "" ? validityMsg : sessionState.response + " " + sessionState.error}</label>
+        <br/><button className="button-shadow-red" onClick={switchToLogin}>Login Instead</button> 
       </div>
     )
   }
 
   return (
     <header className="App-header">
-      <img src={nimbus} className="App-logo" alt="logo" />
-      <p>
-        Welcome to Secret Voldemort
-      </p>
-      {registerForm()}
       <div className="App-div">
         <img src={nimbus} className="App-logo" alt="logo" />
         <p>
-          Bienvenido a Secret Voldemort
+          Welcome to Secret Voldemort
         </p>
         {registerForm()}
       </div>

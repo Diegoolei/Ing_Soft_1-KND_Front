@@ -60,8 +60,8 @@ function LoginForm () {
         <br/><label>Password: </label>
         <input name='password' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input><br/>
         
-        <br/><button className="button" onClick={handleButton}>Login</button>
-        <button className="button" onClick={switchToRegister}>Register Instead</button>
+        <br/><button className="button-shadow-red" onClick={handleButton}>Login</button>
+        <button className="button-shadow-red" onClick={switchToRegister}>Register Instead</button>
         <br/><label>{sessionState.response + " " + sessionState.error + " " + validityMsg}</label>
       </div>
     )

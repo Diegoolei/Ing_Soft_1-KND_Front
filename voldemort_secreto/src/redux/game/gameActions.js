@@ -22,7 +22,8 @@ import {
   API_ENDPOINT_LEAVE_LOBBY,
   API_ENDPOINT_START_GAME,
   API_ENDPOINT_GAME_INFO,
-  API_ENDPOINT_WEBSOCKET
+  API_ENDPOINT_WEBSOCKET,
+  API_ENDPOINT_VOTE
 } from '../API_Types'
 
 import { LOBBY_COMPONENT, GAME_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
@@ -56,6 +57,7 @@ export const setLobbyInfo = info => {
       lobby_id: info.lobby_id,
       lobby_name: info.lobby_name,
       player_id: info.player_id,
+      player_nick: info.player_nick,
       is_owner: info.is_owner
     }
   }
@@ -126,6 +128,7 @@ export const createLobby = response_data => {
       lobby_id: response_data.lobbyOut_Id,
       lobby_name: response_data.lobbyOut_name,
       player_id: response_data.lobbyOut_player_id,
+      player_nick: response_data.lobbyOut_player_nick,
       is_owner: true
     }
     dispatch(setLobbyInfo(info))
@@ -149,6 +152,7 @@ export const joinLobby = lobby_id => {
         lobby_id: lobby_id,
         lobby_name: response.data.joinLobby_name,
         player_id: response.data.joinLobby_player_id,
+        player_nick: response.data.joinLobby_player_nick,
         is_owner: response.data.joinLobby_is_owner
       }
       dispatch(setLobbyInfo(info))
@@ -308,10 +312,12 @@ export const joinGame = game_id => {
 export const voteInGame = (vote_recive, game_id) => {
   const state = store.getState()
   const token = state.session.authToken
-  const body = { "vote": vote_recive }
-  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+game_id+"/vote/"
+  const body = { "vote" : vote_recive }
+  //const uri = BASE_URL+API_ENDPOINT_GAME_INFO+String(game_id)+API_ENDPOINT_VOTE
+  const uri = BASE_URL+"/a/"+String(game_id)+"/a"
+  console.log(uri)
   return dispatch => {
-    axios.put(uri, body,
+    axios.post(uri, body,
       {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
