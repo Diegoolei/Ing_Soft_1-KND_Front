@@ -34,7 +34,7 @@ function UpdateUserProfile() {
         try {
             errorMsg = error.response.data.detail
             } catch (er) {
-                errorMsg = "Something went wrong"
+                errorMsg = "Something went wrong:: " + er
             }
             console.log("-Response :" + JSON.stringify(errorMsg))
             setValidityMsg(errorMsg)
