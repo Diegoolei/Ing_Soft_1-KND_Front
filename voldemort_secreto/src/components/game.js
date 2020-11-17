@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { voteInGame } from '../redux/reduxIndex'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Chat from './chat'
 
 function Game() {
+  const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 

@@ -30,7 +30,6 @@ function MainMenu () {
         <h2>Main Menu</h2>
         <button className="button" onClick={() => dispatch(changeScreen(CREATE_LOBBY_COMPONENT))}>Create Lobby</button>
         <br/><button className="button" onClick={joinlobby}>Join Lobby</button>
-        <br/><button className="button">View History</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(UPDATE_PROFILE_COMPONENT))}>Profile & Settings</button>
         <br/><button className="button">View History (not available)</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
