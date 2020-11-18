@@ -276,6 +276,13 @@
   border-radius: 4px;
   background-color: #f1f1f1;
 }
+
+.ul-big {
+  list-style-type: none;
+  font-size: large;
+}
+
+
 .Chat-container {
   color: rgb(0, 0, 0);
   align-items: center;

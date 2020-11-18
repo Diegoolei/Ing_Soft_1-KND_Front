@@ -7,7 +7,7 @@ import {
   LG_LISTS_SET_GAME_LIST,
   LG_LISTS_SET_RESPONSE
 } from './lobbyGameListTypes'
-import { BASE_URL ,API_ENDPOINT_LIST_LOBBIES } from '../API_Types'
+import { BASE_URL ,API_ENDPOINT_LIST_LOBBIES, API_ENDPOINT_LIST_GAMES } from '../API_Types'
 import store from '../store'
 
 
@@ -69,6 +69,43 @@ export const renderLobbyPage = pageNumber => {
           date: Date.now()
         }
         dispatch(setLobbyPage(resp))
+        //console.log("-Response :" + JSON.stringify(response.data.lobbyDict))
+      }).catch(error => {
+        let errorMsg
+        try {
+          errorMsg = error.response.data.detail
+        }
+        catch (er) {
+          errorMsg = "Something went wrong:: " + er
+        }
+        dispatch(setResponse(errorMsg))
+      })
+  }
+}
+
+export const renderGamePage = pageNumber => {
+  const state = store.getState()
+  const token = state.session.authToken
+
+  return dispatch => {
+    dispatch(requestGamePage(pageNumber))
+    axios.get(BASE_URL+API_ENDPOINT_LIST_GAMES,
+      {
+        headers: {
+          'Authorization': token.token_type + " " + token.access_token
+        }, 
+        params: { 
+          start_from: LG_LISTS_PAGE_SIZE*pageNumber, 
+          end_at: LG_LISTS_PAGE_SIZE*(pageNumber + 1 )
+        }
+      }).then(response => {
+        const games = response.data
+        const resp = {
+          content: games,
+          entries: Object.keys(games.gameDict).length,
+          date: Date.now()
+        }
+        dispatch(setGamePage(resp))
         //console.log("-Response :" + JSON.stringify(response.data.lobbyDict))
       }).catch(error => {
         let errorMsg
