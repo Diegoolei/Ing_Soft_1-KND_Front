@@ -295,14 +295,16 @@
 .Chat-history {
   color: rgb(0, 0, 0);
   border: 2px outset rgb(14, 13, 13);
-  text-align: left;
+  text-align: left;  /* If you want to change this, make sure to adjust the constant of the 
+                                scrollDown function in the Chat component*/
   font-size: small;
+  text-indent: 10px;
   background-color: rgb(146, 150, 70);
   width:500px;
   height:80px;
   overflow-x:auto;
   list-style-type: none;
-  padding: 1;
+  padding: 0;
   margin: 0;
   scroll-behavior: smooth;
 }
@@ -310,7 +312,7 @@
 .Chat-input {
   padding: 1;
   margin: 1;
-  width:533px;
+  width:490px;
 }
 
 /* Modal Content */

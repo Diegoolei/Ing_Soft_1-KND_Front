@@ -9,10 +9,16 @@ function Chat() {
   const [chat, setChat] = useState('')
   const [msg_len, setmsg_len] = useState(messages.length)
 
+  const scrollDown = () => {
+    const objDiv = document.querySelectorAll('#chat_history')
+    if (objDiv[0].scrollTop > objDiv[0].scrollHeight - 100) {
+      objDiv[0].scrollTop = objDiv[0].scrollHeight
+    }
+  }
+
   if (msg_len !== messages.length) {
-    let objDiv = document.querySelectorAll('#chat_history')
-    objDiv[0].scrollTop = objDiv[0].scrollHeight
     setmsg_len(messages.length)
+    setTimeout(scrollDown,50)
   }
 
   function formatedLogMessages() {
