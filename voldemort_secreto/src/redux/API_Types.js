@@ -1,5 +1,6 @@
 
-//export const BASE_URL = 'https://jsonplaceholder.typicode.com/'
+//export const BASE_URL = 'http://190.xxx.xx.xx:8000'
+//export const BASE_WS_URL = 'ws://190.xxx.xx.xx:8000'
 export const BASE_URL = 'http://127.0.0.1:8000'
 export const BASE_WS_URL = 'ws://127.0.0.1:8000'
 

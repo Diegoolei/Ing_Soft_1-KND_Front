@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { wsConnect, wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen, joinGame } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import axios from 'axios'
+import {BASE_URL, BASE_WS_URL} from '../redux/API_Types'
 
 function TestSocket() {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ function TestSocket() {
   }
 
   const openws = () => {
-    const uri = "ws://127.0.0.1:8000/websocket/"+String(currentPlayer_id)
+    const uri = BASE_WS_URL + "/websocket/" + String(currentPlayer_id)
     dispatch(wsConnect(uri))
   }
 
@@ -37,7 +38,7 @@ function TestSocket() {
       player_id: currentPlayer_id,
       message: echoMsg
     }
-    axios.post("http://127.0.0.1:8000/echo/", body)
+    axios.post(BASE_URL + "/echo/", body)
   }
 
   const echoBroadcast = () => {
@@ -45,13 +46,13 @@ function TestSocket() {
       game_id: currentGame_id,
       message: echoMsg
     }
-    axios.post("http://127.0.0.1:8000/echo/", body)
+    axios.post(BASE_URL + "/echo/", body)
   }
 
   function createlobby () {
     console.log("Sending create Lobby request with lobby name:", lobbyName)
     axios.post(
-      "http://127.0.0.1:8000/lobby/",
+      BASE_URL + "/lobby/",
       { lobbyIn_name: lobbyName },
       { headers: {
           'Authorization' : token.token_type + " " + token.access_token
@@ -73,7 +74,7 @@ function TestSocket() {
   function joinlobby() {
     console.log("Sending Join Lobby request to lobby:", currentLobby_id)
     axios.post(
-      "http://127.0.0.1:8000/lobby/"+String(currentLobby_id)+"/",
+      BASE_URL + "/lobby/"+String(currentLobby_id)+"/",
       { lobbyIn_name: lobbyName },
       {
         headers: {
@@ -96,7 +97,7 @@ function TestSocket() {
   function leavelobby() {
     console.log("Leaving lobby:"+String(currentLobby_id))
     axios.delete(
-      "http://127.0.0.1:8000/lobby/"+String(currentLobby_id),
+      BASE_URL + "/lobby/"+String(currentLobby_id),
       { 
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
@@ -115,7 +116,7 @@ function TestSocket() {
 
   function startgame() {
     console.log("Starting game " + currentGame_id + " from lobby " + String(currentLobby_id))
-    const uri = "http://127.0.0.1:8000/lobby/"+String(currentGame_id)+"/start_game/"
+    const uri = BASE_URL + "/lobby/"+String(currentGame_id)+"/start_game/"
     console.log("Making POST Request::", uri)
     axios.delete(
       uri,
@@ -138,7 +139,7 @@ function TestSocket() {
 
   function getgameinfo() {
     axios.get(
-      "http://127.0.0.1:8000/games/"+String(currentGame_id),
+      BASE_URL + "/games/"+String(currentGame_id),
       { 
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
@@ -158,7 +159,7 @@ function TestSocket() {
 
   function selectdirector() {
     console.log("Sending request to game: '"+ currentGame_id  +"' select director selecting player_number :"+String(selectDirector_number))
-    const uri = "http://127.0.0.1:8000/games/"+String(currentGame_id)+"/select_director/"
+    const uri = BASE_URL + "/games/"+String(currentGame_id)+"/select_director/"
     console.log("Making POST Request::", uri)
     const body = { "playerNumber" : selectDirector_number }
     axios.post(

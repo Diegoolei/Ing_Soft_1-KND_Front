@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes' // TEST
 import { changeScreen } from '../redux/reduxIndex' // TEST
 import axios from 'axios'
+import {BASE_URL} from '../redux/API_Types'
 
 function Director(){
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ function Director(){
 
     function SelectDirectorCandidate(){
         console.log("Minister are electing a Director candidate...")
-        const uri= "http://127.0.0.1:8000/games/"+String(game_id)+"/select_director/"
+        const uri= BASE_URL + "/games/"+String(game_id)+"/select_director/"
         const body = { "player_number": playerNumber } // Checks if better player_nick 
         axios.post(
             uri, body, { headers: {'Authorization' : token.token_type + " " + token.access_token}}

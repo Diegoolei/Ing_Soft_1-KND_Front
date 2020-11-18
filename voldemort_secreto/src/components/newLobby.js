@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { changeScreen, createLobby } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import {BASE_URL} from '../redux/API_Types'
 
 function NewLobby () {
   const token = useSelector(state => state.session.authToken)
@@ -25,7 +26,7 @@ function NewLobby () {
     } 
     else {
       axios.post(
-        "http://127.0.0.1:8000/lobby/",
+        BASE_URL + "/lobby/",
         { lobbyIn_name: privLobbyName, 
           lobbyIn_max_players: privMaxPlayers, 
           lobbyIn_min_players: privMinPlayers
