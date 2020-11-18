@@ -1,6 +1,6 @@
 
 export { changeScreen } from './componentController/componentControllerActions'
-export { renderLobbyPage } from './lobbyGameList/lobbyGameListActions'
+export { renderLobbyPage, renderGamePage } from './lobbyGameList/lobbyGameListActions'
 export { selectMyDirector } from './game/selectDirector/selectDirectorActions'
 
 export { 

@@ -1,7 +1,6 @@
-import { CHANGE_SCREEN, LOGIN_COMPONENT, SHOW_VOTATION_RESULTS_COMPONENT } from './componentControllerTypes'
+import { CHANGE_SCREEN, LOGIN_COMPONENT } from './componentControllerTypes'
 
 const initialState = {
-  //  screen: LOGIN_COMPONENT
   screen: LOGIN_COMPONENT
 }
 

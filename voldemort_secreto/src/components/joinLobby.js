@@ -19,11 +19,11 @@ function JoinLobby() {
     let formatedLobby = null
     let lobbiesArray = []
     for (let key in unformatedLobbies) {
-      let lobby_id = unformatedLobbies.[key].lobby_id
+      let lobby_id = unformatedLobbies[key].lobby_id
       let name = key
-      let currPlay = unformatedLobbies.[key].[actual_players]
-      let maxPlay = unformatedLobbies.[key].[max_players]
-      let owner = unformatedLobbies.[key].lobby_creator
+      let currPlay = unformatedLobbies[key][actual_players]
+      let maxPlay = unformatedLobbies[key][max_players]
+      let owner = unformatedLobbies[key].lobby_creator
       formatedLobby = (
       <li key={lobby_id}>
         <br/><button className="button-shadow-red" onClick={() => handleJoinButton(lobby_id)}>Join </button>
@@ -54,7 +54,7 @@ function JoinLobby() {
       <header className="App-header-test">
       <div className="App-div">
         <h1 className="brown">Join Lobby</h1>
-        <ul>{formatedList()}</ul>
+        <ul className="ul-big">{formatedList()}</ul>
         <br/><button className="button" onClick={prevpage}>Prev</button>
         <button className="button" onClick={nextpage}>Next</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back to menu</button>

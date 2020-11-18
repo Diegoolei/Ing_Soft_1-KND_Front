@@ -281,6 +281,9 @@ export const joinGame = game_id => {
         proclaimed_phoenix: response.data.proclaimed_phoenix,
         proclaimed_death_eater: response.data.proclaimed_death_eater
       }
+      if (state.socket.status === "closed") {
+        dispatch(wsConnect(BASE_WS_URL+API_ENDPOINT_WEBSOCKET+String(response.data.player_id)))
+      }
       dispatch(setGameInfo(info))
       const player_array = response.data.player_array
       for (let key in player_array) {
@@ -313,8 +316,7 @@ export const voteInGame = (vote_recive, game_id) => {
   const state = store.getState()
   const token = state.session.authToken
   const body = { "vote" : vote_recive }
-  //const uri = BASE_URL+API_ENDPOINT_GAME_INFO+String(game_id)+API_ENDPOINT_VOTE
-  const uri = BASE_URL+"/a/"+String(game_id)+"/a"
+  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+String(game_id)+API_ENDPOINT_VOTE
   console.log(uri)
   return dispatch => {
     axios.post(uri, body,
