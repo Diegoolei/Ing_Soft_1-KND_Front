@@ -55,15 +55,17 @@ function UpdateUserProfile() {
                 }
             }
             ).then(response => {
-            console.log("-Response :" + JSON.stringify(response.data))
+                console.log("-Response :" + JSON.stringify(response.data))
+                setValidityMsg("Your changes was changed correctly")
             }).catch(error => {
             let errorMsg
             try {
                 errorMsg = error.response.data.detail
                 } catch (er) {
-                    errorMsg = "Something went wrong"
+                    errorMsg = "Something went wrong" + er
                 }
                 console.log("-Response :" + JSON.stringify(errorMsg))
+                setValidityMsg(errorMsg)
             })
         }
     }

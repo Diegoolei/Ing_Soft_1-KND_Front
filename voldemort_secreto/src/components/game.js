@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { voteInGame } from '../redux/reduxIndex'
 import { confirmAlert } from 'react-confirm-alert'
+import processSocketMessage from '../redux/game/socketMsgProcessor'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Chat from './chat'
 
 function Game() {
   const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
+  const unprocessed_socket_messages = useSelector(state => state.socket.messages)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
-  function Vote() {
+  if (unprocessed_socket_messages.length !== 0) {
+    dispatch(processSocketMessage(unprocessed_socket_messages[0]))
+  }
+
+  function vote() {
     confirmAlert({
       title: 'It is time to Vote!',
       message: 'Vote Lumos to accept government or Nox to reject it',
@@ -76,7 +82,7 @@ function Game() {
     <div className="App-header">
       <h1>GAME</h1>
       <div class="custom-ui">
-        <br /><button className="button" onClick={Vote}>Vote</button>
+        <br /><button className="button" onClick={vote}>Vote</button>
       </div>
       <button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
       {showingSecretInfo ? secretInfo() : null}
