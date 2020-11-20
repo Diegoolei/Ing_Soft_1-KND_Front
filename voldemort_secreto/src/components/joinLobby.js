@@ -9,11 +9,6 @@ function JoinLobby() {
   const max_players = "max players"
   const actual_players = "actual players"
 
-  function handleJoinButton(lobby_id) {
-    //console.log("Attempting to join Lobby", lobby_id)  
-    dispatch(joinLobby(lobby_id))  
-  }
-
   function formatedList() {
     const unformatedLobbies = lists.lobbyPageContent.lobbyDict
     let formatedLobby = null
@@ -25,11 +20,17 @@ function JoinLobby() {
       let maxPlay = unformatedLobbies[key][max_players]
       let owner = unformatedLobbies[key].lobby_creator
       formatedLobby = (
-      <li key={lobby_id}>
-        <br/><button className="button-shadow-red" onClick={() => handleJoinButton(lobby_id)}>Join </button>
-        {name}  (owner: {owner})  ({currPlay}/{maxPlay})
-      </li>)
+        <li key={lobby_id}>
+          <br /><button className="button-shadow-red" onClick={() => dispatch(joinLobby(lobby_id))}>Join </button>
+          {name}  (owner: {owner})  ({currPlay}/{maxPlay})
+        </li>)
       lobbiesArray.push(formatedLobby)
+    }
+    if (lobbiesArray.length === LG_LISTS_PAGE_SIZE + 1) {
+      lobbiesArray.pop()
+    }
+    if (lobbiesArray.length === 0) {
+      return <p>No available lobbies</p>
     }
     return lobbiesArray
   }
@@ -37,7 +38,7 @@ function JoinLobby() {
   function nextpage () {
     const currentAmountEntries = lists.lobbyPageAmountEntries
     const currentPageNumber = lists.lobbyPageNumber
-    if (currentAmountEntries === LG_LISTS_PAGE_SIZE) {
+    if (currentAmountEntries === LG_LISTS_PAGE_SIZE + 1) {
       dispatch(renderLobbyPage(currentPageNumber + 1)) 
     }
   }
@@ -54,10 +55,10 @@ function JoinLobby() {
       <header className="App-header-test">
       <div className="App-div">
         <h1 className="brown">Join Lobby</h1>
-        <ul className="ul-big">{formatedList()}</ul>
-        <br/><button className="button" onClick={prevpage}>Prev</button>
-        <button className="button" onClick={nextpage}>Next</button>
-        <br/><button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back to menu</button>
+        <button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back to menu</button>
+        <br/><ul className="ul-big">{formatedList()}</ul>
+        <br/>{lists.loading || lists.lobbyPageNumber === 0 ? null : <button className="button" onClick={prevpage}>Prev</button>}
+        {!lists.loading && lists.lobbyPageAmountEntries === LG_LISTS_PAGE_SIZE + 1 ? <button className="button" onClick={nextpage}>Next</button> : null}
       </div>
       </header>
     </div>

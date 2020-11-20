@@ -58,8 +58,8 @@ export const renderLobbyPage = pageNumber => {
           'Authorization': token.token_type + " " + token.access_token
         }, 
         params: { 
-          start_from: LG_LISTS_PAGE_SIZE*pageNumber, 
-          end_at: LG_LISTS_PAGE_SIZE*(pageNumber + 1 )
+          start_from: LG_LISTS_PAGE_SIZE*pageNumber + 1, 
+          end_at: LG_LISTS_PAGE_SIZE*(pageNumber + 1) + 1
         }
       }).then(response => {
         const lobbies = response.data
@@ -95,8 +95,8 @@ export const renderGamePage = pageNumber => {
           'Authorization': token.token_type + " " + token.access_token
         }, 
         params: { 
-          start_from: LG_LISTS_PAGE_SIZE*pageNumber, 
-          end_at: LG_LISTS_PAGE_SIZE*(pageNumber + 1 )
+          start_from: LG_LISTS_PAGE_SIZE*pageNumber + 1, 
+          end_at: LG_LISTS_PAGE_SIZE*(pageNumber + 1) + 1
         }
       }).then(response => {
         const games = response.data

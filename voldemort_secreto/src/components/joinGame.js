@@ -34,13 +34,19 @@ function JoinGame() {
         </li>)
       games_array.push(formated_game)
     }
+    if (games_array.length === LG_LISTS_PAGE_SIZE + 1) {
+      games_array.pop()
+    }
+    if (games_array.length === 0) {
+      return <p>No available games</p>
+    }
     return games_array
   }
 
   function nextpage () {
     const currentAmountEntries = lists.gamePageAmountEntries
     const currentPageNumber = lists.gamePageNumber
-    if (currentAmountEntries === LG_LISTS_PAGE_SIZE) {
+    if (currentAmountEntries === LG_LISTS_PAGE_SIZE + 1) {
       dispatch(renderGamePage(currentPageNumber + 1)) 
     }
   }
@@ -57,10 +63,10 @@ function JoinGame() {
       <header className="App-header-test">
       <div className="App-div">
         <h1 className="brown">Your Games</h1>
-        <ul className="ul-big">{formatedList()}</ul>
-        <br/><button className="button" onClick={prevpage}>Prev</button>
-        <button className="button" onClick={nextpage}>Next</button>
-        <br/><button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back to menu</button>
+        <button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back to menu</button>
+        <br/><ul className="ul-big">{formatedList()}</ul>
+        <br/>{lists.loading || lists.gamePageNumber === 0 ? null : <button className="button" onClick={prevpage}>Prev</button>}
+        {!lists.loading && lists.gamePageAmountEntries === LG_LISTS_PAGE_SIZE + 1 ? <button className="button" onClick={nextpage}>Next</button> : null}
       </div>
       </header>
     </div>
