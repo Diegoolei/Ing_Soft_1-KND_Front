@@ -1,7 +1,5 @@
 import {
   CGL_SD_SET_CANDIDATES,
-  CGL_SD_ACTIVATE_SELECT_CANDIDATE,
-  CGL_SD_DEACTIVATE_SELECT_CANDIDATE,
   CGL_SD_RESET
 } from './selectDirectorTypes'
 
@@ -12,7 +10,7 @@ const initialState = {
 const selectDirectorReducer = (state = initialState, action) => {
   switch (action.type) {
     case CGL_SD_SET_CANDIDATES:
-      return{
+      return {
         ...state,
         candidates: action.payload
       }
