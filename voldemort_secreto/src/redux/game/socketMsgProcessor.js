@@ -7,6 +7,8 @@ import {
   closeLobby,
   voteInGame
 } from './gameActions'
+import { setCandidates } from './selectDirector/selectDirectorActions'
+import { activateCandidateSelection } from './activeApps/activeAppsActions'
 
 import { wsConsumeMessage } from '../reduxIndex'
 
@@ -43,14 +45,20 @@ export const processSocketMessage = jsonMsg => {
   
       case "NEW_MINISTER":
         break;
+
       case "REQUEST_CANDIDATE":
+        dispatch(setCandidates(payload))
+        dispatch(activateCandidateSelection())
         break;
+
       case "REQUEST_VOTE":
         break;
+
       case "ELECTION_RESULT":
         dispatch(voteInGame(payload))
         dispatch(logAction("Votation results: " + payload))
         break;
+
       case "MINISTER_DISCARD":
         break;
       case "CAOS_PROCLAMATION":
