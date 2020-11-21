@@ -5,7 +5,9 @@ import {
   logAction,
   joinGame,
   closeLobby,
-  voteInGame
+  voteInGame,
+  proclaimPhoenix,
+  proclaimDeathEater
 } from './gameActions'
 
 import { wsConsumeMessage } from '../reduxIndex'
@@ -58,6 +60,19 @@ export const processSocketMessage = jsonMsg => {
       case "DIRECTOR_DISCARD":
         break;
       case "PROCLAMATION":
+        switch (payload) {
+          case 0:
+            dispatch(proclaimPhoenix())
+            break;
+          case 1:
+            dispatch(proclaimDeathEater())
+            break;
+          default:
+            console.log("Fatal error. Payload of PROCLAMATION in socket proccesor is wrong")     
+            console.log(payload, typeof payload)       
+            break;
+        }
+        
         break;
       case "END_GAME":
         break;

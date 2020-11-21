@@ -11,8 +11,12 @@ function Chat() {
 
   const scrollDown = () => {
     const objDiv = document.querySelectorAll('#chat_history')
-    if (objDiv[0].scrollTop > objDiv[0].scrollHeight - 100) {
-      objDiv[0].scrollTop = objDiv[0].scrollHeight
+    const fontSize = 15  // Make it a little bit bigger than the actual font size
+    const scroll_top = objDiv[0].scrollTop
+    const client_height = objDiv[0].clientHeight
+    const scroll_height = objDiv[0].scrollHeight
+    if (scroll_top + client_height + fontSize >= scroll_height) {
+      objDiv[0].scrollTop = scroll_height
     }
   }
 
@@ -24,6 +28,7 @@ function Chat() {
   function formatedLogMessages() {
     const msg_arr = []
     for (let m in messages) {
+      // msg_arr.push(<p key={m}>{messages[m]}</p>)
       msg_arr.push(<li key={m}>{messages[m]}</li>)
     }
     return msg_arr
@@ -40,7 +45,7 @@ function Chat() {
   }
 
   return (
-    <div className="Chat-container">
+    <div className="Div-invisible">
       <ul id="chat_history" className="Chat-history">
         {formatedLogMessages()}
       </ul>

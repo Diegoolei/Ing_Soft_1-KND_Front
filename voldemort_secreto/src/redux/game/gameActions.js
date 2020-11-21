@@ -9,11 +9,14 @@ import {
   CGL_PLAYER_JOINED_GAME,
   CGL_PLAYER_LEFT_LOBBY,
   CGL_UPDATE_NICK,
+  CGL_PROCLAIM_PHOENIX,
+  CGL_PROCLAIM_DEATH_EATER,
   CGL_START_WAITING_FOR_USER,
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG
 } from './gameTypes'
+
 
 import {
   BASE_URL,
@@ -108,6 +111,18 @@ export const addLog = msg => {
 export const consumeLog = () => {
   return {
     type: CGL_CONSUME_LOG
+  }
+}
+
+export const proclaimPhoenix = () => {
+  return {
+    type: CGL_PROCLAIM_PHOENIX
+  }
+}
+
+export const proclaimDeathEater = () => {
+  return {
+    type: CGL_PROCLAIM_DEATH_EATER
   }
 }
 
