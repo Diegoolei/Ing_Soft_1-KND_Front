@@ -99,7 +99,7 @@ function Game() {
     <div>
       <div className="Game-header"><GameHeader/></div>
       <div className="Board-container">
-        <div className="Prolamations-container"><Proclamations/></div>
+        <div className="Proclamations-container"><Proclamations/></div>
         {info()}
       </div>
       <div className="Chat-container"><Chat/></div>
