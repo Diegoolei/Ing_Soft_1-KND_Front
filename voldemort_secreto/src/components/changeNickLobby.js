@@ -3,7 +3,7 @@ import axios from 'axios'
 import dobby from '../metaMedia/dobby.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { deactivateChangeNick } from '../redux/reduxIndex'
-
+import {BASE_URL} from '../redux/API_Types'
 
 function ChangeNickOnLobby() {
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ function ChangeNickOnLobby() {
 
   function ChangeNick() {
     console.log("Sending Change Nick request to lobby:", lobby_id)
-    const uri = "http://127.0.0.1:8000/lobby/" + String(lobby_id) + "/change_nick"
+    const uri = BASE_URL + "/lobby/" + String(lobby_id) + "/change_nick"
     const body = { "nick": playerNick }
     axios.post(
       uri, body, { headers: { 'Authorization': token.token_type + " " + token.access_token } }

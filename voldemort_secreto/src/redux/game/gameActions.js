@@ -9,11 +9,14 @@ import {
   CGL_PLAYER_JOINED_GAME,
   CGL_PLAYER_LEFT_LOBBY,
   CGL_UPDATE_NICK,
+  CGL_PROCLAIM_PHOENIX,
+  CGL_PROCLAIM_DEATH_EATER,
   CGL_START_WAITING_FOR_USER,
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG
 } from './gameTypes'
+
 
 import {
   BASE_URL,
@@ -22,7 +25,8 @@ import {
   API_ENDPOINT_LEAVE_LOBBY,
   API_ENDPOINT_START_GAME,
   API_ENDPOINT_GAME_INFO,
-  API_ENDPOINT_WEBSOCKET
+  API_ENDPOINT_WEBSOCKET,
+  API_ENDPOINT_VOTE
 } from '../API_Types'
 
 import { LOBBY_COMPONENT, GAME_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
@@ -56,6 +60,7 @@ export const setLobbyInfo = info => {
       lobby_id: info.lobby_id,
       lobby_name: info.lobby_name,
       player_id: info.player_id,
+      player_nick: info.player_nick,
       is_owner: info.is_owner
     }
   }
@@ -109,6 +114,18 @@ export const consumeLog = () => {
   }
 }
 
+export const proclaimPhoenix = () => {
+  return {
+    type: CGL_PROCLAIM_PHOENIX
+  }
+}
+
+export const proclaimDeathEater = () => {
+  return {
+    type: CGL_PROCLAIM_DEATH_EATER
+  }
+}
+
 export const logAction = msg => {
   const state = store.getState()
   return dispatch => {
@@ -126,6 +143,7 @@ export const createLobby = response_data => {
       lobby_id: response_data.lobbyOut_Id,
       lobby_name: response_data.lobbyOut_name,
       player_id: response_data.lobbyOut_player_id,
+      player_nick: response_data.lobbyOut_player_nick,
       is_owner: true
     }
     dispatch(setLobbyInfo(info))
@@ -149,6 +167,7 @@ export const joinLobby = lobby_id => {
         lobby_id: lobby_id,
         lobby_name: response.data.joinLobby_name,
         player_id: response.data.joinLobby_player_id,
+        player_nick: response.data.joinLobby_player_nick,
         is_owner: response.data.joinLobby_is_owner
       }
       dispatch(setLobbyInfo(info))
@@ -277,6 +296,9 @@ export const joinGame = game_id => {
         proclaimed_phoenix: response.data.proclaimed_phoenix,
         proclaimed_death_eater: response.data.proclaimed_death_eater
       }
+      if (state.socket.status === "closed") {
+        dispatch(wsConnect(BASE_WS_URL+API_ENDPOINT_WEBSOCKET+String(response.data.player_id)))
+      }
       dispatch(setGameInfo(info))
       const player_array = response.data.player_array
       for (let key in player_array) {
@@ -308,8 +330,9 @@ export const joinGame = game_id => {
 export const voteInGame = (vote_recive, game_id) => {
   const state = store.getState()
   const token = state.session.authToken
-  const body = { "vote": vote_recive }
-  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+game_id+"/vote/"
+  const body = { "vote" : vote_recive }
+  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+String(game_id)+API_ENDPOINT_VOTE
+  console.log(uri)
   return dispatch => {
     axios.put(uri, body,
       {

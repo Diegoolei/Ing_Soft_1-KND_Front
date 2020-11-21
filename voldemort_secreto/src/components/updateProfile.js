@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeScreen } from '../redux/reduxIndex'
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import axios from 'axios'
+import {BASE_URL} from '../redux/API_Types'
 
 function UpdateUserProfile() {
     //const sessionState = useSelector(state => state.session)
@@ -17,7 +18,7 @@ function UpdateUserProfile() {
     const [validityMsg, setValidityMsg] = useState('')
 
     function ChangeUsername() {
-        const uri = "http://127.0.0.1:8000/users/change_profile/"
+        const uri = BASE_URL + "/users/change_profile/"
         console.log("Sending ChangeUsername request with usern_id:", userId)
         const body = {"user_id": userId, "username": newUsername, "photo": newPhoto}
         axios.patch(
@@ -28,14 +29,16 @@ function UpdateUserProfile() {
         }
         ).then(response => {
         console.log("-Response :" + JSON.stringify(response.data))
+        setValidityMsg("Your changes was changed correctly")
         }).catch(error => {
         let errorMsg
         try {
             errorMsg = error.response.data.detail
             } catch (er) {
-                errorMsg = "Something went wrong"
+                errorMsg = "Something went wrong:: " + er
             }
             console.log("-Response :" + JSON.stringify(errorMsg))
+            setValidityMsg(errorMsg)
         })
     }
 
@@ -45,7 +48,7 @@ function UpdateUserProfile() {
             setValidityMsg('Passwords don\'t match')
         }else {
             setValidityMsg('')
-            const uri = "http://127.0.0.1:8000/users/change_profile/change_password/"
+            const uri = BASE_URL + "/users/change_profile/change_password/"
             console.log("Sending ChangeUsername request with usern_id:", userId)
             const body = {"user_id": userId, "current_password": currentPassword, "new_password": newPassword}
             axios.patch(
@@ -56,14 +59,16 @@ function UpdateUserProfile() {
             }
             ).then(response => {
             console.log("-Response :" + JSON.stringify(response.data))
+            setValidityMsg("Your password was changed correctly")
             }).catch(error => {
             let errorMsg
             try {
                 errorMsg = error.response.data.detail
                 } catch (er) {
-                    errorMsg = "Something went wrong"
+                    errorMsg = "Something went wrong:: " + er
                 }
                 console.log("-Response :" + JSON.stringify(errorMsg))
+                setValidityMsg(errorMsg)
             })
         }
     }
@@ -109,7 +114,7 @@ return (
             <br/>
                 <input placeholder='New Username' name='setusername' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
                 <input placeholder='New Photo' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-                <button className="button-shadow-blue" onClick={ChangeUsername}>Update current data</button>            
+                <button className="button-shadow-blue" onClick={ChangeUsername}>Update current data</button>        
             <br/>
             
             </p><p>
@@ -117,7 +122,7 @@ return (
                 <input placeholder='New password' name='setnewpassword' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input>
                 <input placeholder='Repeat New password' name='setnewpassword2' type='password' onBlur={takeInput} onClick={takeInput} onChange={takeInput} maxLength='32' minLength='8'></input><br/>
                 <br/><button className="button-shadow-blue" onClick={ChangePassword}>Change Password</button>
-                <br/><label>{validityMsg}</label>
+                <br/><label>{validityMsg}</label><br />
             </p>
             <button className="button-shadow-blue" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Back</button>
         <br/></div>

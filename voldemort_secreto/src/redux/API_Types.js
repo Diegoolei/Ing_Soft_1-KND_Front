@@ -1,5 +1,6 @@
 
-//export const BASE_URL = 'https://jsonplaceholder.typicode.com/'
+//export const BASE_URL = 'http://190.xxx.xx.xx:8000'
+//export const BASE_WS_URL = 'ws://190.xxx.xx.xx:8000'
 export const BASE_URL = 'http://127.0.0.1:8000'
 export const BASE_WS_URL = 'ws://127.0.0.1:8000'
 
@@ -11,7 +12,7 @@ export const API_ENDPOINT_LOGIN = '/login'
 export const API_ENDPOINT_PROFILE_INFO = '/users/'
 
 export const API_ENDPOINT_LIST_LOBBIES = '/lobby/list_lobbies/'
-export const API_ENDPOINT_LIST_GAMES = '/lobby/list_games/'
+export const API_ENDPOINT_LIST_GAMES = '/games/list_games/'
 export const API_ENDPOINT_JOIN_LOBBY = '/lobby/'
 export const API_ENDPOINT_START_GAME = '/lobby/'
 export const API_ENDPOINT_LEAVE_LOBBY = '/lobby/'
@@ -19,7 +20,8 @@ export const API_ENDPOINT_GAME_INFO = '/games/'
 export const API_ENDPOINT_WEBSOCKET = '/websocket/'
 export const API_ENDPOINT_LOBBY = '/lobby/'
 export const API_ENDPOINT_GAME = '/games/'
-export const API_ENDPOIT_SELECT_DIRECTOR = '/select_director/'
+export const API_ENDPOINT_SELECT_DIRECTOR = '/select_director/'
+export const API_ENDPOINT_VOTE = '/select_director/vote'
 
 //FORMS
   // REGISTER BODY:

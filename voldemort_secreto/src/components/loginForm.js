@@ -50,6 +50,11 @@ function LoginForm () {
     dispatch(changeScreen(REGISTER_COMPONENT))
   }
 
+  // function skipToGame() {
+  //   dispatch(login("user1@mail.com", "12345678"))
+  //   setTimeout(() => dispatch(joinGame(1)), 1000)
+  // }
+
   function loginForm() {
     return (
       <div>
@@ -60,8 +65,8 @@ function LoginForm () {
         <br/><label>Password: </label>
         <input name='password' type='password' onKeyUp={takeInput} maxLength='32' minLength='8' ></input><br/>
         
-        <br/><button className="button" onClick={handleButton}>Login</button>
-        <button className="button" onClick={switchToRegister}>Register Instead</button>
+        <br/><button className="button-shadow-red" onClick={handleButton}>Login</button>
+        <button className="button-shadow-red" onClick={switchToRegister}>Register Instead</button>
         <br/><label>{sessionState.response + " " + sessionState.error + " " + validityMsg}</label>
       </div>
     )
@@ -72,6 +77,7 @@ function LoginForm () {
       <div className="App-div-login">
         <img src={nimbus} className="App-logo" alt="logo" />
         <h1>Welcome to Secret Voldemort</h1>
+        {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
         {loginForm()}
       </div>
     </header>

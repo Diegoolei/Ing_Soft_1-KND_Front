@@ -29,6 +29,7 @@ const initialState = {
   current_minister: -1,
   current_director: -1,
   player_array: null,
+  amount_players: 0,
   election_counter: 0,
   cards_in_deck: 17,
   proclaimed_phoenix: 0,
@@ -72,7 +73,9 @@ const gameReducer = (state = initialState, action) => {
       lobby_id: action.payload.lobby_id,
       lobby_name: action.payload.lobby_name,
       player_id: action.payload.player_id,
-      is_owner: action.payload.is_owner
+      player_nick: action.payload.player_nick,
+      is_owner: action.payload.is_owner,
+      player_array: { [action.payload.player_nick]: getInitialPlayer(action.payload.player_nick) }
     }
       
     case CGL_SET_GAME_IMFORMATION: return {
@@ -111,7 +114,8 @@ const gameReducer = (state = initialState, action) => {
           is_candidate: action.payload.is_candidate,
           vote: action.payload.vote
         }
-      }
+      },
+      amount_players: state.amount_players + 1
     }
 
     case CGL_PLAYER_LEFT_LOBBY: 
@@ -150,6 +154,7 @@ const gameReducer = (state = initialState, action) => {
       delete players[oldnick]
       return {
         ...state,
+        player_nick: (oldnick === state.player_nick) ? newnick : state.player_nick,
         player_array: players
     }
 

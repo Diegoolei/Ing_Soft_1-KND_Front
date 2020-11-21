@@ -13,7 +13,8 @@ import {
   CHANGE_NICK_ON_LOBBY,
   LOBBY_COMPONENT,
   GAME_COMPONENT,
-  SHOW_VOTATION_RESULTS_COMPONENT
+  SHOW_VOTATION_RESULTS_COMPONENT,
+  JOIN_GAME_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 
 import LoginForm from './loginForm'
@@ -24,6 +25,7 @@ import EndpointSocketTest from './endpointSocketTest'
 import UpdateUserProfile from './updateProfile'
 import NewLobby from './newLobby'
 import JoinLobby from './joinLobby'
+import JoinGame from './joinGame'
 import ChangeNickOnLobby from './changeNickLobby'
 import Lobby from './lobby'
 import Game from './game'
@@ -39,6 +41,7 @@ function ComponentController() {
       case MAIN_MENU_COMPONENT: return <MainMenu/>
       case CREATE_LOBBY_COMPONENT: return <NewLobby/>
       case JOIN_LOBBY_COMPONENT: return <JoinLobby/>
+      case JOIN_GAME_COMPONENT: return <JoinGame/>
       case END_GAME_MSG_COMPONENT: return <EndGameMsg/>
       case ENDPOINT_SOCKET_TEST_COMPONENT: return <EndpointSocketTest/>
       case UPDATE_PROFILE_COMPONENT: return <UpdateUserProfile/>

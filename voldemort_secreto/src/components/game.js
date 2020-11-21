@@ -3,14 +3,37 @@ import { useDispatch, useSelector } from 'react-redux'
 import { voteInGame } from '../redux/reduxIndex'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
+import processSocketMessage from '../redux/game/socketMsgProcessor'
+import GameHeader from './gameHeader'
 import Chat from './chat'
+import Proclamations from './proclamations'
 
 function Game() {
   const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
+  const unprocessed_socket_messages = useSelector(state => state.socket.messages)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
-  function Vote() {
+  const info = () => {
+    return (
+      <div className="Div-invisible">
+        <br/><button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
+        {showingSecretInfo ? secretInfo() : null}
+        <br/><br/>Current Minister: {currentMinisterString()}
+        <br/>{currentDirectorString()}
+        <br/>Order Proclamations: {gameState.proclaimed_phoenix}
+        <br/>Death Eater Proclamations: {gameState.proclaimed_death_eater}
+        <br/>Cards in Deck: {gameState.cards_in_deck}
+        <br/>Election Counter: {gameState.election_counter}
+      </div>
+    )
+  }
+
+  if (unprocessed_socket_messages.length !== 0) {
+    dispatch(processSocketMessage(unprocessed_socket_messages[0]))
+  }
+
+  function vote() {
     confirmAlert({
       title: 'It is time to Vote!',
       message: 'Vote Lumos to accept government or Nox to reject it',
@@ -73,20 +96,16 @@ function Game() {
   }
 
   return (
-    <div className="App-header">
-      <h1>GAME</h1>
-      <div class="custom-ui">
-        <br /><button className="button" onClick={Vote}>Vote</button>
+    <div>
+      <div className="Game-header"><GameHeader/></div>
+      <div className="Board-container">
+        <div className="Proclamations-container"><Proclamations/></div>
+        {info()}
+        <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
+        
+        <div className="App-div-pastel-pink"><ShowVotationResults/></div>
       </div>
-      <button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
-      {showingSecretInfo ? secretInfo() : null}
-      <br/><br/>Current Minister: {currentMinisterString()}
-      <br/>{currentDirectorString()}
-      <br/>Order Proclamations: {gameState.proclaimed_phoenix}
-      <br/>Death Eater Proclamations: {gameState.proclaimed_death_eater}
-      <br/>Cards in Deck: {gameState.cards_in_deck}
-      <br/>Election Counter: {gameState.election_counter}
-      <Chat/>
+      <div className="Chat-container"><Chat/></div>
     </div>
   )
 }

@@ -11,36 +11,19 @@ function ShowVotationResults() {
   const recvMsg = useSelector(state => state.socket.messages)
   const token = useSelector(state => state.session.authToken)
   const [active, setActive] = useState(false)
-  //const votes = useSelector(state => state.player_array)
+  const votes = useSelector(state => state.player_array)
   const [results, setResults] = useState('')
   const [election, setElection] = useState('')
 
 
-  function recive_message() {
-    if (recvMsg.length !== 0) {
-      const jsonmsg = recvMsg[0]
-      const votes = jsonmsg.PAYLOAD
-
-      if (jsonmsg.TYPE === "ELECTION_RESULT") {
-        votationResults(votes)
-      }
-
-      console.log("Message from the server: ", results)
-      dispatch(wsConsumeMessage())
-    }
-    else {
-      console.log()
-    }
-  }
-
-  function votationResults(votes) {
-//    const votes = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
+  function votationResults(vote_results) {
+    //const results = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
     let vote = null
     let arrayResultsOfVotes = []
     let countLumos = 0
     let countNox = 0
-    for (let key in votes) {
-      let player_vote = votes.[key]
+    for (let key in vote_results) {
+      let player_vote = vote_results[key]
       if (player_vote) { 
         player_vote = "Lumos" 
         countLumos += 1
@@ -57,10 +40,10 @@ function ShowVotationResults() {
       arrayResultsOfVotes.push(vote)
     }
     if (countLumos <= countNox) {
-      setElection("\r\nRejected government")
+      setElection("Rejected government")
     }
     else {
-      setElection("\r\nAccepted government")
+      setElection("Accepted government")
     }
     setResults(arrayResultsOfVotes)
 //    return arrayResultsOfVotes
@@ -73,10 +56,12 @@ function ShowVotationResults() {
   return (
     <div >
       <h1 className="brown">VOTATION RESULTS</h1>
-      <button onClick={() => setActive(!active)}>Show Results</button>
+      {/*<button onClick={() => setActive(!active)}>Show Results</button>*/}
+        setActive(!active)
         <br/>{active ? 
           <div>
-            <br/><button className="button-votation-red" onClick={votationResults}>Show Results</button>
+            {/*<br/><button className="button-votation-red" onClick={votationResults}>Show Results</button>*/}
+            {votationResults(votes)}
             {results}
             {election}
           </div> : null}

@@ -1,6 +1,6 @@
 
 // const
-export const LG_LISTS_PAGE_SIZE = 10
+export const LG_LISTS_PAGE_SIZE = 20
 
 // actions
 export const LG_LISTS_REQUEST_LOBBY_PAGE = 'LG_LISTS_REQUEST_LOBBY_PAGE'
