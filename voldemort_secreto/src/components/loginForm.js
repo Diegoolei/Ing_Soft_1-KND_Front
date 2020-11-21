@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import nimbus from '../metaMedia/nimbus.svg'
 import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
-// import { joinGame } from '../redux/reduxIndex'
 
 function LoginForm () {
   const sessionState = useSelector(state => state.session)
