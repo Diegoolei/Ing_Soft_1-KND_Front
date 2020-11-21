@@ -290,8 +290,6 @@
   height:100%; 
 }
 
-
-
 .Div-invisible {
   display: contents;
 }
@@ -307,16 +305,23 @@
 
 .Board-container {
   box-sizing: border-box;
-  float:left;  
-  width:70%; 
-  background:rgb(7, 9, 16); 
-  height:95vh; 
-  color: rgb(0, 0, 0);
+  float:left;
+  /*
+  background-image: url('./metaMedia/fondo_lobby.jpg');
+  background-repeat: repeat-y;
+  width: 70%;
+  */
+  width: 70%;
+  background-size: 100% 100%;  /*width height*/ 
+  background-color:rgb(7, 9, 16);
+  height: 95vh;
+  color:rgb(221, 130, 38);
   align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
 }
+
 
 .Chat-container {
   box-sizing: border-box;

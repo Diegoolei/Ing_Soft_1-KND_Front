@@ -101,6 +101,7 @@ function Game() {
       <div className="Board-container">
         <div className="Proclamations-container"><Proclamations/></div>
         {info()}
+        <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
       </div>
       <div className="Chat-container"><Chat/></div>
     </div>
