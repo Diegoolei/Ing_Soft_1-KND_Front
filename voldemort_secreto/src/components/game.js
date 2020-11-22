@@ -6,11 +6,16 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
 import Chat from './chat'
 import SelectDirector from './selectDirector'
+import confirmCandidate from './selectDirector'
+import { deactivateCandidateSelection } from '../redux/game/activeApps/activeAppsActions'
+//import is_selecting_director_active from '../redux/game/activeApps/activeAppsReducer'
+import SelectDirectorCandidate from './selectDirector' // ERROR
 
 function Game() {
   const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
   const selecting_director = useSelector(state => state.active_apps.is_selecting_director_active)
+  //const selecting_director = useSelector(state => state.is_selecting_director_active)
   const unprocessed_socket_messages = useSelector(state => state.socket.messages)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
@@ -86,9 +91,15 @@ function Game() {
       <div className="custom-ui">
         <br /><button className="button" onClick={vote}>Vote</button>
       </div>
-      <button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
+      <button className="button-shadow-red" onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
       {showingSecretInfo ? secretInfo() : null}
-      {selecting_director ? <SelectDirector/> : null}
+      
+      <body>
+        <button onClick={() => SelectDirectorCandidate()}>Select my director</button>
+        
+        <br/>{selecting_director ? <SelectDirector/> : true}
+      </body>
+
       <br/><br/>Current Minister: {currentMinisterString()}
       <br/>{currentDirectorString()}
       <br/>Order Proclamations: {gameState.proclaimed_phoenix}

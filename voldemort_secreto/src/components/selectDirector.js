@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { BASE_URL } from '../redux/API_Types'
+import confirmCandidate from './selectDirector'
+import { deactivateCandidateSelection } from '../redux/game/activeApps/activeAppsActions'
 
 function Director() {
   const dispatch = useDispatch()
