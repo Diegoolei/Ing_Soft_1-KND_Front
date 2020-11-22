@@ -4,13 +4,14 @@ import { wsDisconnect, wsSendMessage, wsConsumeMessage, changeScreen } from '../
 import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import axios from 'axios'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
+import { deactivateShowResults } from '../redux/game/votationResults/votationResultsActions'
 
 
 function ShowVotationResults() {
   const dispatch = useDispatch()
   const recvMsg = useSelector(state => state.socket.messages)
   const token = useSelector(state => state.session.authToken)
-  const [active, setActive] = useState(false)
+  const votationActive = useSelector(state => state.votation_results.is_show_results_active)
   const votes = useSelector(state => state.player_array)
   const [results, setResults] = useState('')
   const [election, setElection] = useState('')
@@ -49,23 +50,14 @@ function ShowVotationResults() {
 //    return arrayResultsOfVotes
   }
 
-  function BackToMenu() {
-    dispatch(changeScreen(MAIN_MENU_COMPONENT))
-  }
 
   return (
     <div >
       <h1 className="brown">VOTATION RESULTS</h1>
-      {/*<button onClick={() => setActive(!active)}>Show Results</button>*/}
-        setActive(!active)
-        <br/>{active ? 
-          <div>
-            {/*<br/><button className="button-votation-red" onClick={votationResults}>Show Results</button>*/}
-            {votationResults(votes)}
-            {results}
-            {election}
-          </div> : null}
-        <br/><br/><button className="button" onClick={BackToMenu}>Back to Main Menu</button>
+      {votationResults(votes)}
+      {results}
+      {election}
+      <button className="Button-Close" onClick={() => dispatch(deactivateShowResults())}>X</button>
     </div>
   )
 }

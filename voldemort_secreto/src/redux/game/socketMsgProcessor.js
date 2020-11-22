@@ -10,6 +10,8 @@ import {
   proclaimDeathEater
 } from './gameActions'
 
+import { activateShowResults } from '../game/votationResults/votationResultsActions'
+
 import { wsConsumeMessage } from '../reduxIndex'
 
 export const processSocketMessage = jsonMsg => {
@@ -48,9 +50,10 @@ export const processSocketMessage = jsonMsg => {
       case "REQUEST_CANDIDATE":
         break;
       case "REQUEST_VOTE":
+        dispatch(voteInGame(payload))
         break;
       case "ELECTION_RESULT":
-        dispatch(voteInGame(payload))
+        dispatch(activateShowResults())
         dispatch(logAction("Votation results: " + payload))
         break;
       case "MINISTER_DISCARD":

@@ -1,8 +1,8 @@
 
 import {
   APPS_ACTIVATE_VOTATION_RESULTS,
-  APPS_DESACTIVE_VOTATION_RESULTS
-} from './votationResultsReducer'
+  APPS_DEACTIVATE_VOTATION_RESULTS
+} from './votationResultsTypes'
 
 export const activateShowResults = () => {
   return {

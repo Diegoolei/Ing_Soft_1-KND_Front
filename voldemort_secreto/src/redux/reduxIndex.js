@@ -33,3 +33,8 @@ export {
   activateChangeNick,
   deactivateChangeNick
 } from './game/activeApps/activeAppsActions'
+
+export {
+  activateShowResults,
+  deactivateShowResults
+} from './game/votationResults/votationResultsActions'
