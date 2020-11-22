@@ -9,6 +9,7 @@ import Chat from './chat'
 import ShowVotationResults from './showVotationResults'
 import ActionButton from './gameActionButton'
 import Deck from './gameDeck'
+import ElectionCounter from './gameElectionCounter'
 import Proclamations from './gameProclamations'
 import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
@@ -114,6 +115,7 @@ function Game() {
             <div className="ActionButton-container"><ActionButton/></div>
           </div>
           <Portraits/>
+          <div className="ElectionCounter-container"><ElectionCounter/></div>
         </div>
       </div>
       <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>

@@ -3,14 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import tapete_5_6 from '../metaMedia/tapete_de_5-6.png'
 import tapete_7_8 from '../metaMedia/tapete_de_7-8.png'
 import tapete_9_10 from '../metaMedia/tapete_de_9-10.png'
-import phoenix_board from '../metaMedia/tapete_phoenix.png'
+import phoenix_board from '../metaMedia/tapete_phoenix_2.png'
 import de_proc from '../metaMedia/procl_de.png'
 import ph_proc from '../metaMedia/procl_phoenix.png'
-
-function Cards() {
-
-}
-
 
 function Proclamations() {
   const cardSize = 17
@@ -43,7 +38,8 @@ function Proclamations() {
       board_n = 1 
       break;
   }
-  const board_classname = "Img-100"
+  const de_board_classname = "Img-100"
+  const ph_board_classname = "Img-ph_board"
 
   const cardPosition = (x,y) => {
     const sliderSty = makeStyles({
@@ -115,22 +111,22 @@ function Proclamations() {
     switch (board_n) {
       case 1: return (
         <div className="Div-invisible">
-          <img src={tapete_5_6} className={board_classname} alt="proclamations board"/>
-          <br/><img src={phoenix_board} className={board_classname} alt="proclamations board"/>
+          <img src={tapete_5_6} className={de_board_classname} alt="proclamations board"/>
+          <br/><img src={phoenix_board} className={ph_board_classname} alt="proclamations board"/>
         </div>
       )
 
       case 2: return (
         <div className="Div-invisible">
-          <img src={tapete_7_8} className={board_classname} alt="proclamations board"/>
-          <br/><img src={phoenix_board} className={board_classname} alt="proclamations board"/>
+          <img src={tapete_7_8} className={de_board_classname} alt="proclamations board"/>
+          <br/><img src={phoenix_board} className={ph_board_classname} alt="proclamations board"/>
         </div>
       )
 
       case 3: return (
         <div className="Div-invisible">
-          <img src={tapete_9_10} className={board_classname} alt="proclamations board"/>
-          <br/><img src={phoenix_board} className={board_classname} alt="proclamations board"/>
+          <img src={tapete_9_10} className={de_board_classname} alt="proclamations board"/>
+          <br/><img src={phoenix_board} className={ph_board_classname} alt="proclamations board"/>
         </div>
       )
 
