@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import nimbus from '../metaMedia/nimbus.svg'
+import crucioIcon from '../metaMedia/crucio_icon.png'
 import { activateCrucio } from '../redux/reduxIndex'
 
 function ActionButton() {
@@ -8,14 +8,14 @@ function ActionButton() {
 
   let buttonClick = () => console.log("Wrong on gameActionButton")
   let alt = "Incorrect Buttom"
-  let src = nimbus
+  let src = crucioIcon
 
   buttonClick = () => dispatch(activateCrucio())
 
   return (
     <div className="Div-invisible">
       <button className="Action-button" onClick={buttonClick}>
-          <img className="Img-50" src={src} alt={alt}/>
+          <img className="Img-80" src={src} alt={alt}/>
       </button>
     </div>
     

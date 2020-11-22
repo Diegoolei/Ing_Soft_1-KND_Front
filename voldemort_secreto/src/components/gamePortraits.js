@@ -3,19 +3,23 @@ import { makeStyles } from '@material-ui/core/styles'
 
 function Portraits() {
   const player_portraits = useSelector(state => state.player_portraits)
-  const portrait_size = 10
+  const portrait_height = 58
+  const portrait_width = 62
 
-  const portraitPosition = (top,left) => {
-    const sliderSty = makeStyles({
+  const portraitPosition = (top, left, bottom, right) => {
+    let style = {
       root: {
-        "background-color": "rgb(0, 226, 0)",
+        "background-color": "rgba(255, 255, 255, 0.3)",
         position: "absolute",
-        top: `${top}%`,
-        left: `${left}%`,
-        height: `${portrait_size}%`,
-        width: `${portrait_size}%`
+        height: `${portrait_height}%`,
+        width: `${portrait_width}%`
       }
-    })
+    }
+    if (top    !== -1) style.root.top    = `${top}%`
+    if (left   !== -1) style.root.left   = `${left}%`
+    if (bottom !== -1) style.root.bottom = `${bottom}%`
+    if (right  !== -1) style.root.right  = `${right}%`
+    const sliderSty = makeStyles(style)
     return sliderSty()
   }
 
@@ -23,11 +27,11 @@ function Portraits() {
     const positions_arr = player_portraits.player_arr
     let portrait_array = []
     for (let i in positions_arr) {
-      console.log(i, positions_arr[i])
-      const clas = portraitPosition(positions_arr[i].top, positions_arr[i].left)
-      const portr = <div key={i} className={clas.root}>??? {positions_arr[i].nick} ???</div>
+      // console.log(i, positions_arr[i])
+      const clas = portraitPosition(positions_arr[i].top, positions_arr[i].left,positions_arr[i].bottom, positions_arr[i].right)
+      const portr = <div key={i} className={clas.root}>({positions_arr[i].nick})</div>
       portrait_array.push(portr)
-      console.log(positions_arr[i].nick)
+      // console.log(positions_arr[i].nick)
     }
     return portrait_array
   }
@@ -40,3 +44,4 @@ function Portraits() {
 }
 
 export default Portraits
+
