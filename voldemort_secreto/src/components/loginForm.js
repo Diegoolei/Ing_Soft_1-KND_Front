@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import nimbus from '../metaMedia/nimbus.svg'
 import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
+import music from '../metaMedia/hp-lofi.mp3'
 
 function LoginForm () {
   const sessionState = useSelector(state => state.session)
@@ -72,6 +73,49 @@ function LoginForm () {
     )
   }
 
+//======================================================================
+var soundEmbed = null;
+var isChrome = !!window.chrome;
+
+function soundPlayChrome(which)
+{
+  if (soundEmbed)
+    document.body.removeChild(soundEmbed);
+  soundEmbed = document.createElement("embed");
+  soundEmbed.setAttribute("src", which);
+  soundEmbed.setAttribute("hidden", true);
+  soundEmbed.setAttribute("autostart", true);
+  soundEmbed.setAttribute("loop", true);
+  document.body.appendChild(soundEmbed);
+}
+
+function soundPlay(which)
+{
+  if (soundEmbed)
+    document.head.removeChild(soundEmbed);
+  soundEmbed = document.createElement("embed");
+  soundEmbed.setAttribute("src", which);
+  soundEmbed.setAttribute("hidden", true);
+  soundEmbed.setAttribute("autostart", true);
+  soundEmbed.setAttribute("loop", true);
+  document.head.appendChild(soundEmbed);
+}
+
+function PlayMusic(){
+  if (isChrome)
+    {soundPlayChrome(music)}
+  else
+    {soundPlay(music)}
+}
+
+function PauseMusic(){
+  if (isChrome)
+    {soundPlayChrome("null")}
+  else
+    {soundPlay("null")}
+}
+//======================================================================
+
   return (
     <header className="App-header">
       <div className="App-div-login">
@@ -79,6 +123,8 @@ function LoginForm () {
         <h1>Welcome to Secret Voldemort</h1>
         {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
         {loginForm()}
+        <button className="button" onClick={PlayMusic} >Play</button>
+        <button className="button" onClick={PauseMusic}>Pause</button>
       </div>
     </header>
   )
