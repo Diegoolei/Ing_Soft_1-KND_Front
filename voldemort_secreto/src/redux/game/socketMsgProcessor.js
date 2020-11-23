@@ -55,7 +55,6 @@ export const processSocketMessage = jsonMsg => {
         break;
       case "ELECTION_RESULT":
         dispatch(activateShowResults(payload))
-        dispatch(logAction("Votation results: " + JSON.stringify(payload)))
         break;
       case "MINISTER_DISCARD":
         break;
