@@ -1,21 +1,38 @@
 
 import {
-  APPS_ACTIVATE_VOTATION_RESULTS,
-  APPS_DEACTIVATE_VOTATION_RESULTS
+  GAME_ACTIVATE_VOTATION_RESULTS,
+  GAME_DEACTIVATE_VOTATION_RESULTS
 } from './votationResultsTypes.js'
 
   const initialState = {
-    is_show_results_active: false
+    is_show_results_active: false,
+    votes: []
   }
  
-  const activeAppsReducer = (state = initialState, action) => {
+  const votationResultsReducer = (state = initialState, action) => {
     switch (action.type) {
-      case APPS_ACTIVATE_VOTATION_RESULTS: return {
-        ...state,
-        is_show_results_active: true
-      }
+      case GAME_ACTIVATE_VOTATION_RESULTS: 
+        const dict = []
+        for (let key in action.payload) {          
+          console.log("wachoooo")
+          console.log(action.payload[key])
+          let player_vote = action.payload[key]
+          console.log(player_vote)
+          let nick = key
+          let vote = (
+            <div>
+              <l1> (vote: {player_vote}) </l1>
+            </div>
+          )
+          dict.push(vote)
+        }
+        return {
+          ...state,
+          is_show_results_active: true,
+          votes: dict
+        }
 
-      case APPS_DEACTIVATE_VOTATION_RESULTS: return {
+      case GAME_DEACTIVATE_VOTATION_RESULTS: return {
         ...state,
         is_show_results_active: false
       }
@@ -24,4 +41,4 @@ import {
     }
   }
 
-  export default activeAppsReducer
+  export default votationResultsReducer

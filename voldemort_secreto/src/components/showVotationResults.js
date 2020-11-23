@@ -11,22 +11,31 @@ function ShowVotationResults() {
   const dispatch = useDispatch()
   const recvMsg = useSelector(state => state.socket.messages)
   const token = useSelector(state => state.session.authToken)
-  const votationActive = useSelector(state => state.votation_results.is_show_results_active)
-  const votes = useSelector(state => state.player_array)
-  const [results, setResults] = useState('')
+  const votationActive = useSelector(state => state.games.votation_results.is_show_results_active)
+  const results = useSelector(state => state.games.votation_results.votes)
   const [election, setElection] = useState('')
 
 
-  function votationResults(vote_results) {
+  function VotationResults () {
     //const results = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
-    let vote = null
     let arrayResultsOfVotes = []
     let countLumos = 0
     let countNox = 0
-    for (let key in vote_results) {
-      let player_vote = vote_results[key]
-      if (player_vote) { 
-        player_vote = "Lumos" 
+    console.log("qondaaaaaaa")
+    console.log(results)
+    for (let key in results) {
+      let player_vote = null
+      let vote = null
+      let nick = ''
+      player_vote = results[key]
+      nick = results[key]
+      console.log("soy el nick:")
+      console.log(nick)
+      if (player_vote) {
+        console.log("holaaaa")
+        console.log(player_vote)
+        console.log(nick)
+        player_vote = "Lumos"
         countLumos += 1
       }
       else { 
@@ -35,9 +44,9 @@ function ShowVotationResults() {
       }
       vote = (
         <div>
-          <l1>  (nick: {key})  (vote: {player_vote}) </l1>
+          <l1>  (nick: {nick})  (vote: {player_vote}) </l1>
         </div>
-      )
+      ) 
       arrayResultsOfVotes.push(vote)
     }
     if (countLumos <= countNox) {
@@ -46,16 +55,15 @@ function ShowVotationResults() {
     else {
       setElection("Accepted government")
     }
-    setResults(arrayResultsOfVotes)
-//    return arrayResultsOfVotes
+    console.log(arrayResultsOfVotes)
+    return arrayResultsOfVotes
   }
 
 
   return (
-    <div >
+    <div className="Popup">
       <h1 className="brown">VOTATION RESULTS</h1>
-      {votationResults(votes)}
-      {results}
+      <VotationResults/>
       {election}
       <button className="Button-Close" onClick={() => dispatch(deactivateShowResults())}>X</button>
     </div>

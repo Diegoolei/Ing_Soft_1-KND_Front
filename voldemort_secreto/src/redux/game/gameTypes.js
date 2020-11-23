@@ -16,6 +16,7 @@ export const CGL_BLOCK_CHAT               = 'CGL_BLOCK_CHAT'
 export const CGL_UNBLOCK_CHAT             = 'CGL_UNBLOCK_CHAT'
 export const CGL_SWITCH_TO_GAME           = 'CGL_SWITCH_TO_GAME'
 export const CGL_UPDATE_NICK              = 'CGL_UPDATE_NICK'
+export const CGL_VOTE                     = 'CGL_VOTE'
 
 // For when we need to wait before we consume an action
 export const CGL_START_WAITING_FOR_USER   = 'CGL_START_WAITING_FOR_USER'
@@ -24,6 +25,3 @@ export const CGL_USER_DONE_WITH_ACTION    = 'CGL_USER_DONE_WITH_ACTION'
 // For when we simply must show some text to the user informing something
 export const CGL_LOG_ACTION               = 'CGL_LOG_ACTION'
 export const CGL_CONSUME_LOG              = 'CGL_CONSUME_LOG'
-
-export const CGL_REJECTED_ELECTION        = 'CGL_REJECTED_ELECTION'
-export const CGL_ACCEPTED_ELECTION        = 'CGL_ACCEPTED_ELECTION'

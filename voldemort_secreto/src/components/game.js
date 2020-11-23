@@ -99,14 +99,14 @@ function Game() {
 
   return (
     <div>
-      <div className="Game-header"><GameHeader /></div>
+      <div className="Game-header"><GameHeader/></div>
       <div className="Board-container">
         <div className="Proclamations-container"><Proclamations/></div>
         {info()}
-        <br /><button className="button-votation-red" onClick={() => vote()}>Vote</button>
-        <div className="Popup">{votationActive ? <ShowVotationResults /> : null}</div>
-        <div className="Chat-container"><Chat/></div>
+        <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
+        <div>{votationActive ? <ShowVotationResults/> : null}</div>
       </div>
+      <div className="Chat-container"><Chat/></div>
     </div>)
 }
 

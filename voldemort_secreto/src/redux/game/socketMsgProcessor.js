@@ -51,10 +51,11 @@ export const processSocketMessage = jsonMsg => {
         break;
       case "REQUEST_VOTE":
         dispatch(voteInGame(payload))
+        dispatch(logAction("Vote: " + JSON.stringify(payload)))
         break;
       case "ELECTION_RESULT":
-        dispatch(activateShowResults())
-        dispatch(logAction("Votation results: " + payload))
+        dispatch(activateShowResults(payload))
+        dispatch(logAction("Votation results: " + JSON.stringify(payload)))
         break;
       case "MINISTER_DISCARD":
         break;
