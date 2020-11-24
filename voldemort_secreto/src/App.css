@@ -19,6 +19,28 @@
   pointer-events: none;
 }
 
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/*
+*******************************************************************************
+*******************************************************************************
+                                  BUTTONS
+*******************************************************************************                                  
+*******************************************************************************
+*/
+
 .button_dark_gray {
   background-color: #555555;
   border-radius: 12px;
@@ -124,6 +146,94 @@
 .button-votation-red:hover {background-color: #db4545}
 
 
+.Button-Close {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  background-color: #afa2a2;
+/*  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #555555; /*#f44336
+  border: none;
+  border-radius: 15px;
+  /* box-shadow: 0 5px #999; 
+  margin-bottom: 15px;
+  */
+}
+
+.Button-Close:hover {background-color: #afa2a2} /*#c93126*/
+
+.Button-Close:active {
+  background-color:  #afa2a2 /*#131010;*/
+  /* box-shadow: 0 3px #666; 
+  transform: translateY(4px);*/
+}
+
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+
+.icon-bar {
+  width: 100%; /* Full-width */
+  background-color: #555; /* Dark-grey background */
+  overflow: auto; /* Overflow due to float */
+}
+
+.icon-bar a {
+  float: left; /* Float links side by side */
+  text-align: center; /* Center-align text */
+  width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
+  padding: 12px 0; /* Some top and bottom padding */
+  transition: all 0.3s ease; /* Add transition for hover effects */
+  color: white; /* White text color */
+  font-size: 36px; /* Increased font size */
+}
+
+.icon-bar a:hover {
+  background-color: #000; /* Add a hover color */
+}
+
+.active {
+  background-color: #4CAF50; /* Add an active/current color */
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/*
+*******************************************************************************
+*******************************************************************************
+                                  APP HEADERS
+*******************************************************************************                                  
+*******************************************************************************
+*/
+
 .App-h3{
   position: absolute;
   top: 68%;
@@ -184,18 +294,20 @@
     color: black;
 } 
 
-.App-link {
-  color: #61dafb;
+
+.Game-header {
+  background-color: #131010;
+  height:5vh;
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*
+*******************************************************************************
+*******************************************************************************
+                                  APP DIVS
+*******************************************************************************                                  
+*******************************************************************************
+*/
 
 /* Box, you can use how:
 <div className="App-div">
@@ -282,6 +394,12 @@
   font-size: large;
 }
 
+.Div-invisible {
+  display: contents;
+}
+
+
+/* Main Game Divs */
 
 .Board-position  {
   float:left;  
@@ -290,18 +408,6 @@
   height:100%; 
 }
 
-.Div-invisible {
-  display: contents;
-}
-
-
-/* Main Game Divs */
-
-.Game-header {
-  background-color: #131010;
-  height:5vh;
-  margin: 0;
-}
 
 .Board-container {
   box-sizing: border-box;
@@ -320,6 +426,27 @@
   justify-content: center;
   padding: 0;
   margin: 0;
+}
+
+.Popup {
+  box-sizing: border-box;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 10%;
+  top: 10%;
+  height: 80vh;
+  width: 50vw;
+  z-index: 1;
+}
+
+.Popup-background {
+  position: absolute;
+  background-color: rgba(48, 46, 46, 0.5);
+  left: 0%;
+  top: 0%;
+  height: 100vh;
+  width: 50vw;
+  z-index: 1;
 }
 
 
@@ -362,7 +489,6 @@
 
 /* Game Images */
 
-
 .Error-text {
   color: red;
   font-size: smaller;
@@ -397,53 +523,15 @@
   height: 10%;
 }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+/*
+*******************************************************************************
+*******************************************************************************
+                                 COLORS
+*******************************************************************************                                  
+*******************************************************************************
+*/
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.icon-bar {
-  width: 100%; /* Full-width */
-  background-color: #555; /* Dark-grey background */
-  overflow: auto; /* Overflow due to float */
-}
-
-.icon-bar a {
-  float: left; /* Float links side by side */
-  text-align: center; /* Center-align text */
-  width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
-  padding: 12px 0; /* Some top and bottom padding */
-  transition: all 0.3s ease; /* Add transition for hover effects */
-  color: white; /* White text color */
-  font-size: 36px; /* Increased font size */
-}
-
-.icon-bar a:hover {
-  background-color: #000; /* Add a hover color */
-}
-
-.active {
-  background-color: #4CAF50; /* Add an active/current color */
-}
 
 .green {
   color: rgb(122, 228, 87);

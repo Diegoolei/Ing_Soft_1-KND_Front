@@ -7,24 +7,26 @@ import processSocketMessage from '../redux/game/socketMsgProcessor'
 import GameHeader from './gameHeader'
 import Chat from './chat'
 import Proclamations from './proclamations'
+import ShowVotationResults from './showVotationResults'
 
 function Game() {
   const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
   const unprocessed_socket_messages = useSelector(state => state.socket.messages)
+  const votationActive = useSelector(state => state.votation_results.is_show_results_active)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
   const info = () => {
     return (
       <div className="Div-invisible">
-        <br/><button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
+        <br /><button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
         {showingSecretInfo ? secretInfo() : null}
-        <br/><br/>Current Minister: {currentMinisterString()}
-        <br/>{currentDirectorString()}
-        <br/>Order Proclamations: {gameState.proclaimed_phoenix}
-        <br/>Death Eater Proclamations: {gameState.proclaimed_death_eater}
-        <br/>Cards in Deck: {gameState.cards_in_deck}
-        <br/>Election Counter: {gameState.election_counter}
+        <br /><br />Current Minister: {currentMinisterString()}
+        <br />{currentDirectorString()}
+        <br />Order Proclamations: {gameState.proclaimed_phoenix}
+        <br />Death Eater Proclamations: {gameState.proclaimed_death_eater}
+        <br />Cards in Deck: {gameState.cards_in_deck}
+        <br />Election Counter: {gameState.election_counter}
       </div>
     )
   }
@@ -102,10 +104,10 @@ function Game() {
         <div className="Proclamations-container"><Proclamations/></div>
         {info()}
         <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
+        <div>{votationActive ? <ShowVotationResults/> : null}</div>
       </div>
       <div className="Chat-container"><Chat/></div>
-    </div>
-  )
+    </div>)
 }
 
 export default Game

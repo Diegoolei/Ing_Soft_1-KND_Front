@@ -12,8 +12,7 @@ import {
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
-  CGL_REJECTED_ELECTION,
-  CGL_ACCEPTED_ELECTION
+  CGL_VOTE
 } from './gameTypes'
 
 
@@ -138,9 +137,20 @@ const gameReducer = (state = initialState, action) => {
       proclaimed_death_eater: state.proclaimed_death_eater + 1
     }
   
-    case CGL_ACCEPTED_ELECTION: return {
-      ...state,
-      turn_step: 3
+    case CGL_VOTE:
+      let nick = ''
+      let vote = null 
+      for (let key in action.payload) {
+        nick = key
+        vote = action.payload[key]
+      }
+      let a_players = {
+        ...state.player_array
+      }
+      a_players[nick].vote = vote
+      return {
+        ...state.player_array,
+        player_array: a_players
     }
 
     case CGL_UPDATE_NICK:

@@ -1,79 +1,52 @@
 import React, { useState }  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { wsConsumeMessage, changeScreen } from '../redux/reduxIndex'
-import { MAIN_MENU_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { deactivateShowResults } from '../redux/game/votationResults/votationResultsActions'
 
 
 function ShowVotationResults() {
   const dispatch = useDispatch()
-  const recvMsg = useSelector(state => state.socket.messages)
-  const token = useSelector(state => state.session.authToken)
-  const [active, setActive] = useState(false)
-  const votes = useSelector(state => state.player_array)
-  const [results, setResults] = useState('')
+  const results = useSelector(state => state.votation_results.votes)
+  const LumosVotes = useSelector(state => state.votation_results.countLumos)
+  const NoxVotes = useSelector(state => state.votation_results.countNox)
   const [election, setElection] = useState('')
+  
 
-  if (recvMsg.length !== 0) {
-    const jsonmsg = recvMsg[0]
-    const votes = jsonmsg.PAYLOAD
-
-    if (jsonmsg.TYPE === "ELECTION_RESULT") {
-      votationResults(votes)
-    }
-
-    console.log("Message from the server: ", votes)
-    dispatch(wsConsumeMessage())
-  }
-
-  function votationResults(vote_results) {
+  function VotationResults () {
     //const results = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
-    let vote = null
     let arrayResultsOfVotes = []
-    let countLumos = 0
-    let countNox = 0
-    for (let key in vote_results) {
-      let player_vote = vote_results[key]
-      if (player_vote) { 
-        player_vote = "Lumos" 
-        countLumos += 1
+    let res = null
+    let player_vote = ''
+    for (let key in results) {
+      if (results[key]) {
+        player_vote = "Lumos"
       }
       else { 
         player_vote = "Nox" 
-        countNox += 1
       }
-      vote = (
+      res = (
         <div>
-          <l1>  (nick: {key})  (vote: {player_vote}) </l1>
+          <l1>  Nick: {key}, Vote: {player_vote} </l1>
         </div>
-      )
-      arrayResultsOfVotes.push(vote)
+      ) 
+      arrayResultsOfVotes.push(res)
     }
-    if (countLumos <= countNox) {
-      setElection("\r\nRejected government")
+    if (LumosVotes <= NoxVotes) {
+      setElection("Rejected government")
     }
     else {
-      setElection("\r\nAccepted government")
+      setElection("Accepted government")
     }
-    setResults(arrayResultsOfVotes)
+    console.log(arrayResultsOfVotes)
     return arrayResultsOfVotes
   }
 
-  function BackToMenu() {
-    dispatch(changeScreen(MAIN_MENU_COMPONENT))
-  }
 
   return (
-    <div >
+    <div className="Popup">
       <h1 className="brown">VOTATION RESULTS</h1>
-      {/*<button onClick={() => setActive(!active)}>Show Results</button>*/}
-        <button className="button-votation-red" onClick={() => setActive(!active) }>Show Results</button>
-        <br/>{active ? 
-          <div>
-            {votationResults(votes)}
-            {results}
-            {election}
-          </div> : null}
-        <br/><br/><button className="button" onClick={BackToMenu}>Back to Main Menu</button>
+      <VotationResults/>
+      {election}
+      <button className="Button-Close" onClick={() => dispatch(deactivateShowResults())}>X</button>
     </div>
   )
 }

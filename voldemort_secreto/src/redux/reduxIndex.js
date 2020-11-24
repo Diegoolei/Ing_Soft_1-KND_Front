@@ -1,7 +1,14 @@
 
-export { changeScreen } from './componentController/componentControllerActions'
-export { renderLobbyPage, renderGamePage } from './lobbyGameList/lobbyGameListActions'
-export { selectMyDirector } from './game/selectDirector/selectDirectorActions'
+export { 
+  changeScreen 
+} from './componentController/componentControllerActions'
+
+export {
+  renderLobbyPage, 
+  renderGamePage 
+} from './lobbyGameList/lobbyGameListActions'
+
+//export { selectMyDirector } from './game/selectDirector/selectDirectorActions'
 
 export { 
   setUserinfo,
@@ -33,3 +40,8 @@ export {
   activateChangeNick,
   deactivateChangeNick
 } from './game/activeApps/activeAppsActions'
+
+export {
+  activateShowResults,
+  deactivateShowResults
+} from './game/votationResults/votationResultsActions'

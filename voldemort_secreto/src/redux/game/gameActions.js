@@ -14,7 +14,8 @@ import {
   CGL_START_WAITING_FOR_USER,
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
-  CGL_CONSUME_LOG
+  CGL_CONSUME_LOG,
+  CGL_VOTE
 } from './gameTypes'
 
 
@@ -85,6 +86,16 @@ export const updateNick = (oldnick, newnick) => {
     payload: {
       oldnick: oldnick,
       newnick: newnick
+    }
+  }
+}
+
+export const vote = (n, v) => {
+  return {
+    type: CGL_VOTE,
+    payload: {
+      nick: n,
+      vote: v
     }
   }
 }
@@ -351,4 +362,3 @@ export const voteInGame = (vote_recive, game_id) => {
     })
   }
 }
-
