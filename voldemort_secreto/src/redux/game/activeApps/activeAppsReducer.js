@@ -1,6 +1,6 @@
 import {
   APPS_ACTIVATE_CHANGE_NICK,
-  APPS_DESACTIVE_CHANGE_NICK,
+  APPS_DEACTIVE_CHANGE_NICK,
   APPS_ACTIVATE_SELECT_DIRECTOR,
   APPS_DEACTIVE_SELECT_DIRECTOR
 } from './activeAppsTypes'
@@ -17,7 +17,7 @@ import {
         is_changeNick_active: true
       }
 
-      case APPS_DESACTIVE_CHANGE_NICK: return {
+      case APPS_DEACTIVE_CHANGE_NICK: return {
         ...state,
         is_changeNick_active: false
       }

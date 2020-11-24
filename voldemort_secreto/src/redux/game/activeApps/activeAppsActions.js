@@ -1,6 +1,6 @@
 import {
   APPS_ACTIVATE_CHANGE_NICK,
-  APPS_DESACTIVE_CHANGE_NICK,
+  APPS_DEACTIVE_CHANGE_NICK,
   APPS_ACTIVATE_SELECT_DIRECTOR,
   APPS_DEACTIVE_SELECT_DIRECTOR
 } from './activeAppsTypes'
@@ -13,7 +13,7 @@ export const activateChangeNick = () => {
 
 export const deactivateChangeNick = () => {
   return {
-    type: APPS_DESACTIVE_CHANGE_NICK,
+    type: APPS_DEACTIVE_CHANGE_NICK,
   }
 }
 
