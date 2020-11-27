@@ -3,13 +3,13 @@ import { makeStyles } from '@material-ui/core/styles'
 
 function Portraits() {
   const player_portraits = useSelector(state => state.player_portraits)
-  const portrait_height = 58
-  const portrait_width = 62
+  const portrait_height = 10
+  const portrait_width = 10
 
   const portraitPosition = (top, left, bottom, right) => {
     let style = {
-      root: {
-        "background-color": "rgba(255, 255, 255, 0.3)",
+      root: { // rgba(255, 255, 255, 0.3)
+        "background-color": "rgb(64, 255, 0)",
         position: "absolute",
         height: `${portrait_height}%`,
         width: `${portrait_width}%`

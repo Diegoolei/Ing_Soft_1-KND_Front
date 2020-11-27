@@ -20,6 +20,7 @@ function TestSocket() {
 
   const echoMsg = { "TYPE": "ELECTION_RESULT", "PAYLOAD": votes }
 
+  const echoMsg = { "TYPE": "PROCLAMATION", "PAYLOAD": 0 }
 
   if (unreadMsg.length !== 0) {
     const jsonmsg = unreadMsg[0]

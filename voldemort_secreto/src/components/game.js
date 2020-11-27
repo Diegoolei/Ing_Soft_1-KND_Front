@@ -104,11 +104,22 @@ function Game() {
     }
   }
 
-  return (
-    <div>
-      <div className="Game-header"><Header/></div>
-      <div className="Board-container">
-        <div className="Proclamations-container">
+  const MainGame = () => {
+    return (
+      <div className="Div-invisible">
+        <div className="Board-container">
+          <div className="Proclamations-container"><Proclamations/></div>
+          <div className="Deck-container"><Deck/></div>
+          <div className="ActionButton-container"><ActionButton/></div>
+          <div className="ElectionCounter-container"><ElectionCounter/></div>
+          <Portraits/>
+        </div>        
+        {/* <button className="button-votation-red" onClick={() => vote()}>Vote</button> */}
+      </div>
+    )
+  }
+    /* //     <div className="Div-invisible">
+      <div className="Proclamations-container">
           <Proclamations/>
           <div className="Sideboard-container">
             <div className="Deck-container"><Deck/></div>
@@ -118,10 +129,17 @@ function Game() {
           <div className="ElectionCounter-container"><ElectionCounter/></div>
         </div>
       </div>
-      <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
-      {activeApps.is_crucio_active ? <Crucio/> : null}
+  <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
+  </div> */
+
+  return (
+    <div>
+      <div className="Game-header"><Header/></div>
+      <div className="Game-container"><MainGame/></div>
       <div className="Chat-container"><Chat/></div>
-    </div>)
+      {activeApps.is_crucio_active ? <Crucio/> : null}
+    </div>
+  )
 }
 
 export default Game

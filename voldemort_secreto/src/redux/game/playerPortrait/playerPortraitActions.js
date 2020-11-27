@@ -27,23 +27,23 @@ export const setPlayerPortraits = (player_array, cur_pl_nick) => {
     }
   }
 
-  const pos_bottom_left   = nick => pos_constructor(nick, 50, 0)
-  const pos_bottom_middle = nick => pos_constructor(nick, 107, 10)
-  const pos_bottom_right  = nick => pos_constructor(nick, 30, 30)
+  const pos_bottom_left   = nick => pos_constructor(nick, 10, 10)
+  const pos_bottom_middle = nick => pos_constructor(nick, 85, 50)
+  const pos_bottom_right  = nick => pos_constructor(nick, 10, 10)
 
-  const pos_top_left      = nick => pos_constructor(nick, 40, 40)
-  const pos_top_midleft   = nick => pos_constructor(nick, -1, -1, 105.5, 65)
-  const pos_top_middle    = nick => pos_constructor(nick, 60, 60)
-  const pos_top_midright  = nick => pos_constructor(nick, -1, 50, 105.5)
-  const pos_top_right     = nick => pos_constructor(nick, 70, 70)
+  const pos_top_left      = nick => pos_constructor(nick, 10, 10)
+  const pos_top_midleft   = nick => pos_constructor(nick, 10, 10)
+  const pos_top_middle    = nick => pos_constructor(nick, 10, 10)
+  const pos_top_midright  = nick => pos_constructor(nick, 10, 10)
+  const pos_top_right     = nick => pos_constructor(nick, 10, 10)
 
-  const pos_left_up       = nick => pos_constructor(nick, 80, 80)
-  const pos_left_middle   = nick => pos_constructor(nick, 20, -1, -1, 123.5)
-  const pos_left_down     = nick => pos_constructor(nick, 90, 10)
+  const pos_left_up       = nick => pos_constructor(nick, 10, 10)
+  const pos_left_middle   = nick => pos_constructor(nick, 10, 10)
+  const pos_left_down     = nick => pos_constructor(nick, 10, 10)
 
-  const pos_right_up      = nick => pos_constructor(nick, 80, 20)
-  const pos_right_middle  = nick => pos_constructor(nick, 20, 101)
-  const pos_right_down    = nick => pos_constructor(nick, 60, 40)
+  const pos_right_up      = nick => pos_constructor(nick, 10, 10)
+  const pos_right_middle  = nick => pos_constructor(nick, 10, 101)
+  const pos_right_down    = nick => pos_constructor(nick, 10, 10)
 
   const getPortraitInfo = (nick, amount_players, relative_position) => {
     switch (relative_position) {

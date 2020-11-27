@@ -4,12 +4,13 @@ import tapete_5_6 from '../metaMedia/tapete_de_5-6.png'
 import tapete_7_8 from '../metaMedia/tapete_de_7-8.png'
 import tapete_9_10 from '../metaMedia/tapete_de_9-10.png'
 import phoenix_board from '../metaMedia/tapete_phoenix_2.png'
-import de_proc from '../metaMedia/procl_de.png'
-import ph_proc from '../metaMedia/procl_phoenix.png'
+import de_proc from '../metaMedia/procl_de_green.png'
+import ph_proc from '../metaMedia/procl_phoenix_old.png'
 
 function Proclamations() {
-  const cardSize = 17
-  const de_jumpX = 15
+  const width = 17
+  const height = 40
+  const de_jumpX = 14.9
   const ph_jumpX = 14.6
   const proclaimed_de = useSelector(state => state.game.proclaimed_death_eater)
   const proclaimed_pf = useSelector(state => state.game.proclaimed_phoenix)
@@ -38,16 +39,17 @@ function Proclamations() {
       board_n = 1 
       break;
   }
-  const de_board_classname = "Img-100"
+  const de_board_classname = "Img-de_board"
   const ph_board_classname = "Img-ph_board"
 
   const cardPosition = (x,y) => {
     const sliderSty = makeStyles({
       root: {
         position: "absolute",
-        top: `${x}%`,
-        left: `${y}%`,
-        width: `${cardSize}%`
+        top:    `${x}%`,
+        left:   `${y}%`,
+        width:  `${width}%`,
+        height: `${height}%`
       }
     })
     return sliderSty()
@@ -69,10 +71,10 @@ function Proclamations() {
     let ph_originY
     switch (board_n) {
       case 1:
-        de_originX = 4
-        de_originY = 5.5
-        ph_originX = 11.8
-        ph_originY = 55.1
+        de_originX = 3.3
+        de_originY = 5.8
+        ph_originX = 3.3
+        ph_originY = 54
         break;
       case 1:
         de_originX = 4
@@ -136,8 +138,8 @@ function Proclamations() {
 
   return (
     <div className="Div-invisible">
-      <Cards/>
       <Board/>
+      <Cards/>
     </div>
   )
 }
