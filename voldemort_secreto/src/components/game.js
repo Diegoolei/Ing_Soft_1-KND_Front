@@ -4,14 +4,18 @@ import { voteInGame } from '../redux/reduxIndex'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
-import GameHeader from './gameHeader'
+import Header from './gameHeader'
 import Chat from './chat'
-import Proclamations from './proclamations'
 import ShowVotationResults from './showVotationResults'
+import ActionButton from './gameActionButton'
+import Deck from './gameDeck'
+import Proclamations from './gameProclamations'
+import Crucio from './gameCrucio'
 
 function Game() {
   const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
+  const activeApps = useSelector(state => state.active_apps)
   const unprocessed_socket_messages = useSelector(state => state.socket.messages)
   const votationActive = useSelector(state => state.votation_results.is_show_results_active)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
@@ -21,12 +25,13 @@ function Game() {
       <div className="Div-invisible">
         <br /><button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
         {showingSecretInfo ? secretInfo() : null}
-        <br /><br />Current Minister: {currentMinisterString()}
-        <br />{currentDirectorString()}
-        <br />Order Proclamations: {gameState.proclaimed_phoenix}
-        <br />Death Eater Proclamations: {gameState.proclaimed_death_eater}
-        <br />Cards in Deck: {gameState.cards_in_deck}
-        <br />Election Counter: {gameState.election_counter}
+        <button className="button" onClick={() => vote()}>Vote</button>
+        <br/><br/>Current Minister: {currentMinisterString()}
+        <br/>{currentDirectorString()}
+        <br/>Order Proclamations: {gameState.proclaimed_phoenix}
+        <br/>Death Eater Proclamations: {gameState.proclaimed_death_eater}
+        <br/>Cards in Deck: {gameState.cards_in_deck}
+        <br/>Election Counter: {gameState.election_counter}
       </div>
     )
   }
@@ -99,13 +104,18 @@ function Game() {
 
   return (
     <div>
-      <div className="Game-header"><GameHeader/></div>
+      <div className="Game-header"><Header/></div>
       <div className="Board-container">
-        <div className="Proclamations-container"><Proclamations/></div>
-        {info()}
-        <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
-        <div>{votationActive ? <ShowVotationResults/> : null}</div>
+        <div className="Proclamations-container">
+          <Proclamations/>
+          <div className="Sideboard-container">
+            <div className="Deck-container"><Deck/></div>
+            <div className="ActionButton-container"><ActionButton/></div>
+          </div>
+        </div>
       </div>
+      <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
+      {activeApps.is_crucio_active ? <Crucio/> : null}
       <div className="Chat-container"><Chat/></div>
     </div>)
 }

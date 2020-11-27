@@ -4,6 +4,7 @@ import nimbus from '../metaMedia/nimbus.svg'
 import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
 import music from '../metaMedia/hp-lofi.mp3'
+import { joinGame } from '../redux/reduxIndex'
 
 function LoginForm () {
   const sessionState = useSelector(state => state.session)
@@ -51,10 +52,10 @@ function LoginForm () {
     dispatch(changeScreen(REGISTER_COMPONENT))
   }
 
-  // function skipToGame() {
-  //   dispatch(login("user1@mail.com", "12345678"))
-  //   setTimeout(() => dispatch(joinGame(1)), 1000)
-  // }
+  function skipToGame() {
+    dispatch(login("user1@mail.com", "12345678"))
+    setTimeout(() => dispatch(joinGame(1)), 1000)
+  }
 
   function loginForm() {
     return (
@@ -121,7 +122,7 @@ function PauseMusic(){
       <div className="App-div-login">
         <img src={nimbus} className="App-logo" alt="logo" />
         <h1>Welcome to Secret Voldemort</h1>
-        {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
+        <button className="button" onClick={skipToGame}>Skip to Game</button>
         {loginForm()}
         <button className="button" onClick={PlayMusic} >Play</button>
         <button className="button" onClick={PauseMusic}>Pause</button>

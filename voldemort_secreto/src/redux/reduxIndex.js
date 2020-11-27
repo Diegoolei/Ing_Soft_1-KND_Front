@@ -38,10 +38,19 @@ export {
 
 export {
   activateChangeNick,
-  deactivateChangeNick
+  deactivateChangeNick,
+  activateCrucio,
+  deactivateCrucio
 } from './game/activeApps/activeAppsActions'
 
 export {
   activateShowResults,
   deactivateShowResults
 } from './game/votationResults/votationResultsActions'
+  
+export {
+  highlightCrucioOption,
+  setCrucioOptions,
+  confirmCrucioSelection,
+  resetCrucio
+} from './game/crucio/crucioActions'
