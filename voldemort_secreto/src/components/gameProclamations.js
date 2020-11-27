@@ -46,7 +46,6 @@ function Proclamations() {
   const board_classname = "Img-100"
 
   const cardPosition = (x,y) => {
-    console.log(x,y)
     const sliderSty = makeStyles({
       root: {
         position: "absolute",

@@ -32,6 +32,7 @@ import {
 
 import { LOBBY_COMPONENT, GAME_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
 import { changeScreen, wsConnect } from '../reduxIndex'
+import { setPlayerPortraits } from './playerPortrait/playerPortraitActions'
 
 export const playerJoinedLobby = nick => {
   return {
@@ -292,7 +293,7 @@ export const joinGame = game_id => {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
     ).then(response => {
-      console.log("-Response :" + JSON.stringify(response.data))
+      // console.log("-Response :" + JSON.stringify(response.data))
       dispatch(cleanState())
       const info = {
         game_id: game_id,
@@ -324,6 +325,7 @@ export const joinGame = game_id => {
         }
         dispatch(playerJoinedGame(player_info))
       }
+      dispatch(setPlayerPortraits(player_array, response.data.player_nick))
       dispatch(changeScreen(GAME_COMPONENT))
     }).catch(error => {
       let errorMsg
