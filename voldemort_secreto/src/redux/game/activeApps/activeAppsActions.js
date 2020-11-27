@@ -2,18 +2,33 @@ import {
   APPS_ACTIVATE_CHANGE_NICK,
   APPS_DEACTIVE_CHANGE_NICK,
   APPS_ACTIVATE_SELECT_DIRECTOR,
-  APPS_DEACTIVE_SELECT_DIRECTOR
+  APPS_DEACTIVE_SELECT_DIRECTOR,
+  APPS_ACTIVATE_CRUCIO,
+  APPS_DEACTIVE_CRUCIO,
+  APPS_DESACTIVE_CHANGE_NICK
 } from './activeAppsTypes'
 
 export const activateChangeNick = () => {
   return {
-    type: APPS_ACTIVATE_CHANGE_NICK,
+    type: APPS_ACTIVATE_CHANGE_NICK
   }
 }
 
 export const deactivateChangeNick = () => {
   return {
-    type: APPS_DEACTIVE_CHANGE_NICK,
+    type: APPS_DESACTIVE_CHANGE_NICK
+  }
+}
+
+export const activateCrucio = () => {
+  return {
+    type: APPS_ACTIVATE_CRUCIO
+  }
+}
+
+export const deactivateCrucio = () => {
+  return {
+    type: APPS_DEACTIVE_CRUCIO
   }
 }
 

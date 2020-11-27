@@ -332,7 +332,7 @@ export const joinGame = game_id => {
       } catch (er) {
         errorMsg = "Something went wrong:: " + er
       }
-      console.log("-Response :" + JSON.stringify(errorMsg))
+      // console.log("-Response :" + JSON.stringify(errorMsg))
     })
   }
 }

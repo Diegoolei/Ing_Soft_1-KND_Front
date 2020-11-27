@@ -32,13 +32,15 @@
   }
 }
 
-
 /*
-*******************************************************************************
-*******************************************************************************
-                                  BUTTONS
-*******************************************************************************                                  
-*******************************************************************************
+888888b.   888     888 88888888888 88888888888 .d88888b.  888b    888  .d8888b.  
+888  "88b  888     888     888         888    d88P" "Y88b 8888b   888 d88P  Y88b 
+888  .88P  888     888     888         888    888     888 88888b  888 Y88b.      
+8888888K.  888     888     888         888    888     888 888Y88b 888  "Y888b.   
+888  "Y88b 888     888     888         888    888     888 888 Y88b888     "Y88b. 
+888    888 888     888     888         888    888     888 888  Y88888       "888 
+888   d88P Y88b. .d88P     888         888    Y88b. .d88P 888   Y8888 Y88b  d88P 
+8888888P"   "Y88888P"      888         888     "Y88888P"  888    Y888  "Y8888P"  
 */
 
 .button_dark_gray {
@@ -223,16 +225,42 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+  background-color: #131010;
+  /* box-shadow: 0 3px #666; */
+  transform: translateY(4px);
+}
+
+.Action-button {
+  background-color: rgb(197, 192, 40);
+  outline: none;
+  border-radius: 20%;
+  cursor: pointer;
+  height: 90%;
+  width: 90%;
+}
+
+.Action-button:hover {
+  background-color: rgb(238, 231, 16);
+}
+
+.Action-button:active {
+  background-color: rgb(242, 237, 112);
+  height: 85%;
+  width: 85%;
 }
 
 
 /*
-*******************************************************************************
-*******************************************************************************
-                                  APP HEADERS
-*******************************************************************************                                  
-*******************************************************************************
+888    888 8888888888        d8888 8888888b.  8888888888 8888888b.   .d8888b.  
+888    888 888              d88888 888  "Y88b 888        888   Y88b d88P  Y88b 
+888    888 888             d88P888 888    888 888        888    888 Y88b.      
+8888888888 8888888        d88P 888 888    888 8888888    888   d88P  "Y888b.   
+888    888 888           d88P  888 888    888 888        8888888P"      "Y88b. 
+888    888 888          d88P   888 888    888 888        888 T88b         "888 
+888    888 888         d8888888888 888  .d88P 888        888  T88b  Y88b  d88P 
+888    888 8888888888 d88P     888 8888888P"  8888888888 888   T88b  "Y8888P"  
 */
+
 
 .App-h3{
   position: absolute;
@@ -389,17 +417,21 @@
   background-color: #f1f1f1;
 }
 
+/*
+888     888 88888888888 888      
+888     888     888     888      
+888     888     888     888      
+888     888     888     888      
+888     888     888     888      
+888     888     888     888      
+Y88b. .d88P     888     888      
+ "Y88888P"      888     88888888 
+*/
+
 .ul-big {
   list-style-type: none;
   font-size: large;
 }
-
-.Div-invisible {
-  display: contents;
-}
-
-
-/* Main Game Divs */
 
 .Board-position  {
   float:left;  
@@ -408,24 +440,8 @@
   height:100%; 
 }
 
-
-.Board-container {
-  box-sizing: border-box;
-  float:left;
-  /*
-  background-image: url('./metaMedia/fondo_lobby.jpg');
-  background-repeat: repeat-y;
-  width: 70%;
-  */
-  width: 70%;
-  background-size: 100% 100%;  /*width height*/ 
-  background-color:rgb(7, 9, 16);
-  height: 95vh;
-  color:rgb(221, 130, 38);
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
+.Div-invisible {
+  display: contents;
 }
 
 .Popup {
@@ -435,59 +451,19 @@
   left: 10%;
   top: 10%;
   height: 80vh;
-  width: 50vw;
+  width: 80vw;
   z-index: 1;
 }
 
 .Popup-background {
   position: absolute;
-  background-color: rgba(48, 46, 46, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   left: 0%;
   top: 0%;
   height: 100vh;
-  width: 50vw;
+  width: 100vw;
   z-index: 1;
 }
-
-
-.Chat-container {
-  box-sizing: border-box;
-  float:right;  
-  width:30%; 
-  background: rgb(175, 0, 0); 
-  height:95vh; 
-  color: rgb(0, 0, 0);
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(0, 0, 0);
-  padding: 0;
-  margin: 0;
-}
-
-.Proclamations-container {
-  box-sizing: border-box;
-  position: relative;
-  top: 15%;
-  left: 20%;
-  width: 55%;
-}
-/* Main Game Divs */
-
-/* Game Images */
-
-.Img-50 {
-  width: 50%;
-}
-
-.Img-65 {
-  width: 65%;
-}
-
-.Img-100 {
-  width: 100%;
-}
-
-/* Game Images */
 
 .Error-text {
   color: red;
@@ -522,6 +498,145 @@
   width:100%;
   height: 10%;
 }
+
+/*
+ .d8888b.   .d88888b.  888b    888 88888888888     d8888 8888888 888b    888 8888888888 8888888b.   .d8888b.  
+d88P  Y88b d88P" "Y88b 8888b   888     888        d88888   888   8888b   888 888        888   Y88b d88P  Y88b 
+888    888 888     888 88888b  888     888       d88P888   888   88888b  888 888        888    888 Y88b.      
+888        888     888 888Y88b 888     888      d88P 888   888   888Y88b 888 8888888    888   d88P  "Y888b.   
+888        888     888 888 Y88b888     888     d88P  888   888   888 Y88b888 888        8888888P"      "Y88b. 
+888    888 888     888 888  Y88888     888    d88P   888   888   888  Y88888 888        888 T88b         "888 
+Y88b  d88P Y88b. .d88P 888   Y8888     888   d8888888888   888   888   Y8888 888        888  T88b  Y88b  d88P 
+ "Y8888P"   "Y88888P"  888    Y888     888  d88P     888 8888888 888    Y888 8888888888 888   T88b  "Y8888P"  
+*/
+
+.Board-position  {
+  float:left;  
+  background:rgb(199, 186, 0); 
+  width:70%; 
+  height:100%; 
+}
+
+
+.Board-container {
+  box-sizing: border-box;
+  float:left;  
+  width:75%; 
+  background:rgb(7, 9, 16); 
+  height:95vh; 
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.Popup {
+  box-sizing: border-box;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 10%;
+  top: 10%;
+  height: 80vh;
+  width: 50vw;
+  z-index: 1;
+}
+
+.Popup-background {
+  position: absolute;
+  background-color: rgba(48, 46, 46, 0.5);
+  left: 0%;
+  top: 0%;
+  height: 100vh;
+  width: 50vw;
+  z-index: 1;
+}
+
+
+.Chat-container {
+  box-sizing: border-box;
+  float:right;  
+  width:25%; 
+  background: rgb(175, 0, 0); 
+  height:95vh; 
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  padding: 0;
+  margin: 0;
+}
+
+.Proclamations-container {
+  box-sizing: border-box;
+  position: relative;
+  top: 25%;
+  left: 35%;
+  width: 45%;
+}
+
+.Sideboard-container {
+  box-sizing: border-box;
+  position: absolute;
+  top:0%;
+  right: 100.4%;
+  background-color: rgb(9, 9, 12);
+  height: 98.1%;
+  width: 30%;
+}
+
+.Deck-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 97%;
+  height: 64%;
+  background-color: rgb(0, 226, 0);
+  overflow: hidden;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.ActionButton-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 68%;
+  left: 2.5%;
+  width: 97%;
+  height: 33%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+
+/* Main Game Divs */
+
+/* Game Images */
+
+.Img-50 {
+  width: 50%;
+}
+
+.Img-65 {
+  width: 65%;
+}
+
+.Img-100 {
+  width: 100%;
+}
+
+/*
+ .d88888b. 88888888888 888    888 8888888888 8888888b.  
+d88P" "Y88b    888     888    888 888        888   Y88b 
+888     888    888     888    888 888        888    888 
+888     888    888     8888888888 8888888    888   d88P 
+888     888    888     888    888 888        8888888P"  
+888     888    888     888    888 888        888 T88b   
+Y88b. .d88P    888     888    888 888        888  T88b  
+ "Y88888P"     888     888    888 8888888888 888   T88b 
+*/
 
 
 /*
@@ -610,3 +725,5 @@
 .palegoldenrod {
   color: palegoldenrod;
 }
+
+/* Colossal */
