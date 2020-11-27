@@ -1,0 +1,33 @@
+.Img-de_board {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0%;
+  top: 2%;
+  height: 47.5%;
+  width: 98%;
+}
+
+.Img-ph_board {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0%;
+  bottom: 2%;
+  height: 47.5%;
+  width: 81.5%;
+}
+
+.Img-50 {
+  width: 50%;
+}
+
+.Img-65 {
+  width: 65%;
+}
+
+.Img-100 {
+  width: 100%;
+}
+
+.Img-80 {
+  width: 80%;
+}

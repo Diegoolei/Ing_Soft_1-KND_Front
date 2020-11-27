@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { voteInGame } from '../redux/reduxIndex'
 import { confirmAlert } from 'react-confirm-alert'
@@ -38,9 +38,11 @@ function Game() {
     )
   }
 
-  if (unprocessed_socket_messages.length !== 0) {
-    dispatch(processSocketMessage(unprocessed_socket_messages[0]))
-  }
+  useEffect(() => {
+    if (unprocessed_socket_messages.length !== 0) {
+      dispatch(processSocketMessage(unprocessed_socket_messages[0]))
+    }
+  })
 
   function vote() {
     confirmAlert({

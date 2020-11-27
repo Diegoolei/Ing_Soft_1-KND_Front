@@ -1,0 +1,77 @@
+.green {
+  color: rgb(122, 228, 87);
+}
+
+.red {
+  color: rgb(255, 8, 0);
+}
+
+.blue {
+  color: rgb(0, 81, 255);
+}
+
+.white {
+  color: rgb(232, 235, 242);
+}
+
+.orange {
+  color: rgb(255, 132, 0);
+}
+
+.violet {
+  color: rgb(149, 0, 255);
+}
+
+.brown {
+  color: rgb(121, 69, 13);
+}
+
+.yellow {
+  color: rgb(247, 226, 108);
+}
+
+.antiquewhite {
+  color: antiquewhite;
+}
+
+.brown2 {
+  color: #674d3c,
+}
+
+/* PASTEL COLORS */
+.pink-pastel {
+  color: #ffcfe2;
+}
+
+.blue-pastel {
+  color: rgb(121, 69, 13);
+}
+
+.green-pastel {
+  color: #FFCCCC;
+}
+
+.light-steel-blue {
+  color: lightsteelblue;
+}
+
+.gainsboro {
+  color: gainsboro;
+}
+
+/* */
+.maroon {
+  color: maroon;
+}
+
+.peru {
+  color: peru;
+}
+
+.gold {
+  color: gold;
+}
+
+.palegoldenrod {
+  color: palegoldenrod;
+}

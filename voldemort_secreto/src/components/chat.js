@@ -11,10 +11,12 @@ function Chat() {
 
   const scrollDown = () => {
     const objDiv = document.querySelectorAll('#chat_history')
-    const fontSize = 15  // Make it a little bit bigger than the actual font size
+    const fontSize = 30  // Make it twice as big as the actual font size
     const scroll_top = objDiv[0].scrollTop
     const client_height = objDiv[0].clientHeight
     const scroll_height = objDiv[0].scrollHeight
+    // console.log(`Scroll top: ${scroll_top}. Client Height: ${client_height}. Font size: ${fontSize}`)
+    // console.log(`${scroll_top + client_height + fontSize} comparing with ${scroll_height}`)
     if (scroll_top + client_height + fontSize >= scroll_height) {
       objDiv[0].scrollTop = scroll_height
     }
@@ -28,7 +30,6 @@ function Chat() {
   function formatedLogMessages() {
     const msg_arr = []
     for (let m in messages) {
-      // msg_arr.push(<p key={m}>{messages[m]}</p>)
       msg_arr.push(<li key={m}>{messages[m]}</li>)
     }
     return msg_arr

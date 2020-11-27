@@ -5,7 +5,6 @@ import {
   APPS_DEACTIVE_SELECT_DIRECTOR,
   APPS_ACTIVATE_CRUCIO,
   APPS_DEACTIVE_CRUCIO,
-  APPS_DESACTIVE_CHANGE_NICK
 } from './activeAppsTypes'
 
 export const activateChangeNick = () => {
@@ -16,7 +15,7 @@ export const activateChangeNick = () => {
 
 export const deactivateChangeNick = () => {
   return {
-    type: APPS_DESACTIVE_CHANGE_NICK
+    type: APPS_DEACTIVE_CHANGE_NICK
   }
 }
 
