@@ -10,6 +10,7 @@ import ShowVotationResults from './showVotationResults'
 import ActionButton from './gameActionButton'
 import Deck from './gameDeck'
 import Proclamations from './gameProclamations'
+import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
 
 function Game() {
@@ -112,6 +113,7 @@ function Game() {
             <div className="Deck-container"><Deck/></div>
             <div className="ActionButton-container"><ActionButton/></div>
           </div>
+          <Portraits/>
         </div>
       </div>
       <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
