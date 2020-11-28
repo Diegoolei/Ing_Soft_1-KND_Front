@@ -14,7 +14,8 @@ function Proclamations() {
   const ph_jumpX = 14.6
   const proclaimed_de = useSelector(state => state.game.proclaimed_death_eater)
   const proclaimed_pf = useSelector(state => state.game.proclaimed_phoenix)
-  let amount_players
+  const amount_players = useSelector(state => state.player_portraits.player_amount)
+
   let board_n
   switch (amount_players) {
     case 5:
@@ -76,13 +77,13 @@ function Proclamations() {
         ph_originX = 3.3
         ph_originY = 54
         break;
-      case 1:
+      case 2:
         de_originX = 4
         de_originY = 5.5
         ph_originX = 30
         ph_originY = 30
         break;
-      case 1:
+      case 3:
         de_originX = 4
         de_originY = 5.5
         ph_originX = 30

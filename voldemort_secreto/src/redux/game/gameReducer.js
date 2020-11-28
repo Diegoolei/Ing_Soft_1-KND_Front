@@ -60,7 +60,7 @@ const getInitialPlayer = nick => {
     role: -1,
     is_alive: true,
     is_candidate: false,
-    vote: -1
+    vote: null
   }
 }
 
@@ -100,22 +100,25 @@ const gameReducer = (state = initialState, action) => {
       }
     }
 
-    case CGL_PLAYER_JOINED_GAME: return {
-      ...state,
-      player_array: {
-        ...state.player_array,
-        [action.payload.nick] : {
-          nick: action.payload.nick,
-          player_number: action.payload.player_number,
-          connected: action.payload.connected,
-          role: action.payload.role,
-          is_alive: action.payload.is_alive,
-          is_candidate: action.payload.is_candidate,
-          vote: action.payload.vote
-        }
-      },
-      amount_players: state.amount_players + 1
-    }
+    case CGL_PLAYER_JOINED_GAME: 
+      const pvote = action.payload.has_voted ? action.payload.vote : null
+      return {
+        ...state,
+        player_array: {
+          ...state.player_array,
+          [action.payload.nick] : {
+            nick: action.payload.nick,
+            player_number: action.payload.player_number,
+            connected: action.payload.connected,
+            role: action.payload.role,
+            is_alive: action.payload.is_alive,
+            is_candidate: action.payload.is_candidate,
+            vote: pvote,
+            icon: action.payload.icon
+          }
+        },
+        amount_players: state.amount_players + 1
+      }
 
     case CGL_PLAYER_LEFT_LOBBY: 
       let new_players = {...state.player_array}

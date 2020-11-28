@@ -27,23 +27,23 @@ export const setPlayerPortraits = (player_array, cur_pl_nick) => {
     }
   }
 
-  const pos_bottom_left   = nick => pos_constructor(nick, 10, 10)
-  const pos_bottom_middle = nick => pos_constructor(nick, 85, 50)
-  const pos_bottom_right  = nick => pos_constructor(nick, 10, 10)
+  const pos_bottom_left   = nick => pos_constructor(nick, 105, 0)
+  const pos_bottom_middle = nick => pos_constructor(nick, 105, 40)
+  const pos_bottom_right  = nick => pos_constructor(nick, 105, 80)
 
-  const pos_top_left      = nick => pos_constructor(nick, 10, 10)
-  const pos_top_midleft   = nick => pos_constructor(nick, 10, 10)
-  const pos_top_middle    = nick => pos_constructor(nick, 10, 10)
-  const pos_top_midright  = nick => pos_constructor(nick, 10, 10)
-  const pos_top_right     = nick => pos_constructor(nick, 10, 10)
+  const pos_top_left      = nick => pos_constructor(nick, -1, 0, 101)
+  const pos_top_midleft   = nick => pos_constructor(nick, -1, 20, 101)
+  const pos_top_middle    = nick => pos_constructor(nick, -1, 40, 101)
+  const pos_top_midright  = nick => pos_constructor(nick, -1, 60, 101)
+  const pos_top_right     = nick => pos_constructor(nick, -1, 80, 101)
 
-  const pos_left_up       = nick => pos_constructor(nick, 10, 10)
-  const pos_left_middle   = nick => pos_constructor(nick, 10, 10)
-  const pos_left_down     = nick => pos_constructor(nick, 10, 10)
+  const pos_left_up       = nick => pos_constructor(nick, 0, -1, -1, 105)
+  const pos_left_middle   = nick => pos_constructor(nick, 30, -1, -1, 105)
+  const pos_left_down     = nick => pos_constructor(nick, -1, -1, 0, 105)
 
-  const pos_right_up      = nick => pos_constructor(nick, 10, 10)
-  const pos_right_middle  = nick => pos_constructor(nick, 10, 101)
-  const pos_right_down    = nick => pos_constructor(nick, 10, 10)
+  const pos_right_up      = nick => pos_constructor(nick, 0, 105)
+  const pos_right_middle  = nick => pos_constructor(nick, 30, 105)
+  const pos_right_down    = nick => pos_constructor(nick, -1, 105, 0)
 
   const getPortraitInfo = (nick, amount_players, relative_position) => {
     switch (relative_position) {
