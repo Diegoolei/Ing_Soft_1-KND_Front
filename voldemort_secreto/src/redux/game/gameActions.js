@@ -297,15 +297,15 @@ export const joinGame = game_id => {
       dispatch(cleanState())
       const info = {
         game_id: game_id,
-        game_step_turn: response.data.game_step_turn,
-        player_id: response.data.player_id,
-        player_nick: response.data.player_nick,
-        chat_blocked: response.data.chat_blocked,
-        current_minister: response.data.current_minister,
-        current_director: response.data.current_director,
-        election_counter: response.data.election_counter,
-        cards_in_deck: response.data.cards_in_deck,
-        proclaimed_phoenix: response.data.proclaimed_phoenix,
+        game_step_turn:         response.data.game_step_turn,
+        player_id:              response.data.player_id,
+        player_nick:            response.data.player_nick,
+        chat_blocked:           response.data.chat_blocked,
+        current_minister:       response.data.current_minister,
+        current_director:       response.data.current_director,
+        election_counter:       response.data.election_counter,
+        cards_in_deck:          response.data.cards_in_deck,
+        proclaimed_phoenix:     response.data.proclaimed_phoenix,
         proclaimed_death_eater: response.data.proclaimed_death_eater
       }
       if (state.socket.status === "closed") {
@@ -321,7 +321,9 @@ export const joinGame = game_id => {
           role: player_array[key].role,
           is_alive: player_array[key].is_alive,
           is_candidate: player_array[key].is_candidate,
-          vote: player_array[key].vote
+          has_voted: player_array[key].has_voted,
+          vote: player_array[key].vote,
+          icon: player_array[key].icon
         }
         dispatch(playerJoinedGame(player_info))
       }

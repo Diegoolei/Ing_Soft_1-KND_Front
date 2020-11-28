@@ -11,7 +11,7 @@ import {
 } from './gameActions'
 
 import { setCandidates } from './selectDirector/selectDirectorActions'
-import { activateCandidateSelection } from './activeApps/activeAppsActions'
+import { activateCandidateSelection, makeCrucioAvailable } from './activeApps/activeAppsActions'
 
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
 
@@ -79,7 +79,7 @@ export const processSocketMessage = jsonMsg => {
             break;
           default:
             console.log("Fatal error. Payload of PROCLAMATION in socket proccesor is wrong")     
-            console.log(payload, typeof payload)       
+            console.log(payload, typeof payload)
             break;
         }
         
@@ -87,7 +87,15 @@ export const processSocketMessage = jsonMsg => {
       case "END_GAME":
         break;
       case "REQUEST_SPELL":
-        break;
+        switch (payload) {
+          case "CRUCIO":
+            dispatch(makeCrucioAvailable())
+            break;
+        
+          default:
+            console.log("Unknown spell has been requested")
+            break;
+        }
       case "ADIVINATION_NOTICE":
         break;
       case "AVADA_KEDAVRA":

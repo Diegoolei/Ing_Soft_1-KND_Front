@@ -3,6 +3,8 @@ import {
   APPS_DEACTIVE_CHANGE_NICK,
   APPS_ACTIVATE_SELECT_DIRECTOR,
   APPS_DEACTIVE_SELECT_DIRECTOR,
+  APPS_MAKE_CRUCIO_AVAILABLE,
+  APPS_MAKE_CRUCIO_UNAVAILABLE,
   APPS_ACTIVATE_CRUCIO,
   APPS_DEACTIVE_CRUCIO,
 } from './activeAppsTypes'
@@ -16,6 +18,18 @@ export const activateChangeNick = () => {
 export const deactivateChangeNick = () => {
   return {
     type: APPS_DEACTIVE_CHANGE_NICK
+  }
+}
+
+export const makeCrucioAvailable = () => {
+  return {
+    type: APPS_MAKE_CRUCIO_AVAILABLE
+  }
+}
+
+export const makeCrucioUnavailable = () => {
+  return {
+    type: APPS_MAKE_CRUCIO_UNAVAILABLE
   }
 }
 
