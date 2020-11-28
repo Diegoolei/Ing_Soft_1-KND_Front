@@ -32,6 +32,33 @@
   }
 }
 
+/*
+*******************************************************************************
+*******************************************************************************
+                                  FONTS
+*******************************************************************************                                  
+*******************************************************************************
+*/
+
+@font-face{
+  font-family: 'Gothic';
+  src: url(./metaMedia/fonts/Sketch_Gothic_School.ttf);
+}
+
+.title-first-screen{
+  font-family: 'Gothic';
+  font-size: 100px;
+  color: rgb(12, 10, 10);
+  font-variant: normal;
+  font-weight: lighter;
+}
+
+.footer-font-white{
+  font-size: small;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+}
+
 
 /*
 *******************************************************************************
@@ -51,6 +78,13 @@
   background-color: #f44336;
   border-radius: 12px;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button_nav_bar {
+  background-color: #b01919;
+  border-radius: 12px;
+  padding: 8px 8px;
+  /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
 }
 
 .button {
@@ -185,6 +219,28 @@
   width: 80%;
 }
 
+/*
+*******************************************************************************
+*******************************************************************************
+                                  ICONS
+*******************************************************************************                                  
+*******************************************************************************
+*/
+
+.icon-approve {
+  height: 5vmin;
+  pointer-events: none;
+  width: 100%;
+  transform: scale(1.5);
+}
+
+/*
+*******************************************************************************
+*******************************************************************************
+                                  NAV BAR
+*******************************************************************************                                  
+*******************************************************************************
+*/
 
 .icon-bar {
   width: 100%; /* Full-width */
@@ -225,6 +281,33 @@
   cursor: pointer;
 }
 
+/* ICON BAR FIRST */
+.icon-bar-first {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.icon-bar-first a {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar-first a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #e32828;
+}
+
+/**/
+
 
 /*
 *******************************************************************************
@@ -233,6 +316,24 @@
 *******************************************************************************                                  
 *******************************************************************************
 */
+
+.header-first-screen {
+  /* background-color: #ffffff;   */
+  background-image: url(./metaMedia/interface/VandH.jpg);
+  background-size: 100% 100%; /* width height  */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* rgb(4, 41, 57); */ /* rgb(57, 4, 4); */ /* rgb(22, 4, 57); */
+  background-color: rgb(22, 4, 57);
+  /*color-dodge*/ /*lighten*/ /*overlay*/ /*darken*/ /*saturation*/
+  /*color*/ /*multiply*/
+  /*luminosity*/ /*screen*/
+  background-blend-mode: screen;
+}
 
 .App-h3{
   position: absolute;
@@ -294,7 +395,6 @@
     color: black;
 } 
 
-
 .Game-header {
   background-color: #131010;
   height:5vh;
@@ -318,6 +418,21 @@
   padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
   background-color: rgb(241, 243, 118);    
+  text-align: center;
+}
+
+.App-div-first-screen{
+  padding: 25px; /**/
+  border: 5px outset rgb(14, 13, 13);
+  background-color: rgb(241, 243, 118);    
+  text-align: center;
+}
+
+.App-div-footer{
+  padding: 0px; /**/
+  border: 1px outset rgb(14, 13, 13);
+  /* padding: 10px;  */
+  background-color: rgb(92, 16, 16);    
   text-align: center;
 }
 
@@ -523,6 +638,19 @@
   height: 10%;
 }
 
+/*
+*******************************************************************************
+*******************************************************************************
+                                  BODY
+*******************************************************************************                                  
+*******************************************************************************
+*/
+
+.body-first-screen{
+  /* background-image: url(./metaMedia/interface/VandH.jpg); */
+  background-color: rgb(255, 94, 49);
+  /* background-blend-mode: lighten; */
+}
 
 /*
 *******************************************************************************

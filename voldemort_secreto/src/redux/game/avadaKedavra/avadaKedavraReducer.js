@@ -1,0 +1,21 @@
+import {
+  CGL_SD_SET_CANDIDATES_SPELL_AVADA_KEDAVRA
+} from './avadaKedavraTypes.js'
+
+const initialState= {
+  candidates_avada_kedravra: []
+}
+
+const selectCandidatesToAvadaKedavraReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CGL_SD_SET_CANDIDATES_SPELL_AVADA_KEDAVRA:
+      return {
+        ...state,
+        candidates_avada_kedravra: action.payload
+      }
+
+    default: return state
+  }
+}
+
+export default selectCandidatesToAvadaKedavraReducer

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import nimbus from '../metaMedia/nimbus.svg'
-import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
+import { FIRST_SCREEN_PAGE_COMPONENT, REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
 import music from '../metaMedia/hp-lofi.mp3'
 
@@ -124,7 +124,8 @@ function PauseMusic(){
         {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
         {loginForm()}
         <button className="button" onClick={PlayMusic} >Play</button>
-        <button className="button" onClick={PauseMusic}>Pause</button>
+        <button className="button" onClick={PauseMusic}>Pause</button><br/>
+        <button className="button" onClick={() => dispatch(changeScreen(FIRST_SCREEN_PAGE_COMPONENT))}>Back</button>
       </div>
     </header>
   )

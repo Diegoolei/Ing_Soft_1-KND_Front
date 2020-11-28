@@ -3,6 +3,7 @@
 export const CHANGE_SCREEN = 'CHANGE_SCREEN'
 
 // Component Types
+export const FIRST_SCREEN_PAGE_COMPONENT      = "FIRST_SCREEN_PAGE_COMPONENT"
 export const LOGIN_COMPONENT                  = "LOGIN_COMPONENT"
 export const REGISTER_COMPONENT               = "REGISTER_COMPONENT"
 export const MAIN_MENU_COMPONENT              = "MAIN_MENU_COMPONENT"
