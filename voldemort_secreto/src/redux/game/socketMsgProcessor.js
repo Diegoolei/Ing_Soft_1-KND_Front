@@ -16,7 +16,7 @@ import { setCrucioOptions } from './crucio/crucioActions'
 
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
 
-import { wsConsumeMessage } from '../reduxIndex'
+import { wsConsumeMessage, updateDeckAmount } from '../reduxIndex'
 
 export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
@@ -67,6 +67,7 @@ export const processSocketMessage = jsonMsg => {
       case "MINISTER_DISCARD":
         break;
       case "CAOS_PROCLAMATION":
+        dispatch(updateDeckAmount())
         break;
       case "DIRECTOR_DISCARD":
         break;
@@ -83,7 +84,7 @@ export const processSocketMessage = jsonMsg => {
             console.log(payload, typeof payload)
             break;
         }
-        
+        dispatch(updateDeckAmount())
         break;
       case "END_GAME":
         break;

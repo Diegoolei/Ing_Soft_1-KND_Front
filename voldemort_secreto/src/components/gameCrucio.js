@@ -7,6 +7,7 @@ import {
   resetCrucio
 } from '../redux/reduxIndex'
 import { deactivateCrucio } from '../redux/reduxIndex'
+import { makeCrucioUnavailable } from '../redux/game/activeApps/activeAppsActions'
 
 function Crucio() {
   const dispatch = useDispatch()
@@ -45,7 +46,7 @@ function Crucio() {
         buttonclassname = "Crucio-highlightedoption" 
       }
       const option = (
-        <div className={styeclass.root}>
+        <div className={styeclass.root} key={`crucio_option_${nick})`}>
           <button className={buttonclassname} onClick={() => dispatch(highlightCrucioOption(i))}>
           <img className="Crucio-img" src={src} alt={nick}/>
           {nick}
@@ -75,6 +76,31 @@ function Crucio() {
     return <button className={confirmButtonClassname} onClick={confirm}>Confirm</button>
   }
 
+  function Reveal() {
+    const selected_option = crucio_redux.highlighted_option
+    const nick = crucio_redux.options[selected_option]
+    const icon_n = game.player_array[nick].icon
+    const src = icons[icon_n]
+
+    const roleString = (crucio_redux.role === 0) ? "from the Order of the Phoenix" : "a Death Eater"
+    return (
+      <div className="Crucio-revealcontainer">
+        <img className="Crucio-revealimg" src={src} alt={nick}/>
+        <br/>{nick} is {roleString}
+      </div>
+    )
+  }
+
+  function close() {
+    if (crucio_redux.role === null) {
+      dispatch(deactivateCrucio())
+    } else {
+      dispatch(resetCrucio())
+      dispatch(makeCrucioUnavailable())
+      dispatch(deactivateCrucio())
+    }
+  }
+
   return (
     <div className="Popup-background">
       <div className="Popup">
@@ -82,9 +108,12 @@ function Crucio() {
           Choose a player to investigate. You will get their loyalty. If you get Death Eater, that player
           could also be Voldemort.
         </div>
-        <div className="Crucio-optionContainer"><RenderOptions/></div>
-        <ConfirmButton/>
-        <button className="Button-Close" onClick={() => dispatch(deactivateCrucio())}>X</button>
+        {crucio_redux.role === null ? (<div className="Div-invisible">
+          <div className="Crucio-optionContainer"><RenderOptions/></div>
+          <ConfirmButton/>
+        </div>)
+         : <Reveal/>}
+        <button className="Button-Close" onClick={close}>X</button>
       </div>
     </div>
   )

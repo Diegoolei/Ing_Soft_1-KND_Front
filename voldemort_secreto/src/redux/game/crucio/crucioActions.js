@@ -3,6 +3,7 @@ import {
   CGL_CRUCIO_HIGHLIGHT_OPTION,
   CGL_CRUCIO_RESET,
   CGL_CRUCIO_SET_OPTIONS,
+  CGL_CRUCIO_REVEAL_ROLE
 } from './crucioTypes'
 import {
   BASE_URL,
@@ -11,6 +12,7 @@ import {
 
 import { deactivateCrucio } from '../activeApps/activeAppsActions'
 import axios from 'axios'
+import { setPlayerRole } from '../gameActions'
 
 export const highlightCrucioOption = option_index => {
   return {
@@ -29,6 +31,13 @@ export const saveCrucioOptions = nick_array => {
   return {
     type: CGL_CRUCIO_SET_OPTIONS,
     payload: nick_array
+  }
+}
+
+export const revealRole = role => {
+  return {
+    type: CGL_CRUCIO_REVEAL_ROLE,
+    payload: role
   }
 }
 
@@ -56,8 +65,17 @@ export const confirmCrucioSelection = victim_number => {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
     ).then(response => {
-      dispatch(resetCrucio())
-      dispatch(deactivateCrucio())
+      console.log(response.data)
+      const player_array = state.game.player_array
+      let nick = undefined
+      for (let n in player_array) {
+        if (player_array[n].player_number === victim_number) {
+          nick = n
+          break
+        }
+      }
+      dispatch(setPlayerRole(nick, response.data.allegiance))
+      dispatch(revealRole(response.data.allegiance))
     }).catch(error => {
       let errorMsg
       try {

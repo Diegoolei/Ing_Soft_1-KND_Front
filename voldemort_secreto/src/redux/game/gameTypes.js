@@ -17,6 +17,8 @@ export const CGL_UNBLOCK_CHAT             = 'CGL_UNBLOCK_CHAT'
 export const CGL_SWITCH_TO_GAME           = 'CGL_SWITCH_TO_GAME'
 export const CGL_UPDATE_NICK              = 'CGL_UPDATE_NICK'
 export const CGL_VOTE                     = 'CGL_VOTE'
+export const CGL_SET_DECK_AMOUNT          = 'CGL_SET_DECK_AMOUNT'
+export const CGL_SET_PLAYER_ROLE          = 'CGL_SET_PLAYER_ROLE'
 
 // For when we need to wait before we consume an action
 export const CGL_START_WAITING_FOR_USER   = 'CGL_START_WAITING_FOR_USER'

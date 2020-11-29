@@ -8,11 +8,13 @@ import {
   CGL_PLAYER_JOINED_LOBBY,
   CGL_PLAYER_JOINED_GAME,
   CGL_PLAYER_LEFT_LOBBY,
+  CGL_SET_DECK_AMOUNT,
   CGL_UPDATE_NICK,
   CGL_PROCLAIM_PHOENIX,
   CGL_PROCLAIM_DEATH_EATER,
   CGL_START_WAITING_FOR_USER,
   CGL_USER_DONE_WITH_ACTION,
+  CGL_SET_PLAYER_ROLE,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
   CGL_VOTE
@@ -135,6 +137,46 @@ export const proclaimPhoenix = () => {
 export const proclaimDeathEater = () => {
   return {
     type: CGL_PROCLAIM_DEATH_EATER
+  }
+}
+
+export const setDeckAmount = amount_cards => {
+  return {
+    type: CGL_SET_DECK_AMOUNT,
+    payload: amount_cards
+  }
+}
+
+export const setPlayerRole = (nick, role) => {
+  return {
+    type: CGL_SET_PLAYER_ROLE,
+    payload: {
+      nick: nick,
+      role: role
+    }
+  }
+}
+
+export const updateDeckAmount = () => {
+  const state = store.getState()
+  const token = state.session.authToken
+  const uri = BASE_URL+ `/games/${state.game.game_id}/deck`
+  return dispatch => {
+    axios.get(uri,
+      {
+        headers: { 'Authorization': token.token_type + " " + token.access_token }
+      }
+    ).then(response => {
+      dispatch(setDeckAmount(response.data.cards_in_deck))
+    }).catch(error => {
+      let errorMsg
+      try {
+        errorMsg = error.response.data.detail
+      } catch (er) {
+        errorMsg = "Something went wrong:: " + er
+      }
+      console.log("-Response :" + JSON.stringify(errorMsg))
+    })
   }
 }
 
@@ -323,7 +365,8 @@ export const joinGame = game_id => {
           is_candidate: player_array[key].is_candidate,
           has_voted: player_array[key].has_voted,
           vote: player_array[key].vote,
-          icon: player_array[key].icon
+          icon: player_array[key].icon,
+          house: player_array[key].house
         }
         dispatch(playerJoinedGame(player_info))
       }
