@@ -12,6 +12,7 @@ import {
 
 import { setCandidates } from './selectDirector/selectDirectorActions'
 import { activateCandidateSelection, makeCrucioAvailable } from './activeApps/activeAppsActions'
+import { setCrucioOptions } from './crucio/crucioActions'
 
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
 
@@ -87,15 +88,16 @@ export const processSocketMessage = jsonMsg => {
       case "END_GAME":
         break;
       case "REQUEST_SPELL":
-        switch (payload) {
-          case "CRUCIO":
-            dispatch(makeCrucioAvailable())
-            break;
-        
+        switch (payload) {        
           default:
             console.log("Unknown spell has been requested")
             break;
         }
+
+      case "REQUEST_CRUCIO":
+        dispatch(setCrucioOptions(payload))
+        dispatch(makeCrucioAvailable())
+
       case "ADIVINATION_NOTICE":
         break;
       case "AVADA_KEDAVRA":
