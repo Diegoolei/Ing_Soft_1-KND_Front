@@ -40,6 +40,7 @@
 
 .Crucio-img {
   box-sizing: border-box;
+  background-color: white;
   width: 100%;
   padding: 3%;
 }
@@ -97,4 +98,16 @@
   border-radius: 15px;
   box-shadow: 0 5px #999; 
   margin-bottom: 15px;
+}
+
+.Crucio-revealcontainer {
+  display: block;
+  position: relative;
+  color: white;
+  top: 10%;
+}
+
+.Crucio-revealimg {
+  background-color: white;
+  max-width: 40%;
 }

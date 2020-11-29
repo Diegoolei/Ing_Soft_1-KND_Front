@@ -27,14 +27,14 @@ function Portraits() {
   function mouseLeave() {
     clearTimeout(timing_cont.current)
     setRendering_info([-1,0,0])
-  }  
-
+  }
   const portrait_sub1 = () => {
     let style = {
-      root: {
-        float: "center",
-        left: "0%",
-        top: "0%",
+      svg: {
+        "background-color": "white",
+        "float": "center",
+        "left": "0%",
+        "top": "0%",
         "max-height": "80%",
         "max-width": "100%",
       }
@@ -93,7 +93,7 @@ function Portraits() {
     const is_director = (player_number === current_director) || (player_arr[nick].is_candidate)
     return (
       <div className="Div-invisible">
-        <img className={iconclass.root} src={icons[icon_n]} alt={`icon ${icon_n}`}/>
+        <img className={iconclass.svg} src={icons[icon_n]} alt={`icon ${icon_n}`}/>
         <div className="Portrait-nameinfo">{nick}</div>
         {is_minister ? <img className={pinclass.root} src={pin_minister} alt="minister pin"/> : null}
         {is_director ? <img className={pinclass.root} src={pin_director} alt="director pin"/>: null}

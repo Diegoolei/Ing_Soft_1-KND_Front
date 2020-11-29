@@ -115,9 +115,17 @@
   top: 2%;
   left: 2%;
   width: 14%;
-  height: 62%;
-  background-color: rgba(255, 255, 255, 0.3);
+  height: 50%;
   overflow: hidden;
+}
+
+.Deck-number {
+  color: white;
+  font-size: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 50%;
+  left: 35%;
 }
 
 .ActionButton-container {
@@ -132,11 +140,12 @@
 .ElectionCounter-container {
   box-sizing: border-box;
   position: absolute;
+  font-size: smaller;
+  color: white;
   bottom: 2%;
   right: 2%;
   width: 12.6%;
   height: 47.5%;
-  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .Portrait-nameinfo {
