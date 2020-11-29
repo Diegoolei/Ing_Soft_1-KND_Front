@@ -17,7 +17,7 @@ function TestSocket() {
   const [chatmsg, setchatmsg] = useState('')
   const votes = {"kndilta": false, "kndilta1": true, "kndilta2": true, "kndilta3": true, "kndilta4": true}
   // const echoMsg = { "TYPE": "ELECTION_RESULT", "PAYLOAD": votes }
-  const echoMsg = { "TYPE" : "PROCLAMATION", "PAYLOAD": 0}
+  const echoMsg = { "TYPE" : "REQUEST_CRUCIO", "PAYLOAD": 2}
 
   if (unreadMsg.length !== 0) {
     const jsonmsg = unreadMsg[0]

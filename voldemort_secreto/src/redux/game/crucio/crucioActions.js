@@ -25,25 +25,37 @@ export const resetCrucio = () => {
   }
 }
 
-export const setCrucioOptions = nick_array => {
+export const saveCrucioOptions = nick_array => {
   return {
     type: CGL_CRUCIO_SET_OPTIONS,
     payload: nick_array
   }
 }
 
-export const confirmCrucioSelection = () => {
+export const setCrucioOptions = except_player_number => {
+  const state = store.getState()
+  const player_arr = state.game.player_array
+  let nick_array = []
+  for (let nick in player_arr) {
+    const is_alive = player_arr[nick].is_alive
+    const is_current_player = state.game.player_nick === nick
+    const is_exception = player_arr[nick].player_number === except_player_number
+    if(is_alive && !is_current_player && !is_exception) nick_array.push(nick)
+  }
+  return dispatch => dispatch(saveCrucioOptions(nick_array))
+}
+
+export const confirmCrucioSelection = victim_number => {
   const state = store.getState()
   const token = state.session.authToken
-  const uri = BASE_URL+API_ENDPOINT_CRUCIO
+  const uri = BASE_URL + `/games/${state.game.game_id}/spell/crucio`
   return dispatch => {
-    const body = {/* ???????????????????????? */}
+    const body = { victim_number : victim_number }
     axios.post(uri, body,
       {
         headers: { 'Authorization': token.token_type + " " + token.access_token }
       }
     ).then(response => {
-      /* ??????????????????????????????? */
       dispatch(resetCrucio())
       dispatch(deactivateCrucio())
     }).catch(error => {
