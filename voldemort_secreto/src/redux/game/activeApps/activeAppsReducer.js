@@ -7,6 +7,12 @@ import {
   APPS_MAKE_CRUCIO_UNAVAILABLE,
   APPS_ACTIVATE_CRUCIO,
   APPS_DEACTIVE_CRUCIO,
+  APPS_ACTIVATE_MINISTER_DC,
+  APPS_DEACTIVATE_MINISTER_DC,
+  APPS_ACTIVATE_DIRECTOR_DC,
+  APPS_DEACTIVATE_DIRECTOR_DC,
+  APPS_ENABLE_DISCARD_CARD,  
+  APPS_DISABLE_DISCARD_CARD      
 } from './activeAppsTypes'
 
   const initialState = {
@@ -14,6 +20,8 @@ import {
     is_selecting_director_active: false,
     is_crucio_available: false,
     is_crucio_active: false,
+    is_discard_card_available: false,
+    is_discard_card_active: false
   }
  
   const activeAppsReducer = (state = initialState, action) => {
@@ -56,6 +64,36 @@ import {
       case APPS_DEACTIVE_CRUCIO: return {
         ...state,
         is_crucio_active: false
+      }
+
+      case APPS_ENABLE_DISCARD_CARD: return {
+        ...state,
+        is_discard_card_available: true
+      }
+
+      case APPS_DISABLE_DISCARD_CARD: return {
+        ...state,
+        is_discard_card_available: false
+      }
+
+      case APPS_ACTIVATE_MINISTER_DC: return {
+        ...state,
+        is_discard_card_active: true        
+      }
+    
+      case APPS_DEACTIVATE_MINISTER_DC: return {
+        ...state,
+        is_discard_card_active: false
+      }
+
+      case APPS_ACTIVATE_DIRECTOR_DC: return {
+        ...state,
+        is_discard_card_active: true
+      }
+
+      case APPS_DEACTIVATE_DIRECTOR_DC: return {
+        ...state,
+        is_discard_card_active: false
       }
 
       default: return state

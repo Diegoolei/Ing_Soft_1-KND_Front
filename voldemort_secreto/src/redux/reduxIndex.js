@@ -40,7 +40,13 @@ export {
   activateChangeNick,
   deactivateChangeNick,
   activateCrucio,
-  deactivateCrucio
+  deactivateCrucio,
+  activateDiscardCardMinister,
+  deactivateDiscardCardMinister,
+  activateDiscardCardDirector,
+  deactivateDiscardCardDirector,
+  enableDiscardCard,
+  disableDiscardCard
 } from './game/activeApps/activeAppsActions'
 
 export {
@@ -54,3 +60,10 @@ export {
   confirmCrucioSelection,
   resetCrucio
 } from './game/crucio/crucioActions'
+
+export {
+  highlightCardOption,
+  saveDCardOptions,
+  resetDiscardCard,
+  confirmDiscardCard
+} from './game/discardCard/discardCardActions'

@@ -6,20 +6,21 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
 import Header from './gameHeader'
 import Chat from './chat'
-import ShowVotationResults from './showVotationResults'
+//import ShowVotationResults from './showVotationResults'
 import ActionButton from './gameActionButton'
 import Deck from './gameDeck'
 import ElectionCounter from './gameElectionCounter'
 import Proclamations from './gameProclamations'
 import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
+import DiscardCard from './gameDiscardCard'
 
 function Game() {
   const dispatch = useDispatch()
   const gameState = useSelector(state => state.game)
   const activeApps = useSelector(state => state.active_apps)
   const unprocessed_socket_messages = useSelector(state => state.socket.messages)
-  const votationActive = useSelector(state => state.votation_results.is_show_results_active)
+  //const votationActive = useSelector(state => state.votation_results.is_show_results_active)
   const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
   const info = () => {
@@ -120,26 +121,14 @@ function Game() {
       </div>
     )
   }
-    /* //     <div className="Div-invisible">
-      <div className="Proclamations-container">
-          <Proclamations/>
-          <div className="Sideboard-container">
-            <div className="Deck-container"><Deck/></div>
-            <div className="ActionButton-container"><ActionButton/></div>
-          </div>
-          <Portraits/>
-          <div className="ElectionCounter-container"><ElectionCounter/></div>
-        </div>
-      </div>
-  <br/><button className="button-votation-red" onClick={() => vote()}>Vote</button>
-  </div> */
 
   return (
     <div>
       <div className="Game-header"><Header/></div>
       <div className="Game-container"><MainGame/></div>
       <div className="Chat-container"><Chat/></div>
-      {activeApps.is_crucio_active ? <Crucio/> : null}
+      { activeApps.is_crucio_active ? <Crucio/> : null }
+      { activeApps.is_discard_card_active ? <DiscardCard/> : null }
     </div>
   )
 }
