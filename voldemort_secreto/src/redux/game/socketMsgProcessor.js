@@ -16,6 +16,7 @@ import {
 } from './gameActions'
 
 import { 
+  activateCandidateSelection, 
   makeCrucioAvailable, 
   enableDiscardCard
 } from './activeApps/activeAppsActions'
@@ -49,16 +50,14 @@ export const processSocketMessage = jsonMsg => {
   
       case "START_GAME":
         dispatch(joinGame(payload))
-        dispatch(logAction("The Game has started"))
         break;
   
       case "NEW_MINISTER":
-        dispatch(logAction(`${payload} is now Minister of Magic`))
         break;
       
       case "REQUEST_CANDIDATE":
         dispatch(setCandidates(payload))
-        dispatch(makeSelectDirectorAvailable())
+        dispatch(activateCandidateSelection())
         break;
 
       case "REQUEST_VOTE":
@@ -108,7 +107,6 @@ export const processSocketMessage = jsonMsg => {
       case "REQUEST_CRUCIO":
         dispatch(setCrucioOptions(payload))
         dispatch(makeCrucioAvailable())
-        break;
 
       case "ADIVINATION_NOTICE":
         break;

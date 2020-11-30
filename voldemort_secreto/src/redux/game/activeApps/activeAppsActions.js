@@ -12,9 +12,7 @@ import {
   APPS_ACTIVATE_MINISTER_DC,
   APPS_DEACTIVATE_MINISTER_DC,
   APPS_ACTIVATE_DIRECTOR_DC,
-  APPS_DEACTIVATE_DIRECTOR_DC,
-  APPS_MAKE_SELECT_DIRECTOR_AVAILABLE,
-  APPS_MAKE_SELECT_DIRECTOR_UNAVAILABLE,
+  APPS_DEACTIVATE_DIRECTOR_DC
 } from './activeAppsTypes'
 
 export const activateChangeNick = () => {
@@ -50,18 +48,6 @@ export const activateCrucio = () => {
 export const deactivateCrucio = () => {
   return {
     type: APPS_DEACTIVE_CRUCIO
-  }
-}
-
-export const makeSelectDirectorAvailable = () => {
-  return {
-    type: APPS_MAKE_SELECT_DIRECTOR_AVAILABLE
-  }
-}
-
-export const makeSelectDirectorUnavailable = () =>{
-  return {
-    type: APPS_MAKE_SELECT_DIRECTOR_UNAVAILABLE
   }
 }
 

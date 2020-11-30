@@ -5,8 +5,6 @@ import {
   APPS_DEACTIVE_SELECT_DIRECTOR,
   APPS_MAKE_CRUCIO_AVAILABLE,
   APPS_MAKE_CRUCIO_UNAVAILABLE,
-  APPS_MAKE_SELECT_DIRECTOR_AVAILABLE,
-  APPS_MAKE_SELECT_DIRECTOR_UNAVAILABLE,
   APPS_ACTIVATE_CRUCIO,
   APPS_DEACTIVE_CRUCIO,
   APPS_ACTIVATE_MINISTER_DC,
@@ -19,8 +17,7 @@ import {
 
   const initialState = {
     is_changeNick_active: false,
-    is_select_director_available: false,
-    is_select_director_active: false,
+    is_selecting_director_active: false,
     is_crucio_available: false,
     is_crucio_active: false,
     is_discard_card_available: false,
@@ -41,22 +38,12 @@ import {
 
       case APPS_ACTIVATE_SELECT_DIRECTOR: return {
         ...state,
-        is_select_director_active: true
+        is_selecting_director_active: true
       }
   
       case APPS_DEACTIVE_SELECT_DIRECTOR: return {
         ...state,
-        is_select_director_active: false
-      }
-
-      case APPS_MAKE_SELECT_DIRECTOR_AVAILABLE: return {
-        ...state,
-        is_select_director_available: true
-      }
-
-      case APPS_MAKE_SELECT_DIRECTOR_UNAVAILABLE: return {
-        ...state,
-        is_select_director_available: false
+        is_selecting_director_active: false
       }
 
       case APPS_MAKE_CRUCIO_AVAILABLE: return {

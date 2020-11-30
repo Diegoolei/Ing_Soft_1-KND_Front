@@ -13,11 +13,7 @@ import ElectionCounter from './gameElectionCounter'
 import Proclamations from './gameProclamations'
 import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
-<<<<<<< HEAD
 import DiscardCard from './gameDiscardCard'
-=======
-import SelectDirector from './selectDirector'
->>>>>>> bfc03a1... IN149 Integrating New Minister and Select Director
 
 function Game() {
   const dispatch = useDispatch()
@@ -133,7 +129,6 @@ function Game() {
       <div className="Chat-container"><Chat/></div>
       { activeApps.is_crucio_active ? <Crucio/> : null }
       { activeApps.is_discard_card_active ? <DiscardCard/> : null }
-      { activeApps.is_select_director_active ? <SelectDirector/> : null}
     </div>
   )
 }
