@@ -47,7 +47,13 @@ export {
   activateDiscardCardDirector,
   deactivateDiscardCardDirector,
   enableDiscardCard,
-  disableDiscardCard
+  disableDiscardCard,
+  activateCandidateSelection,
+  deactivateCandidateSelection,
+  makeCrucioAvailable,
+  makeCrucioUnavailable,
+  makeSelectDirectorAvailable,
+  makeSelectDirectorUnavailable
 } from './game/activeApps/activeAppsActions'
 
 export {

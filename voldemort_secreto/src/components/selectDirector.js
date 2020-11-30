@@ -2,75 +2,70 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { BASE_URL } from '../redux/API_Types'
-import confirmCandidate from './selectDirector'
-import { deactivateCandidateSelection } from '../redux/game/activeApps/activeAppsActions'
+import { deactivateCandidateSelection, makeSelectDirectorUnavailable } from '../redux/reduxIndex'
 
 function Director() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.session.authToken)
-  const game_id = useSelector(state => state.game.game_id)
-  const [playerNumber, setPlayer_number] = useState('')
-  const [validityMsg, setValidityMsg] = useState('')
+  const game = useSelector(state => state.game)
+  const [playerNumber, setPlayer_number] = useState(null)
   const candidates = useSelector(state => state.select_director.candidates)
+  console.log("Player number:", playerNumber)
 
   function SelectDirectorCandidate() {
-    console.log("Minister are electing a Director candidate...")
-    const uri = BASE_URL + "/games/" + String(game_id) + "/select_director/"
-    const body = { "player_number": playerNumber } // Checks if better player_nick 
-    axios.post(
-      uri, body, { headers: { 'Authorization': token.token_type + " " + token.access_token } }
-    ).then(response => {
-      console.log("-Response:" + JSON.stringify(response.data))
-      setValidityMsg("The Minister are selected correctly")
-    }).catch(error => {
-      let errorMsg
-      try {
-        errorMsg = error.response.data.retail
-      }
-      catch (err) {
-        errorMsg = "You are not the Minister"
-      }
-      console.log("-Response:" + JSON.stringify(errorMsg))
-      setValidityMsg(errorMsg)
-    })
-  }
-
-  function takeInput(inp) {
-    const { name, value } = inp.target;
-    switch (name) {
-      case "setPlayer_number":
-        setPlayer_number(value)
-        break;
-      default:
-        break;
+    if (playerNumber !== null) {
+      const uri = BASE_URL + "/games/" + String(game.game_id) + "/select_director"
+      const body = { "playerNumber": playerNumber }
+      axios.post(
+        uri, body, { headers: { 'Authorization': token.token_type + " " + token.access_token } }
+      ).then(response => {
+        dispatch(deactivateCandidateSelection())
+        dispatch(makeSelectDirectorUnavailable())
+      }).catch(error => {
+        let errorMsg
+        try {
+          errorMsg = error.response.data.retail
+        }
+        catch (err) {
+          errorMsg = "You are not the Minister"
+        }
+        console.log("-Response:", errorMsg)
+      })
     }
   }
 
+  function takeInput(inp) {
+    const { value } = inp.target;
+    setPlayer_number(value)
+  }
+
   function FormOptions(){
-    let options_arr = [] // <option>
+    let options_arr = []
+    const nullOption = <option value={null} key={`select_director_option_null`}>Select Director...</option>
+    options_arr.push(nullOption)
     for(let i in candidates) {
       const current_nick = candidates[i]
-      const option = <option value={current_nick}>{current_nick}</option>
+      const current_player_number = game.player_array[current_nick].player_number
+      const option = <option value={current_player_number} key={`select_director_option_${current_player_number}`}>{current_nick}</option>
       options_arr.push(option)
     }
     return options_arr
   }
 
+  const close = () => dispatch(deactivateCandidateSelection())
+
   return (
-    <div>
-      <h1>Select Director</h1>
-      <form>
-        <select id="nick_player" name="nick">
-          <FormOptions/> {/* <<Opcion 1 */}
-          {/* {FormOptions()} <<Opcion 2*/}
-          {/* <option value="Player 1">Player 1</option>
-          <option value="Player 2">Player 2</option>
-          <option value="Player 3">Player 3</option> */}
-        </select>
-      </form>
-      <br /><button className="button" onClick={SelectDirectorCandidate}>Select player as Director candidate</button>
-      <br /><label>{validityMsg}</label><br />
-      {/* <button className="button" onClick={() => dispatch(changeScreen(MAIN_MENU_COMPONENT))}>Main menu</button> */}
+    <div className="Popup-background">
+      <div className="Popup">
+        <h2>Select Director</h2>
+        <form onChange={takeInput}>
+          <select id="nick_player" name="nick">
+            <FormOptions/>
+          </select>
+        </form>
+      <button className="button" onClick={SelectDirectorCandidate}>Select</button>
+      <button className="Button-Close" onClick={close}>X</button>
+      </div>
     </div>
   )
 }

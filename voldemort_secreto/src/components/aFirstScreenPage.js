@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import hp_logo from '../metaMedia/hp_logo.svg'
 import { FIRST_SCREEN_PAGE_COMPONENT, LOGIN_COMPONENT, REGISTER_COMPONENT, RULES_COMPONENT, ABOUT_COMPONENT } from '../redux/componentController/componentControllerTypes'
-import { resetResponse, changeScreen } from '../redux/reduxIndex'
+import { resetResponse, changeScreen, login, joinGame } from '../redux/reduxIndex'
 // import music from '../metaMedia/hp-lofi.mp3'
 import approve from '../metaMedia/interface/approve.svg' /*'../metaMedia/interface/approve.svg'*/
 import sing_in from '../metaMedia/interface/sign-in.svg' /*'../metaMedia/interface/sign-in.svg'*/
@@ -35,10 +35,10 @@ function FirstScreenPage () {
     dispatch(changeScreen(ABOUT_COMPONENT))
   }
 
-  // function skipToGame() {
-  //   dispatch(login("user1@mail.com", "12345678"))
-  //   setTimeout(() => dispatch(joinGame(1)), 1000)
-  // }
+  function skipToGame(n) {
+    dispatch(login("user1@mail.com", "12345678"))
+    setTimeout(() => dispatch(joinGame(n)), 1000)
+  }
 
 
 function AppFirstScreen(){
@@ -82,6 +82,11 @@ function AppFirstScreen(){
           {/* <button className="button" onClick={PlayMusic} >Play</button>
           <button className="button" onClick={PauseMusic}>Pause</button> */}
         </body>
+        <button className="button" onClick={() => skipToGame(1)}>Skip to Game 1</button>
+        <button className="button" onClick={() => skipToGame(2)}>Skip to Game 2</button>
+        <button className="button" onClick={() => skipToGame(3)}>Skip to Game 3</button>
+        <button className="button" onClick={() => skipToGame(4)}>Skip to Game 4</button>
+        <button className="button" onClick={() => skipToGame(5)}>Skip to Game 5</button>
       </div>
       <footer>
         <div className="App-div-footer">
