@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import nimbus from '../metaMedia/nimbus.svg'
-import { REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
+// import nimbus from '../metaMedia/nimbus.svg'
+import { FIRST_SCREEN_PAGE_COMPONENT, REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setEmail, login, resetResponse, changeScreen } from '../redux/reduxIndex'
 import music from '../metaMedia/hp-lofi.mp3'
-import { joinGame } from '../redux/reduxIndex'
 
 function LoginForm () {
   const sessionState = useSelector(state => state.session)
@@ -52,10 +51,10 @@ function LoginForm () {
     dispatch(changeScreen(REGISTER_COMPONENT))
   }
 
-  function skipToGame() {
-    dispatch(login("user1@mail.com", "12345678"))
-    setTimeout(() => dispatch(joinGame(1)), 1000)
-  }
+  // function skipToGame() {
+  //   dispatch(login("user1@mail.com", "12345678"))
+  //   setTimeout(() => dispatch(joinGame(1)), 1000)
+  // }
 
   function skipToGame3() {
     dispatch(login("user1@mail.com", "12345678"))
@@ -65,8 +64,7 @@ function LoginForm () {
   function loginForm() {
     return (
       <div>
-        <h3>Login:</h3>
-        <br/><label>email: </label>
+        <label>email: </label>
         <input placeholder='email' name='email' type='email' defaultValue={sessionState.email} onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
         
         <br/><label>Password: </label>
@@ -125,13 +123,15 @@ function PauseMusic(){
   return (
     <header className="App-header">
       <div className="App-div-login">
-        <img src={nimbus} className="App-logo" alt="logo" />
-        <h1>Welcome to Secret Voldemort</h1>
+        {/* <img src={nimbus} className="App-logo" alt="logo" /> */}
+        <h1 className="title-first-screen">Login</h1>
+        {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
         <button className="button" onClick={skipToGame}>Skip to Game 1</button>
         <button className="button" onClick={skipToGame3}>Skip to Game 3</button>
         {loginForm()}
         <button className="button" onClick={PlayMusic} >Play</button>
-        <button className="button" onClick={PauseMusic}>Pause</button>
+        <button className="button" onClick={PauseMusic}>Pause</button><br/>
+        <button className="button" onClick={() => dispatch(changeScreen(FIRST_SCREEN_PAGE_COMPONENT))}>Back</button>
       </div>
     </header>
   )

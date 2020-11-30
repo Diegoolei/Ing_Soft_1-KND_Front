@@ -1,7 +1,7 @@
-import { CHANGE_SCREEN, LOGIN_COMPONENT } from './componentControllerTypes'
+import { CHANGE_SCREEN, FIRST_SCREEN_PAGE_COMPONENT } from './componentControllerTypes'
 
 const initialState = {
-  screen: LOGIN_COMPONENT
+  screen: FIRST_SCREEN_PAGE_COMPONENT
 }
 
 const componentControllerReducer = (state = initialState, action) => {
