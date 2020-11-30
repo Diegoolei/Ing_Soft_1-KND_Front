@@ -23,6 +23,7 @@ export const API_ENDPOINT_GAME = '/games/'
 export const API_ENDPOINT_SELECT_DIRECTOR = '/select_director/'
 export const API_ENDPOINT_VOTE = '/select_director/vote'
 export const API_ENDPOINT_CRUCIO = '/spell/crucio'
+export const API_ENDPOINT_DISCARD_CARD = '/discard_card/'
 
 //FORMS
   // REGISTER BODY:
