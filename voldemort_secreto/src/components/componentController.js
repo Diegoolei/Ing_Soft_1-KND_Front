@@ -2,6 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import {
+  FIRST_SCREEN_PAGE_COMPONENT,
+  RULES_COMPONENT,
+  ABOUT_COMPONENT,
   LOGIN_COMPONENT,
   REGISTER_COMPONENT,
   MAIN_MENU_COMPONENT,
@@ -17,6 +20,9 @@ import {
   JOIN_GAME_COMPONENT
 } from '../redux/componentController/componentControllerTypes'
 
+import FirstScreenPage from './aFirstScreenPage'
+import Rules from './gameRules'
+import About from './about'
 import LoginForm from './loginForm'
 import RegisterForm from './registerForm'
 import MainMenu from './mainMenu'
@@ -36,6 +42,9 @@ function ComponentController() {
 
   const getComponent = () => {
     switch (currentScreen) {
+      case FIRST_SCREEN_PAGE_COMPONENT: return <FirstScreenPage/>
+      case RULES_COMPONENT: return <Rules/>
+      case ABOUT_COMPONENT: return <About/>
       case LOGIN_COMPONENT: return <LoginForm/>
       case REGISTER_COMPONENT: return <RegisterForm/>
       case MAIN_MENU_COMPONENT: return <MainMenu/>

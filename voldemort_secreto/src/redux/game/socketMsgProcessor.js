@@ -21,7 +21,6 @@ import {
   enableDiscardCard
 } from './activeApps/activeAppsActions'
 
-
 export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
   const type = jsonMsg.TYPE
@@ -74,6 +73,7 @@ export const processSocketMessage = jsonMsg => {
         dispatch(logAction("You have to discard a card"))
         break;
       case "CAOS_PROCLAMATION":
+        dispatch(updateDeckAmount())
         break;
       case "DIRECTOR_DISCARD":
         dispatch(saveDCardOptions(payload))
@@ -93,20 +93,21 @@ export const processSocketMessage = jsonMsg => {
             console.log(payload, typeof payload)
             break;
         }
-        
+        dispatch(updateDeckAmount())
         break;
       case "END_GAME":
         break;
       case "REQUEST_SPELL":
-        switch (payload) {
-          case "CRUCIO":
-            dispatch(makeCrucioAvailable())
-            break;
-        
+        switch (payload) {        
           default:
             console.log("Unknown spell has been requested")
             break;
         }
+
+      case "REQUEST_CRUCIO":
+        dispatch(setCrucioOptions(payload))
+        dispatch(makeCrucioAvailable())
+
       case "ADIVINATION_NOTICE":
         break;
       case "AVADA_KEDAVRA":

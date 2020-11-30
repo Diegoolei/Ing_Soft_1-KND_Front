@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import nimbus from '../metaMedia/nimbus.svg'
-import { LOGIN_COMPONENT } from '../redux/componentController/componentControllerTypes'
+// import nimbus from '../metaMedia/nimbus.svg'
+import { FIRST_SCREEN_PAGE_COMPONENT, LOGIN_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setUserinfo, setEmail, register, resetResponse, changeScreen } from '../redux/reduxIndex'
 
 function LoginForm () {
@@ -72,8 +72,7 @@ function LoginForm () {
 
   const registerForm = () => {
     return (
-      <div>
-        <h3>Register:</h3>        
+      <div>  
         <label>Email:</label>
         <input placeholder='email' name='email' type='email' defaultValue={privEmail} onBlur={takeInput} onChange={takeInput}></input>
         
@@ -88,7 +87,8 @@ function LoginForm () {
         <br/>
         <br/><button className="button-shadow-red" name="Register" onClick={handleButton}>Register</button>
         <br/><label className="Error-text">{validityMsg !== "" ? validityMsg : sessionState.response + " " + sessionState.error}</label>
-        <br/><button className="button-shadow-red" onClick={switchToLogin}>Login Instead</button> 
+        <br/><button className="button-shadow-red" onClick={switchToLogin}>Login Instead</button>
+        <button className="button" onClick={() => dispatch(changeScreen(FIRST_SCREEN_PAGE_COMPONENT))}>Home</button>
       </div>
     )
   }
@@ -96,10 +96,8 @@ function LoginForm () {
   return (
     <header className="App-header">
       <div className="App-div">
-        <img src={nimbus} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Secret Voldemort
-        </p>
+        {/* <img src={nimbus} className="App-logo" alt="logo" /> */}
+        <p className="title-first-screen">Register</p>
         {registerForm()}
       </div>
     </header>

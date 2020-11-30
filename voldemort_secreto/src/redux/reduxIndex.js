@@ -33,7 +33,8 @@ export {
   startGame,
   joinGame,
   voteInGame,
-  logAction
+  logAction,
+  updateDeckAmount
 } from './game/gameActions'
 
 export {

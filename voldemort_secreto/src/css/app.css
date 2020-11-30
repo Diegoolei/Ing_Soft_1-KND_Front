@@ -19,6 +19,12 @@
   pointer-events: none;
 }
 
+
+.Logo-hp {
+  height: 6vmin;
+  pointer-events: none;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -91,21 +97,41 @@
   margin-top: -25px; /* half this element's height */
   margin-bottom: 5px;
 }
+
 .App-header {
-    background-color: #630303;
+  background-color: #630303;
 /*  
-    background-image: url(./../src/fondo_lobby.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%; /* width height 
+  background-image: url(./../src/fondo_lobby.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* width height 
 */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.header-first-screen {
+  /* background-color: #ffffff;   */
+  background-image: url(../metaMedia/interface/VandH.jpg);
+  background-size: 100% 100%; /* width height  */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* rgb(4, 41, 57); */ /* rgb(57, 4, 4); */ /* rgb(22, 4, 57); */
+  background-color: rgba(22, 4, 57, 0.315);
+  /* background-color: rgb(22, 4, 57); */
+  /*color-dodge*/ /*lighten*/ /*overlay*/ /*darken*/ /*saturation*/
+  /*color*/ /*multiply*/
+  /*luminosity*/ /*screen*/
+  background-blend-mode: luminosity;
+}
 
 .App-header-test {
   background-color: #3c0505;  
@@ -136,19 +162,50 @@
 
 .App-header_Hufflepuff {
   background-color: #f5e59c;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
 } 
 
 .App-div{
   padding: 25px; /**/
   border: 5px outset rgb(14, 13, 13);
-  background-color: rgb(241, 243, 118);    
+  background-color: rgb(241, 243, 118);
+  text-align: center;
+}
+
+.App-div-about{
+  padding: 25px; /**/
+  border: 5px outset rgb(14, 13, 13);
+  background-color: rgb(241, 243, 118);
+  text-align: left;
+}
+
+.App-div-inline{
+  padding: 25px; /**/
+  background-color: rgb(241, 243, 118);
+  display: inline;
+}
+
+.App-div-first-screen{
+  padding: 25px; /**/
+  border: 1px outset rgb(14, 13, 13);
+  background-color: rgba(255, 226, 167, 0.283);
+  /* background-color: rgb(241, 243, 118); */
+  text-align: center;
+  padding-top: 1px; 
+}
+
+.App-div-footer{
+  padding: 0px; /**/
+  border: 1px outset rgb(14, 13, 13);
+  /* padding: 10px;  */
+  background-color: rgba(92, 16, 16, 0.379);
+  /* background-color: rgb(92, 16, 16); */
   text-align: center;
 }
 
@@ -189,6 +246,16 @@
   border: 5px outset rgb(14, 13, 13);
   background-color: lightsteelblue;    
   text-align: center;
+}
+
+.App-div-lightsteelblue2{
+  padding: 15px; /**/
+  border: 1px outset rgb(14, 13, 13);
+  background-color: rgba(176, 196, 222, 0.352);
+  /* background-color: lightsteelblue; */
+  text-align: center;
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
 }
 
 .App-accordion {
