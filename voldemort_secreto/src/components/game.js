@@ -13,11 +13,8 @@ import ElectionCounter from './gameElectionCounter'
 import Proclamations from './gameProclamations'
 import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
-<<<<<<< HEAD
 import DiscardCard from './gameDiscardCard'
-=======
 import SelectDirector from './selectDirector'
->>>>>>> bfc03a1... IN149 Integrating New Minister and Select Director
 
 function Game() {
   const dispatch = useDispatch()
