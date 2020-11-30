@@ -45,8 +45,8 @@ function MainMenu () {
         <br/><button className="button">View History (not available)</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
         {/* <br/><button className="buttom" onClick={() => dispatch(setCandidates(["diego", "shiro", "cande", "agus", "sofi"]))}>Set Candidates</button>
-        <br/><button className="button" onClick={() => setactive(!active)}>Switch Select Director</button> */}
-        {/* {active ? <SelectDirector/> : null} */}
+        <br/><button className="button" onClick={() => setactive(!active)}>Switch Select Director</button>
+        {active ? <SelectDirector/> : null} */}
         <br/><button className="button" onClick={logout}>Log out</button>
       </div>
     </header>
