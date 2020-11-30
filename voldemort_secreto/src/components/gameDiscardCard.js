@@ -25,7 +25,7 @@ function DiscardCard() {
         "border": "none",
         "padding": "1%",
         "margin": "0%",
-        "width": `${100/amount_options}%`,
+        "width": `${75/amount_options}%`,
       }
     }
     const stl = makeStyles(style)
