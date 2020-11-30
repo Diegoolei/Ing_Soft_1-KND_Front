@@ -77,9 +77,10 @@
   box-sizing: border-box;
   float:left;  
   width:75%; 
-  background-image: url("../metaMedia/paper_background.jpg");
+  background-image: url("../metaMedia/paper_background.png");
   background-repeat: no-repeat;
   background-size: 100% 120%;
+  background-position: 10%;
   height:95vh;
   color: rgb(0, 0, 0);
   align-items: center;
@@ -89,7 +90,7 @@
 .Board-container {
   box-sizing: border-box;
   position: relative;
-  top: 21%;
+  top: 23%;
   left: 18.5%;
   background-color: #1a0a0a;
   border-radius: 3%;
@@ -114,9 +115,17 @@
   top: 2%;
   left: 2%;
   width: 14%;
-  height: 62%;
-  background-color: rgba(255, 255, 255, 0.3);
+  height: 50%;
   overflow: hidden;
+}
+
+.Deck-number {
+  color: white;
+  font-size: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 50%;
+  left: 35%;
 }
 
 .ActionButton-container {
@@ -131,11 +140,23 @@
 .ElectionCounter-container {
   box-sizing: border-box;
   position: absolute;
+  font-size: smaller;
+  color: white;
   bottom: 2%;
   right: 2%;
   width: 12.6%;
   height: 47.5%;
+}
+
+.Portrait-nameinfo {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  height: 20%;
   background-color: rgba(255, 255, 255, 0.3);
 }
+
 
 /* Colossal */

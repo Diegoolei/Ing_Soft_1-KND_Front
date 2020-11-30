@@ -11,11 +11,12 @@ import {
 } from './gameActions'
 
 import { setCandidates } from './selectDirector/selectDirectorActions'
-import { activateCandidateSelection } from './activeApps/activeAppsActions'
+import { activateCandidateSelection, makeCrucioAvailable } from './activeApps/activeAppsActions'
+import { setCrucioOptions } from './crucio/crucioActions'
 
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
 
-import { wsConsumeMessage } from '../reduxIndex'
+import { wsConsumeMessage, updateDeckAmount } from '../reduxIndex'
 
 export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
@@ -66,6 +67,7 @@ export const processSocketMessage = jsonMsg => {
       case "MINISTER_DISCARD":
         break;
       case "CAOS_PROCLAMATION":
+        dispatch(updateDeckAmount())
         break;
       case "DIRECTOR_DISCARD":
         break;
@@ -79,15 +81,24 @@ export const processSocketMessage = jsonMsg => {
             break;
           default:
             console.log("Fatal error. Payload of PROCLAMATION in socket proccesor is wrong")     
-            console.log(payload, typeof payload)       
+            console.log(payload, typeof payload)
             break;
         }
-        
+        dispatch(updateDeckAmount())
         break;
       case "END_GAME":
         break;
       case "REQUEST_SPELL":
-        break;
+        switch (payload) {        
+          default:
+            console.log("Unknown spell has been requested")
+            break;
+        }
+
+      case "REQUEST_CRUCIO":
+        dispatch(setCrucioOptions(payload))
+        dispatch(makeCrucioAvailable())
+
       case "ADIVINATION_NOTICE":
         break;
       case "AVADA_KEDAVRA":

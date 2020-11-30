@@ -56,6 +56,11 @@ function LoginForm () {
   //   setTimeout(() => dispatch(joinGame(1)), 1000)
   // }
 
+  function skipToGame3() {
+    dispatch(login("user1@mail.com", "12345678"))
+    setTimeout(() => dispatch(joinGame(3)), 1000)
+  }
+
   function loginForm() {
     return (
       <div>
@@ -121,6 +126,8 @@ function PauseMusic(){
         {/* <img src={nimbus} className="App-logo" alt="logo" /> */}
         <h1 className="title-first-screen">Login</h1>
         {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
+        <button className="button" onClick={skipToGame}>Skip to Game 1</button>
+        <button className="button" onClick={skipToGame3}>Skip to Game 3</button>
         {loginForm()}
         <button className="button" onClick={PlayMusic} >Play</button>
         <button className="button" onClick={PauseMusic}>Pause</button><br/>

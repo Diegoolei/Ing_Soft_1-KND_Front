@@ -6,9 +6,11 @@ import {
   CGL_PLAYER_LEFT_LOBBY,
   CGL_PROCLAIM_PHOENIX,
   CGL_CLEAN_STATE,
+  CGL_SET_PLAYER_ROLE,
   CGL_PROCLAIM_DEATH_EATER,
   CGL_UPDATE_NICK,
   CGL_START_WAITING_FOR_USER,
+  CGL_SET_DECK_AMOUNT,
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
@@ -60,7 +62,7 @@ const getInitialPlayer = nick => {
     role: -1,
     is_alive: true,
     is_candidate: false,
-    vote: -1
+    vote: null
   }
 }
 
@@ -100,22 +102,26 @@ const gameReducer = (state = initialState, action) => {
       }
     }
 
-    case CGL_PLAYER_JOINED_GAME: return {
-      ...state,
-      player_array: {
-        ...state.player_array,
-        [action.payload.nick] : {
-          nick: action.payload.nick,
-          player_number: action.payload.player_number,
-          connected: action.payload.connected,
-          role: action.payload.role,
-          is_alive: action.payload.is_alive,
-          is_candidate: action.payload.is_candidate,
-          vote: action.payload.vote
-        }
-      },
-      amount_players: state.amount_players + 1
-    }
+    case CGL_PLAYER_JOINED_GAME: 
+      const pvote = action.payload.has_voted ? action.payload.vote : null
+      return {
+        ...state,
+        player_array: {
+          ...state.player_array,
+          [action.payload.nick] : {
+            nick: action.payload.nick,
+            player_number: action.payload.player_number,
+            connected: action.payload.connected,
+            role: action.payload.role,
+            is_alive: action.payload.is_alive,
+            is_candidate: action.payload.is_candidate,
+            vote: pvote,
+            icon: action.payload.icon,
+            house: action.payload.house
+          }
+        },
+        amount_players: state.amount_players + 1
+      }
 
     case CGL_PLAYER_LEFT_LOBBY: 
       let new_players = {...state.player_array}
@@ -166,6 +172,22 @@ const gameReducer = (state = initialState, action) => {
         ...state,
         player_nick: (oldnick === state.player_nick) ? newnick : state.player_nick,
         player_array: players
+    }
+
+    case CGL_SET_DECK_AMOUNT: return {
+      ...state,
+      cards_in_deck: action.payload
+    }
+
+    case CGL_SET_PLAYER_ROLE: return {
+      ...state,
+      player_array: {
+        ...state.player_array,
+        [action.payload.nick]: {
+          ...state.player_array[action.payload.nick],
+          role: action.payload.role
+        }
+      }
     }
 
     case CGL_START_WAITING_FOR_USER: return {
