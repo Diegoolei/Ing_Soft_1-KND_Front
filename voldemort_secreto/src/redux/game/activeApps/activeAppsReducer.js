@@ -24,7 +24,11 @@ import {
   APPS_MAKE_AVADA_KEDAVRA_AVAILABLE,
   APPS_MAKE_AVADA_KEDAVRA_UNAVAILABLE,
   APPS_ACTIVATE_AVADA_KEDAVRA,
-  APPS_DEACTIVATE_AVADA_KEDAVRA
+  APPS_DEACTIVATE_AVADA_KEDAVRA,,
+  APPS_ACTIVATE_EXPELLIARMUS,
+  APPS_DEACTIVE_EXPELLIARMUS,
+  APPS_MAKE_EXPELLIARMUS_AVAILABLE,
+  APPS_MAKE_EXPELLIARMUS_UNAVAILABLE
 } from './activeAppsTypes'
 
   const initialState = {
@@ -39,6 +43,8 @@ import {
     is_crucio_active: false,
     is_avada_kedavra_available: false,
     is_avada_kedavra_active: false
+    is_expelliarmus_available: false,
+    is_expelliarmus_active: false
   }
      
 const activeAppsReducer = (state = initialState, action) => {
@@ -161,6 +167,26 @@ const activeAppsReducer = (state = initialState, action) => {
     case APPS_DEACTIVATE_AVADA_KEDAVRA: return {
       ...state,
       is_avada_kedavra_active: false
+    }
+
+    case APPS_MAKE_EXPELLIARMUS_AVAILABLE: return {
+      ...state,
+      is_expelliarmus_available: true
+    }
+
+    case APPS_MAKE_EXPELLIARMUS_UNAVAILABLE: return {
+      ...state,
+      is_expelliarmus_available: false
+    }
+
+    case APPS_ACTIVATE_EXPELLIARMUS: return {
+      ...state,
+      is_expelliarmus_active: true
+    }
+
+    case APPS_DEACTIVE_EXPELLIARMUS: return {
+      ...state,
+      is_expelliarmus_active: false
     }
 
     default: return state

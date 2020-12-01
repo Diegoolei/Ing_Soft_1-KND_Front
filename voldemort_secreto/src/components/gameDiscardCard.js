@@ -1,19 +1,23 @@
+import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import procl_phoenix_old from '../metaMedia/procl_phoenix_old.png'
 import procl_de_old from '../metaMedia/procl_de_green.png'
+import { BASE_URL } from '../redux/API_Types'
 import {
   deactivateDiscardCardDirector,
   deactivateDiscardCardMinister,
   disableDiscardCard,
   highlightCardOption,
   resetDiscardCard,
-  confirmDiscardCard
+  confirmDiscardCard,
 } from '../redux/reduxIndex'
 
 function DiscardCard() {
   const dispatch = useDispatch()
   const dcard_redux = useSelector(state => state.discard_card)
+  const game = useSelector(state => state.game)
+  const token = useSelector(state => state.session.authToken)
   const amount_options = dcard_redux.card_options.length
 
   const optionStyle = () => {
@@ -90,6 +94,34 @@ function DiscardCard() {
     dispatch(deactivateDiscardCardDirector())
     dispatch(deactivateDiscardCardMinister())
   }
+
+  const is_expelliarmus_available = () => {
+    if (game.proclaimed_death_eater < 5) return false
+    const current_player_number = game.player_array[game.player_nick].player_number
+    return current_player_number === game.current_director
+  }
+
+  function ExpelliarmusButton () {
+    const launchExpelliarmus = () => {
+      const uri = BASE_URL+`/games/${game.game_id}/spell/expeliarmus`
+      axios.put(uri, {},
+        {
+          headers: { 'Authorization': token.token_type + " " + token.access_token }
+        }
+      ).then(response => {
+        console.log("-Response :" + JSON.stringify(response.data))
+        dispatch(disableDiscardCard())
+        dispatch(deactivateDiscardCardDirector())
+        dispatch(deactivateDiscardCardMinister())
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+
+    return (
+      <button className="button" onClick={launchExpelliarmus}>Expelliarmus!</button>
+    )
+  }
   
   return (
     <div className="Dcard-Popup-background">
@@ -99,6 +131,7 @@ function DiscardCard() {
         </div>
         <div className="DCard-optionContainer"><RenderOptions/></div>
         <ConfirmButton/>
+        <br/>{is_expelliarmus_available() ? <ExpelliarmusButton/> : null}
         <button className="Button-Close" onClick={close}>X</button>
       </div>
     </div>

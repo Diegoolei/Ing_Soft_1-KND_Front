@@ -18,7 +18,11 @@ import {
   APPS_MAKE_AVADA_KEDAVRA_AVAILABLE,
   APPS_MAKE_AVADA_KEDAVRA_UNAVAILABLE,
   APPS_ACTIVATE_AVADA_KEDAVRA,
-  APPS_DEACTIVATE_AVADA_KEDAVRA
+  APPS_DEACTIVATE_AVADA_KEDAVRA,
+  APPS_MAKE_EXPELLIARMUS_AVAILABLE,
+  APPS_MAKE_EXPELLIARMUS_UNAVAILABLE,
+  APPS_ACTIVATE_EXPELLIARMUS,
+  APPS_DEACTIVE_EXPELLIARMUS
 } from './activeAppsTypes'
 
 export const activateChangeNick = () => {
@@ -162,5 +166,29 @@ export const activateAvadaKedavra = () => {
 export const deactivateAvadaKedavra = () => {
   return {
     type: APPS_DEACTIVATE_AVADA_KEDAVRA
+  }
+}
+
+export const makeExpelliarmusAvailable = () => {
+  return {
+    type: APPS_MAKE_EXPELLIARMUS_AVAILABLE
+  }
+}
+
+export const makeExpelliarmusUnavailable = () => {
+  return {
+    type: APPS_MAKE_EXPELLIARMUS_UNAVAILABLE
+  }
+}
+
+export const activateExpelliarmus = () => {
+  return {
+    type: APPS_ACTIVATE_EXPELLIARMUS
+  }
+}
+
+export const deactivateExpelliarmus = () => {
+  return {
+    type: APPS_DEACTIVE_EXPELLIARMUS
   }
 }

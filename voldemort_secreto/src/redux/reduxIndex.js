@@ -61,7 +61,11 @@ export {
   activateCrucio,
   deactivateCrucio,
   activateAvadaKedavra,
-  deactivateAvadaKedavra
+  deactivateAvadaKedavra,
+  makeExpelliarmusAvailable,
+  makeExpelliarmusUnavailable,
+  activateExpelliarmus,
+  deactivateExpelliarmus
 } from './game/activeApps/activeAppsActions'
 
 export {
