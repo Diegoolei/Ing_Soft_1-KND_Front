@@ -63,12 +63,13 @@ function DiscardCard() {
     }
     return <div className="DCard-options">{card_options}</div>
   }
-  
+ 
   function confirm() {
     const selected_option = dcard_redux.highlighted_option
     if(selected_option !== -1) {
-      const card_number = dcard_redux.card_options[selected_option]
-      dispatch(confirmDiscardCard(card_number))
+      // const card_number = dcard_redux.card_options[selected_option]
+      const sending = parseInt(selected_option) + 1
+      dispatch(confirmDiscardCard(sending))
       dispatch(resetDiscardCard())
       close()
       dispatch(disableDiscardCard())

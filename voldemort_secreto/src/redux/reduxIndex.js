@@ -34,7 +34,11 @@ export {
   joinGame,
   voteInGame,
   logAction,
-  updateDeckAmount
+  updateDeckAmount,
+  setDirector,
+  setMinister,
+  setElectionCounter,
+  setCurrentCandidate
 } from './game/gameActions'
 
 export {

@@ -19,6 +19,10 @@ export const CGL_UPDATE_NICK              = 'CGL_UPDATE_NICK'
 export const CGL_VOTE                     = 'CGL_VOTE'
 export const CGL_SET_DECK_AMOUNT          = 'CGL_SET_DECK_AMOUNT'
 export const CGL_SET_PLAYER_ROLE          = 'CGL_SET_PLAYER_ROLE'
+export const CGL_SET_DIRECTOR             = 'CGL_SET_DIRECTOR'
+export const CGL_SET_MINISTER             = 'CGL_SET_MINISTER'
+export const CGL_SET_ELECTION_COUNTER     = 'CGL_SET_ELECTION_COUNTER'
+export const CGL_SET_CURRENT_CANDIDATE    = 'CGL_SET_CURRENT_CANDIDATE'
 
 // For when we need to wait before we consume an action
 export const CGL_START_WAITING_FOR_USER   = 'CGL_START_WAITING_FOR_USER'
