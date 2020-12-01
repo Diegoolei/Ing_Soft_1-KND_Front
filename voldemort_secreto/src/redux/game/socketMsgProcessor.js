@@ -19,24 +19,28 @@ import {
   setDirector,
   setMinister,
   setElectionCounter,
-  spellProphecy
+  spellProphecy,
+  setPlayerRole
 } from './gameActions'
 
 import { 
   enableVote,
   makeCrucioAvailable, 
   enableDiscardCard,
-  makeSelectDirectorAvailable
+  makeSelectDirectorAvailable,
+  makeExpelliarmusAvailable
 } from './activeApps/activeAppsActions'
 import { useSelector } from 'react-redux'
 
 export const processSocketMessage = jsonMsg => {
+  const state = store.getState()
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
   const state = store.getState()
   const game = state.game
   const type = jsonMsg.TYPE
   const payload = jsonMsg.PAYLOAD
   return dispatch => {
+    const is_current_player_minister = state.game.player_nick === payload
     switch (type) {
       case "NEW_PLAYER_JOINED":
         dispatch(playerJoinedLobby(payload))
@@ -147,6 +151,17 @@ export const processSocketMessage = jsonMsg => {
         dispatch(updateDeckAmount())
         break;
       case "END_GAME":
+        let endgame_msg = ''
+        for (let nick in payload) {
+          const endgame_role = payload[nick]
+          let endgame_stringrole
+          if (endgame_role === 0) endgame_stringrole = "Order of the Phoenix"
+          if (endgame_role === 1) endgame_stringrole = "Death Eater"
+          if (endgame_role === 2) endgame_stringrole = "Voldemort"
+          dispatch(setPlayerRole(nick,payload[nick]))
+          endgame_msg = endgame_msg + ` (${nick} : ${endgame_stringrole})`
+        }
+        dispatch(logAction(endgame_msg))
         break;
       case "REQUEST_SPELL":
         switch (payload) { 
@@ -172,6 +187,18 @@ export const processSocketMessage = jsonMsg => {
 
       case "CHAT":
         dispatch(logAction(payload))
+        break;
+
+      case "EXPELIARMUS_NOTICE":
+        dispatch(logAction("Director launched Expelliarmus!"))
+        
+        if (is_current_player_minister) dispatch(makeExpelliarmusAvailable())
+        break;
+
+      case "EXPELIARMUS_REJECT_NOTICE":
+        //{ "TYPE": "EXPELIARMUS_REJECT_NOTICE", "PAYLOAD": director_nick }
+        dispatch(logAction("Director launched Expelliarmus!"))
+        if (is_current_player_minister) dispatch(makeExpelliarmusAvailable())
         break;
   
       default:
