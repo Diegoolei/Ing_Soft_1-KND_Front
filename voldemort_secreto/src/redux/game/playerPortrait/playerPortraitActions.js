@@ -1,4 +1,3 @@
-import store from '../../store'
 import { CGL_PORTRAIT_ADD_PLAYER, CGL_PORTRAIT_SET_AMOUNT } from './playerPortraitTypes'
 
 export const setAmountPlayers = amount => {

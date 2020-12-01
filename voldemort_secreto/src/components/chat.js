@@ -12,7 +12,7 @@ function Chat() {
   const scrollDown = () => {
     const objDiv = document.querySelectorAll('#chat_history')
     const fontSize = 30  // Make it twice as big as the actual font size
-    const scroll_top = objDiv[0].scrollTop
+    const scroll_top = objDiv[0].scrollTop //!FIXME
     const client_height = objDiv[0].clientHeight
     const scroll_height = objDiv[0].scrollHeight
     // console.log(`Scroll top: ${scroll_top}. Client Height: ${client_height}. Font size: ${fontSize}`)

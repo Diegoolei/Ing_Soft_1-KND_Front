@@ -1,9 +1,9 @@
 import store from '../store'
 import { setCandidates } from './selectDirector/selectDirectorActions'
-// import { activateShowResults } from '../game/votationResults/votationResultsActions'
 import { wsConsumeMessage } from '../reduxIndex'
 import { saveDCardOptions } from '../game/discardCard/discardCardActions'
 import { setCrucioOptions } from '../game/crucio/crucioActions'
+import { setVictimCandidatesToAvadaKedavra } from '../game/avadaKedavra/avadaKedavraActions'
 
 import {
   playerJoinedLobby,
@@ -28,7 +28,8 @@ import {
   makeCrucioAvailable, 
   enableDiscardCard,
   makeSelectDirectorAvailable,
-  makeExpelliarmusAvailable
+  makeExpelliarmusAvailable,
+  makeAvadaKedavraAvailable
 } from './activeApps/activeAppsActions'
 
 export const processSocketMessage = jsonMsg => {
@@ -173,6 +174,17 @@ export const processSocketMessage = jsonMsg => {
         switch (payload) { 
           case "ADIVINATION":
             dispatch(spellProphecy())
+            break;
+          
+          case "AVADA_KEDAVRA":
+            let possible_victims = []
+            for (let nick in game.player_array) {
+              const ak_alive = game.player_array[nick].is_alive
+              const ak_is_current_player = nick === game.player_nick
+              if (ak_alive && !ak_is_current_player) possible_victims.push(nick)
+            }
+            dispatch(setVictimCandidatesToAvadaKedavra(possible_victims))
+            dispatch(makeAvadaKedavraAvailable())
             break;
           
           default:

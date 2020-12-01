@@ -77,7 +77,8 @@
   box-sizing: border-box;
   float:left;  
   width:75%; 
-  background-image: url("../metaMedia/paper_background.png");
+  /*voldemort_secreto/src/metaMedia/Wallpalper/fondo_lobby.jpg*/
+  background-image: url("../metaMedia/Wallpalper/fondo_lobby.jpg");
   background-repeat: no-repeat;
   background-size: 100% 120%;
   /* background-color: #180e0e; */

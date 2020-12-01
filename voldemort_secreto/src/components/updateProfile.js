@@ -6,7 +6,6 @@ import axios from 'axios'
 import {BASE_URL} from '../redux/API_Types'
 
 function UpdateUserProfile() {
-    //const sessionState = useSelector(state => state.session)
     const dispatch = useDispatch()
     const token = useSelector(state => state.session.authToken)
     const [userId, setUser_id] = useState('')

@@ -14,6 +14,7 @@ import DiscardCard from './gameDiscardCard'
 import SelectDirector from './selectDirector'
 import Vote from './gameVote'
 import Expelliarmus from './gameExpelliarmus'
+import AvadaKedavra from './avadaKedavra'
 
 function Game() {
   const dispatch = useDispatch()
@@ -101,22 +102,24 @@ function Game() {
           <div className="ElectionCounter-container"><ElectionCounter/></div>
           <Portraits/>
         </div>        
-        {/* <button className="button-votation-red" onClick={() => vote()}>Vote</button> */}
       </div>
     )
   }
 
+  
   return (
-    <div>
+    //! FIXME
+    <header>
       <div className="Game-header"><Header/></div>
       <div className="Game-container"><MainGame/></div>
       <div className="Chat-container"><Chat/></div>
-      { activeApps.is_crucio_active ? <Crucio/> : null }
-      { activeApps.is_discard_card_active ? <DiscardCard/> : null }
-      { activeApps.is_select_director_active ? <SelectDirector/> : null}
-      { activeApps.is_vote_active ? <Vote/> : null }
-      { activeApps.is_expelliarmus_active ? <Expelliarmus/> : null}
-    </div>
+      { activeApps.is_crucio_active               ? <Crucio/>           : null }
+      { activeApps.is_discard_card_active         ? <DiscardCard/>      : null }
+      { activeApps.is_select_director_active      ? <SelectDirector/>   : null }
+      { activeApps.is_vote_active                 ? <Vote/>             : null }
+      { activeApps.is_expelliarmus_active         ? <Expelliarmus/>     : null }
+      { activeApps.is_avada_kedavra_active        ? <AvadaKedavra/>     : null }
+    </header>
   )
 }
 

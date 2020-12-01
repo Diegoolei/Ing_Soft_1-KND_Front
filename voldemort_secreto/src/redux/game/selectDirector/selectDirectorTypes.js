@@ -1,5 +1,4 @@
 
-// Implementations on construction
 // CGL == Current Game Lobby
 // SD == Select Director
 // Actions

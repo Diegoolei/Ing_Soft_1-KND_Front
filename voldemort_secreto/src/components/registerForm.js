@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-// import nimbus from '../metaMedia/nimbus.svg'
 import { FIRST_SCREEN_PAGE_COMPONENT, LOGIN_COMPONENT } from '../redux/componentController/componentControllerTypes'
 import { setUserinfo, setEmail, register, resetResponse, changeScreen } from '../redux/reduxIndex'
 
@@ -96,7 +95,6 @@ function LoginForm () {
   return (
     <header className="App-header">
       <div className="App-div">
-        {/* <img src={nimbus} className="App-logo" alt="logo" /> */}
         <p className="title-first-screen">Register</p>
         {registerForm()}
       </div>

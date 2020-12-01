@@ -58,4 +58,4 @@ export const confirmVictimToAvadaKedavra = victim_number => {
           console.log("-Response :" + JSON.stringify(errorMsg))
         })
     }  
-}
+}      

@@ -33,7 +33,6 @@ export const selectDirector = candidate_nick => {
   }
 }
 
-/* {PRIVATE} PlayerNumber{ player_number: int } */
 export const confirmCandidate = player_number => {
   const state = store.getState()
   const token = state.session.authToken

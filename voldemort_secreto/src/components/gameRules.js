@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { FIRST_SCREEN_PAGE_COMPONENT, LOGIN_COMPONENT, REGISTER_COMPONENT } from '../redux/componentController/componentControllerTypes'
-import { resetResponse, changeScreen } from '../redux/reduxIndex'
+import { changeScreen } from '../redux/reduxIndex'
 import internet from '../metaMedia/interface/internet.svg'
+import sing_in from '../metaMedia/interface/sign-in.svg'
+import log_in from '../metaMedia/interface/log-in.svg'
 
 function Rules(){
-    const sessionState = useSelector(state => state.session)
     const dispatch = useDispatch()
 
     const switchToHome = () => {
         dispatch(changeScreen(FIRST_SCREEN_PAGE_COMPONENT))
     }
+
+    const switchToRegister = () => {
+        dispatch(changeScreen(REGISTER_COMPONENT))
+    }
+
+    const switchLoginForm = () => {
+        dispatch(changeScreen(LOGIN_COMPONENT))
+    }
+     
     
     return(
         <header className="App-header">
@@ -18,7 +28,15 @@ function Rules(){
                 <div className="icon-bar-first">
                     <button className="button_nav_bar" onClick={switchToHome}>
                         <img src={internet} className="icon-2" alt="logo" /><br/>
-                        <h7 className="white">Home</h7>
+                        <h5 className="white">Home</h5>
+                    </button>
+                    <button className="button_nav_bar" onClick={switchToRegister}>
+                        <img src={sing_in} className="icon-2" alt="logo" /><br/>
+                        <h5 className="white">Register</h5>
+                    </button>
+                    <button className="button_nav_bar" onClick={switchLoginForm}>
+                        <img src={log_in} className="icon-2" alt="logo" /><br/>
+                        <h5 className="white">Login</h5>
                     </button>
                 </div>
                 <h1 className="title-first-screen">Rules game</h1>
