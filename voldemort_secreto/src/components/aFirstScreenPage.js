@@ -82,11 +82,11 @@ function AppFirstScreen(){
           {/* <button className="button" onClick={PlayMusic} >Play</button>
           <button className="button" onClick={PauseMusic}>Pause</button> */}
         </div>
-        <button className="button" onClick={() => skipToGame(1)}>Skip to Game 1</button>
+        {/* <button className="button" onClick={() => skipToGame(1)}>Skip to Game 1</button>
         <button className="button" onClick={() => skipToGame(2)}>Skip to Game 2</button>
         <button className="button" onClick={() => skipToGame(3)}>Skip to Game 3</button>
         <button className="button" onClick={() => skipToGame(4)}>Skip to Game 4</button>
-        <button className="button" onClick={() => skipToGame(5)}>Skip to Game 5</button>
+        <button className="button" onClick={() => skipToGame(5)}>Skip to Game 5</button> */}
       </div>
       <footer>
         <div className="App-div-footer">

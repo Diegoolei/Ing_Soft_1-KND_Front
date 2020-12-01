@@ -113,7 +113,7 @@ return (
             <p>
             <br/>
                 <input placeholder='New Username' name='setusername' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
-                <input placeholder='New Photo' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input>
+                {/* <input placeholder='New Photo' name='setuserphoto' type='text' onBlur={takeInput} onClick={takeInput} onChange={takeInput}></input> */}
                 <button className="button-shadow-blue" onClick={ChangeUsername}>Update current data</button>        
             <br/>
             

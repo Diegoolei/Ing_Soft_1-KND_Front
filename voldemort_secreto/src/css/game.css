@@ -77,10 +77,10 @@
   box-sizing: border-box;
   float:left;  
   width:75%; 
-  /* background-image: url("../metaMedia/paper_background.png"); */
-  /* background-repeat: no-repeat;
-  background-size: 100% 120%; */
-  background-color: #180e0e;
+  background-image: url("../metaMedia/paper_background.png");
+  background-repeat: no-repeat;
+  background-size: 100% 120%;
+  /* background-color: #180e0e; */
   background-position: 10%;
   height:95vh;
   color: rgb(0, 0, 0);
