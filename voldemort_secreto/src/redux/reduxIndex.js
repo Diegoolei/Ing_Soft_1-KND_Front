@@ -40,9 +40,24 @@ export {
 export {
   activateChangeNick,
   deactivateChangeNick,
+  makeSelectDirectorAvailable,
+  makeSelectDirectorUnavailable,
+  activateCandidateSelection,
+  deactivateCandidateSelection,
+  makeCrucioAvailable,
+  makeCrucioUnavailable,
   activateCrucio,
-  deactivateCrucio
+  deactivateCrucio,
+  activateAvadaKedavra,
+  deactivateAvadaKedavra
 } from './game/activeApps/activeAppsActions'
+
+export {
+  resetCandidates,
+  setCandidates,
+  selectDirector,
+  confirmCandidate
+} from './game/selectDirector/selectDirectorActions'
 
 export {
   activateShowResults,
@@ -55,3 +70,10 @@ export {
   confirmCrucioSelection,
   resetCrucio
 } from './game/crucio/crucioActions'
+
+export {
+  resetAvadaKedavra,
+  setVictimCandidatesToAvadaKedavra,
+  selectVictimToAvadaKedavra,
+  confirmVictimToAvadaKedavra
+} from './game/avadaKedavra/avadaKedavraActions'

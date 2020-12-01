@@ -11,7 +11,7 @@ import {
 } from './gameActions'
 
 import { setCandidates } from './selectDirector/selectDirectorActions'
-import { activateCandidateSelection, makeCrucioAvailable } from './activeApps/activeAppsActions'
+import { makeSelectDirectorAvailable, makeCrucioAvailable } from './activeApps/activeAppsActions'
 import { setCrucioOptions } from './crucio/crucioActions'
 
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
@@ -47,14 +47,16 @@ export const processSocketMessage = jsonMsg => {
   
       case "START_GAME":
         dispatch(joinGame(payload))
+        dispatch(logAction("The Game has started"))
         break;
   
       case "NEW_MINISTER":
+        dispatch(logAction(`${payload} is now Minister of Magic`))
         break;
       
       case "REQUEST_CANDIDATE":
         dispatch(setCandidates(payload))
-        dispatch(activateCandidateSelection())
+        dispatch(makeSelectDirectorAvailable())
         break;
 
       case "REQUEST_VOTE":
@@ -98,6 +100,7 @@ export const processSocketMessage = jsonMsg => {
       case "REQUEST_CRUCIO":
         dispatch(setCrucioOptions(payload))
         dispatch(makeCrucioAvailable())
+        break;
 
       case "ADIVINATION_NOTICE":
         break;

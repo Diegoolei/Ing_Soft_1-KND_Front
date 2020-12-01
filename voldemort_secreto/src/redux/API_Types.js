@@ -22,6 +22,8 @@ export const API_ENDPOINT_LOBBY = '/lobby/'
 export const API_ENDPOINT_GAME = '/games/'
 export const API_ENDPOINT_SELECT_DIRECTOR = '/select_director/'
 export const API_ENDPOINT_VOTE = '/select_director/vote'
+export const API_ENDPOINT_SPELL = '/spell'
+export const API_ENDPOINT_AVADA_KEDAVRA = '/avada_kedavra'
 export const API_ENDPOINT_CRUCIO = '/spell/crucio'
 
 //FORMS
