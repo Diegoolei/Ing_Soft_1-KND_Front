@@ -8,6 +8,7 @@ import activeAppsReducer from './game/activeApps/activeAppsReducer'
 import selectDirectorReducer from './game/selectDirector/selectDirectorReducer'
 import votationResultsReducer from './game/votationResults/votationResultsReducer'
 import crucioReducer from './game/crucio/crucioReducer'
+import avadaKedavraReducer from './game/selectDirector/selectDirectorReducer'
 import playerPortraitReducer from './game/playerPortrait/playerPortraitReducer'
 import discardCardReducer from './game/discardCard/discardCardReducer'
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers ({
   select_director: selectDirectorReducer,
   votation_results: votationResultsReducer,
   crucio: crucioReducer,
+  avada_kedavra: avadaKedavraReducer,
   player_portraits: playerPortraitReducer,
   discard_card: discardCardReducer
 })

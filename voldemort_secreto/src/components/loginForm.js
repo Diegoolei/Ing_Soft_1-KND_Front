@@ -115,8 +115,6 @@ function PauseMusic(){
       <div className="App-div-login">
         {/* <img src={nimbus} className="App-logo" alt="logo" /> */}
         <h1 className="title-first-screen">Login</h1>
-        {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
-
         {loginForm()}
         <button className="button" onClick={PlayMusic} >Play</button>
         <button className="button" onClick={PauseMusic}>Pause</button><br/>
