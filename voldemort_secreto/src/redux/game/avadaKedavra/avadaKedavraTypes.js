@@ -1,5 +1,4 @@
 
-// Implementations on construction
 // CGL == Current Game Lobby
 // Actions
 export const CGL_AVADA_KEDAVRA_RESET                     = "CGL_AVADA_KEDAVRA_RESET"
