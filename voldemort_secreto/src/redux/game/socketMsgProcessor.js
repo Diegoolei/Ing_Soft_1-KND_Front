@@ -1,3 +1,4 @@
+import store from '../store'
 import { setCandidates } from './selectDirector/selectDirectorActions'
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
 import { wsConsumeMessage } from '../reduxIndex'
@@ -13,7 +14,12 @@ import {
   closeLobby,
   proclaimPhoenix,
   proclaimDeathEater,
-  updateDeckAmount
+  updateDeckAmount,
+  setCurrentCandidate,
+  setDirector,
+  setMinister,
+  setElectionCounter,
+  spellProphecy
 } from './gameActions'
 
 import { 
@@ -22,9 +28,12 @@ import {
   enableDiscardCard,
   makeSelectDirectorAvailable
 } from './activeApps/activeAppsActions'
+import { useSelector } from 'react-redux'
 
 export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
+  const state = store.getState()
+  const game = state.game
   const type = jsonMsg.TYPE
   const payload = jsonMsg.PAYLOAD
   return dispatch => {
@@ -56,7 +65,9 @@ export const processSocketMessage = jsonMsg => {
         break;
   
       case "NEW_MINISTER":
+        const new_minister_number = game.player_array[payload].player_number
         dispatch(logAction(`${payload} is now Minister of Magic`))
+        dispatch(setMinister(new_minister_number))
         break;
       
       case "REQUEST_CANDIDATE":
@@ -65,20 +76,56 @@ export const processSocketMessage = jsonMsg => {
         break;
 
       case "REQUEST_VOTE":
+        dispatch(setDirector(-1))
         dispatch(enableVote(payload))
-        dispatch(logAction("Vote: " + JSON.stringify(payload)))
+        const candidate_player_number = game.player_array[payload].player_number
+        dispatch(setCurrentCandidate(candidate_player_number))
+        dispatch(logAction(`Minister nominated ${payload} for director. It's time to vote.`))
         break;
+
       case "ELECTION_RESULT":
-        dispatch(activateShowResults(payload))
+        let votecounter = 0
+        for (let nick in payload) {
+          const vote = payload[nick]
+          const votestring = vote ? "Lumos" : "Nox"
+          votecounter += (vote ? 1 : -1)
+          dispatch(logAction(`${nick} voted ${votestring}`))
+        }
+        if(votecounter > 0) {
+          dispatch(setDirector(game.current_candidate))
+          dispatch(setCurrentCandidate(-1))
+          dispatch(logAction("Election passed"))
+          dispatch(setElectionCounter(0))
+        } else {
+          const election_counter = game.election_counter
+          dispatch(setElectionCounter(election_counter + 1))
+          dispatch(setCurrentCandidate(-1))
+        }
         break;
+
       case "MINISTER_DISCARD":
         dispatch(saveDCardOptions(payload))
         dispatch(enableDiscardCard())
         dispatch(logAction("You have to discard a card"))
         break;
-      case "CAOS_PROCLAMATION":
+
+      case "CHAOS":
+        dispatch(setElectionCounter(0))
+        switch (payload) {
+          case 0:
+            dispatch(proclaimPhoenix())
+            break;
+          case 1:
+            dispatch(proclaimDeathEater())
+            break;
+          default:
+            console.log("Fatal error. Payload of PROCLAMATION in socket proccesor is wrong")     
+            console.log(payload, typeof payload)
+            break;
+        }        
         dispatch(updateDeckAmount())
         break;
+
       case "DIRECTOR_DISCARD":
         dispatch(saveDCardOptions(payload))
         dispatch(enableDiscardCard())
@@ -102,11 +149,16 @@ export const processSocketMessage = jsonMsg => {
       case "END_GAME":
         break;
       case "REQUEST_SPELL":
-        switch (payload) {        
+        switch (payload) { 
+          case "ADIVINATION":
+            dispatch(spellProphecy())
+            break;
+          
           default:
             console.log("Unknown spell has been requested")
             break;
         }
+        break;
 
       case "REQUEST_CRUCIO":
         dispatch(setCrucioOptions(payload))

@@ -50,28 +50,28 @@ function AppFirstScreen(){
         </div>
       {/* </div> */}
       <div className="App-div-first-screen">
-        <body className="body-first-screen">
+        <div className="body-first-screen">
           <div className="icon-bar-first">
             <img src={hp_logo} className="Logo-hp" alt="logo" />
             <button className="button_nav_bar" onClick={switchToHome}>
               <img src={internet} className="icon-2" alt="logo" /><br/>
-              <h7 className="white">Home</h7>
+              <h5 className="white">Home</h5>
             </button>
             <button className="button_nav_bar" onClick={switchToRegister}>
               <img src={sing_in} className="icon-approve" alt="logo" /><br/>
-              <h7 className="white">Register</h7>
+              <h5 className="white">Register</h5>
             </button>
             <button className="button_nav_bar" onClick={switchLoginForm}>
               <img src={log_in} className="icon-2" alt="logo" /><br/>
-              <h7 className="white">Login</h7>
+              <h5 className="white">Login</h5>
             </button>
             <button className="button_nav_bar" onClick={switchToRules}>
               <img src={regulation} className="icon-approve" alt="logo" /><br/>
-              <h7 className="white">Rules</h7>
+              <h5 className="white">Rules</h5>
             </button>
             <button className="button_nav_bar" onClick={switchToAbout}>
               <img src={doubts_button} className="icon-2" alt="logo" /><br/>
-              <h7 className="white">About</h7>
+              <h5 className="white">About</h5>
             </button>
             <img src={hp_logo} className="Logo-hp" alt="logo" />
           </div>
@@ -81,7 +81,7 @@ function AppFirstScreen(){
           {/* <button className="button" onClick={skipToGame}>Skip to Game</button> */}
           {/* <button className="button" onClick={PlayMusic} >Play</button>
           <button className="button" onClick={PauseMusic}>Pause</button> */}
-        </body>
+        </div>
         <button className="button" onClick={() => skipToGame(1)}>Skip to Game 1</button>
         <button className="button" onClick={() => skipToGame(2)}>Skip to Game 2</button>
         <button className="button" onClick={() => skipToGame(3)}>Skip to Game 3</button>

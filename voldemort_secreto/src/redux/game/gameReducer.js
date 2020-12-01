@@ -8,6 +8,10 @@ import {
   CGL_CLEAN_STATE,
   CGL_SET_PLAYER_ROLE,
   CGL_PROCLAIM_DEATH_EATER,
+  CGL_SET_ELECTION_COUNTER,
+  CGL_SET_DIRECTOR,
+  CGL_SET_MINISTER,
+  CGL_SET_CURRENT_CANDIDATE,
   CGL_UPDATE_NICK,
   CGL_START_WAITING_FOR_USER,
   CGL_SET_DECK_AMOUNT,
@@ -29,6 +33,7 @@ const initialState = {
   chat_blocked: false,
   current_minister: -1,
   current_director: -1,
+  current_candidate: -1,
   player_array: null,
   amount_players: 0,
   election_counter: 0,
@@ -188,6 +193,26 @@ const gameReducer = (state = initialState, action) => {
           role: action.payload.role
         }
       }
+    }
+
+    case CGL_SET_DIRECTOR: return {
+      ...state,
+      current_director: action.payload
+    }
+
+    case CGL_SET_MINISTER: return {
+      ...state,
+      current_minister: action.payload
+    }
+
+    case CGL_SET_ELECTION_COUNTER: return {
+      ...state,
+      election_counter: action.payload
+    }
+
+    case CGL_SET_CURRENT_CANDIDATE: return {
+      ...state,
+      current_candidate: action.payload
     }
 
     case CGL_START_WAITING_FOR_USER: return {

@@ -11,9 +11,13 @@ import {
   CGL_SET_DECK_AMOUNT,
   CGL_UPDATE_NICK,
   CGL_PROCLAIM_PHOENIX,
+  CGL_SET_CURRENT_CANDIDATE,
   CGL_PROCLAIM_DEATH_EATER,
   CGL_START_WAITING_FOR_USER,
+  CGL_SET_DIRECTOR,
+  CGL_SET_MINISTER,
   CGL_USER_DONE_WITH_ACTION,
+  CGL_SET_ELECTION_COUNTER,
   CGL_SET_PLAYER_ROLE,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
@@ -154,6 +158,34 @@ export const setPlayerRole = (nick, role) => {
       nick: nick,
       role: role
     }
+  }
+}
+
+export const setDirector = player_number => {
+  return {
+    type: CGL_SET_DIRECTOR,
+    payload: player_number
+  }
+}
+
+export const setMinister = player_number => {
+  return {
+    type: CGL_SET_MINISTER,
+    payload: player_number
+  }
+}
+
+export const setElectionCounter = value => {
+  return {
+    type: CGL_SET_ELECTION_COUNTER,
+    payload: value
+  }
+}
+
+export const setCurrentCandidate = player_number => {
+  return {
+    type: CGL_SET_CURRENT_CANDIDATE,
+    payload: player_number
   }
 }
 
@@ -383,12 +415,44 @@ export const joinGame = game_id => {
   }
 }
 
+
+export const spellProphecy = () => {
+
+  const cardString = card => card===0 ? "Phoenix Proclamation" : "Death Eater Proclamation"
+
+  const state = store.getState()
+  const token = state.session.authToken
+  const uri = BASE_URL+`/games/${state.game.game_id}/spell/prophecy`
+  return dispatch => {
+    axios.get(uri,
+      {
+        headers: { 'Authorization': token.token_type + " " + token.access_token }
+      }
+    ).then(response => {
+      const c1 = response.data.prophecy_card_0
+      const c2 = response.data.prophecy_card_1
+      const c3 = response.data.prophecy_card_2
+      const prophecy_cards = `Card 1: ${cardString(c1)} - Card 2: ${cardString(c2)} - Card 3: ${cardString(c3)}`
+      dispatch(logAction(prophecy_cards))
+      console.log("-Prophecy response:", response.data)
+    }).catch(error => {
+      let errorMsg
+      try {
+        errorMsg = error.response.data.detail
+      } catch (er) {
+        errorMsg = "Something went wrong:: " + er
+      }
+      console.log("-Response :" + JSON.stringify(errorMsg))
+    })
+  }
+}
+
 export const voteInGame = (vote_recive, game_id) => {
   const state = store.getState()
   const token = state.session.authToken
   const body = { "vote" : vote_recive }
   const uri = BASE_URL+API_ENDPOINT_GAME_INFO+String(game_id)+API_ENDPOINT_VOTE
-  console.log(uri)
+
   return dispatch => {
     axios.put(uri, body,
       {
