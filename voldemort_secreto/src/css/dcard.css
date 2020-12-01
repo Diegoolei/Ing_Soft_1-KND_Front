@@ -19,7 +19,7 @@
   width: 100vw;
   z-index: 1;
 }
-
+ /*
 .DCard-rules {
   color: white;
   float: center;
@@ -28,6 +28,7 @@
   font-weight: bold;
   font-family: "Times New Roman", Times, serif;
 }
+*/
 
 .DCard-options {
   display: inline-block;
@@ -36,7 +37,7 @@
 .DCard-optionContainer {
   box-sizing: border-box;
   position: relative;
-  top: 5%;
+  top: 2%;
   max-height: 60%;
   max-width: 100%;
 }
@@ -57,7 +58,7 @@
   box-sizing: border-box;
   background-color: rgb(19, 4, 11);
   width: 93%;
-  color: white;
+  color: rgb(32, 18, 18);
   border-radius: 5%;
   border: none;
   padding: 1%;
@@ -66,7 +67,7 @@
 
 .DCard-img {
   box-sizing: border-box;
-  background-color: white;
+  background-color: rgb(26, 14, 14);
   width: 100%;
   padding: 0.5%;
   border-radius: 5%;

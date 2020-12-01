@@ -126,7 +126,7 @@ function DiscardCard() {
   return (
     <div className="Dcard-Popup-background">
       <div className="Dcard-Popup">
-        <div className="DCard-rules">
+        <div className="title-first-screen-alt">
           Select one card to discard
         </div>
         <div className="DCard-optionContainer"><RenderOptions/></div>

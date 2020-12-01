@@ -1,0 +1,52 @@
+
+.Vote-button {
+  box-sizing: border-box;
+  background-color:  #555555;
+  color: white;
+  cursor: pointer;
+  width: 85%;
+  border-radius: 5%;
+  border: none;
+  padding: 1%;
+  margin: 3%;
+}
+
+
+.button {
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #555555; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-bottom: 15px;
+}
+
+.Vote-Popup {
+  box-sizing: border-box;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 10%;
+  top: 10%;
+  height: 50vh;
+  width: 60vw;
+  z-index: 1;
+  border-radius: 4%;
+}
+
+.Vote-Popup-background {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0%;
+  top: 0%;
+  height: 50vh;
+  width: 60vw;
+  z-index: 1;
+  border-radius: 4%;
+}

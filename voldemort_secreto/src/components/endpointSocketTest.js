@@ -18,9 +18,9 @@ function TestSocket() {
   const votes = {"kndilta": false, "kndilta1": true, "kndilta2": true, "kndilta3": true, "kndilta4": true}
   // const echoMsg = { "TYPE" : "ELECTION_RESULT", "PAYLOAD": votes }
   // const echoMsg = { "TYPE" : "PROCLAMATION", "PAYLOAD": 0}
-  const echoMsg = { "TYPE" : "MINISTER_DISCARD", "PAYLOAD": [ 0,1,1 ]}
+  // const echoMsg = { "TYPE" : "MINISTER_DISCARD", "PAYLOAD": [ 0,1,1 ]}
   // const echoMsg = { "TYPE" : "REQUEST_CRUCIO", "PAYLOAD": 2}
-  // const echoMsg = { "TYPE" : "REQUEST_CANDIDATE", "PAYLOAD" : ["user2", "user3", "user5"] }
+  const echoMsg = { "TYPE" : "REQUEST_CANDIDATE", "PAYLOAD" : ["Carol", "Banana", "Dexter"] }
 
   if (unreadMsg.length !== 0) {
     const jsonmsg = unreadMsg[0]

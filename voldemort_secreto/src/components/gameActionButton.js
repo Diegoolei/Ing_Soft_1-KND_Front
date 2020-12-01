@@ -1,5 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
-import crucioIcon from '../metaMedia/crucio_icon.png'
+import crucioIcon from '../metaMedia/ActionButton/crucio_icon.png'
+import hat2 from '../metaMedia/ActionButton/hat2.png'
+import discardCard from '../metaMedia/ActionButton/discardCard.png'
+import voto from '../metaMedia/ActionButton/voto.svg' 
 import { activateVote } from '../redux/game/activeApps/activeAppsActions'
 import {
   activateCrucio,
@@ -41,7 +44,7 @@ function ActionButton() {
     case 'SELECT_DIRECTOR':
       buttonClick = () => dispatch(activateCandidateSelection())
       alt         = 'Select Director'
-      src         = crucioIcon
+      src         = hat2
       break;
       
     case 'DISCARD_CARD':
@@ -52,13 +55,13 @@ function ActionButton() {
         buttonClick = () => dispatch(activateDiscardCardDirector())
       }
       alt         = "Discard Card"
-      src         = crucioIcon
+      src         = discardCard
       break;
     
     case 'VOTE':
       buttonClick = () => dispatch(activateVote())
       alt         = 'Vote'
-      src         = crucioIcon
+      src         = voto
 
     default:
       break;
