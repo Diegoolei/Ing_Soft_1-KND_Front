@@ -13,8 +13,6 @@ import {
   APPS_DISABLE_DISCARD_CARD,
   APPS_MAKE_CRUCIO_AVAILABLE,
   APPS_MAKE_CRUCIO_UNAVAILABLE,
-  APPS_MAKE_SELECT_DIRECTOR_AVAILABLE,
-  APPS_MAKE_SELECT_DIRECTOR_UNAVAILABLE,
   APPS_VOTE_AVAILABLE,
   APPS_VOTE_UNAVAILABLE,
   APPS_ACTIVATE_VOTE,
@@ -24,7 +22,7 @@ import {
   APPS_MAKE_AVADA_KEDAVRA_AVAILABLE,
   APPS_MAKE_AVADA_KEDAVRA_UNAVAILABLE,
   APPS_ACTIVATE_AVADA_KEDAVRA,
-  APPS_DEACTIVATE_AVADA_KEDAVRA,,
+  APPS_DEACTIVATE_AVADA_KEDAVRA,
   APPS_ACTIVATE_EXPELLIARMUS,
   APPS_DEACTIVE_EXPELLIARMUS,
   APPS_MAKE_EXPELLIARMUS_AVAILABLE,
@@ -42,7 +40,7 @@ import {
     is_crucio_available: false,
     is_crucio_active: false,
     is_avada_kedavra_available: false,
-    is_avada_kedavra_active: false
+    is_avada_kedavra_active: false,
     is_expelliarmus_available: false,
     is_expelliarmus_active: false
   }
