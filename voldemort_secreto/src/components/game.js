@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { voteInGame } from '../redux/reduxIndex'
-import { confirmAlert } from 'react-confirm-alert'
-import 'react-confirm-alert/src/react-confirm-alert.css'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
 import Header from './gameHeader'
 import Chat from './chat'
@@ -15,6 +12,7 @@ import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
 import DiscardCard from './gameDiscardCard'
 import SelectDirector from './selectDirector'
+import Vote from './gameVote'
 
 function Game() {
   const dispatch = useDispatch()
@@ -29,7 +27,6 @@ function Game() {
       <div className="Div-invisible">
         <br /><button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
         {showingSecretInfo ? secretInfo() : null}
-        <button className="button" onClick={() => vote()}>Vote</button>
         <br/><br/>Current Minister: {currentMinisterString()}
         <br/>{currentDirectorString()}
         <br/>Order Proclamations: {gameState.proclaimed_phoenix}
@@ -46,21 +43,6 @@ function Game() {
     }
   })
 
-  function vote() {
-    confirmAlert({
-      title: 'It is time to Vote!',
-      message: 'Vote Lumos to accept government or Nox to reject it',
-      buttons: [{
-        label: 'Lumos',
-        onClick: () => dispatch(voteInGame(true, gameState.game_id))
-      },
-      {
-        label: 'Nox',
-        onClick: () => dispatch(voteInGame(false, gameState.game_id))
-      }
-      ]
-    })
-  }
 
   function getStringRole(role) {
     switch (role) {
@@ -131,6 +113,7 @@ function Game() {
       { activeApps.is_crucio_active ? <Crucio/> : null }
       { activeApps.is_discard_card_active ? <DiscardCard/> : null }
       { activeApps.is_select_director_active ? <SelectDirector/> : null}
+      { activeApps.is_vote_active ? <Vote/> : null }
     </div>
   )
 }
