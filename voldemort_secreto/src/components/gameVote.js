@@ -39,8 +39,8 @@ function Vote() {
   return (
     <div className="Popup-background">
       <div className="Popup">
-        <h2 className="title-first-screen">It is time to Vote!</h2>
-        <h5>Vote Lumos to accept government or Nox to reject it</h5>
+        <div className="title-first-screen-alt">It is time to Vote!</div>
+        <h5 className="white">Vote Lumos to accept government or Nox to reject it</h5>
         <button className="button" onClick={() => closeVote(true)}>Lumos</button>
         <button className="button" onClick={() => closeVote(false)}>Nox</button>
       </div>

@@ -1,6 +1,6 @@
 import store from '../store'
 import { setCandidates } from './selectDirector/selectDirectorActions'
-import { activateShowResults } from '../game/votationResults/votationResultsActions'
+// import { activateShowResults } from '../game/votationResults/votationResultsActions'
 import { wsConsumeMessage } from '../reduxIndex'
 import { saveDCardOptions } from '../game/discardCard/discardCardActions'
 import { setCrucioOptions } from '../game/crucio/crucioActions'
@@ -30,10 +30,8 @@ import {
   makeSelectDirectorAvailable,
   makeExpelliarmusAvailable
 } from './activeApps/activeAppsActions'
-import { useSelector } from 'react-redux'
 
 export const processSocketMessage = jsonMsg => {
-  const state = store.getState()
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
   const state = store.getState()
   const game = state.game
@@ -72,6 +70,7 @@ export const processSocketMessage = jsonMsg => {
         const new_minister_number = game.player_array[payload].player_number
         dispatch(logAction(`${payload} is now Minister of Magic`))
         dispatch(setMinister(new_minister_number))
+        dispatch(setDirector(-1))
         break;
       
       case "REQUEST_CANDIDATE":
@@ -80,7 +79,6 @@ export const processSocketMessage = jsonMsg => {
         break;
 
       case "REQUEST_VOTE":
-        dispatch(setDirector(-1))
         dispatch(enableVote(payload))
         const candidate_player_number = game.player_array[payload].player_number
         dispatch(setCurrentCandidate(candidate_player_number))
@@ -152,14 +150,22 @@ export const processSocketMessage = jsonMsg => {
         break;
       case "END_GAME":
         let endgame_msg = ''
-        for (let nick in payload) {
-          const endgame_role = payload[nick]
+        const roles = payload.PAYLOAD
+        const winner_string = payload.WINNER === 0 ? "Order of the Phoenix" : "Death Eaters"
+        if (payload.WINNER === 0) {
+          dispatch(proclaimPhoenix())
+        } else {
+          dispatch(proclaimDeathEater())
+        }
+        dispatch(logAction(`Winner: ${winner_string}`))
+        for (let nick in roles) {
+          const endgame_role = roles[nick]
           let endgame_stringrole
           if (endgame_role === 0) endgame_stringrole = "Order of the Phoenix"
           if (endgame_role === 1) endgame_stringrole = "Death Eater"
           if (endgame_role === 2) endgame_stringrole = "Voldemort"
-          dispatch(setPlayerRole(nick,payload[nick]))
-          endgame_msg = endgame_msg + ` (${nick} : ${endgame_stringrole})`
+          dispatch(setPlayerRole(nick,roles[nick]))
+          endgame_msg = endgame_msg + ` ${nick} : ${endgame_stringrole} `
         }
         dispatch(logAction(endgame_msg))
         break;
@@ -181,6 +187,7 @@ export const processSocketMessage = jsonMsg => {
         break;
 
       case "ADIVINATION_NOTICE":
+        dispatch(logAction(`Minister ${payload} reads the fate of the cards...`))
         break;
       case "AVADA_KEDAVRA":
         break;

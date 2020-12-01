@@ -11,6 +11,15 @@
   font-weight: lighter;
 }
 
+.title-first-screen-alt{
+  font-family: 'Gothic';
+  font-size: 100px;
+  color: rgb(242, 242, 242);
+  font-variant: normal;
+  font-weight: lighter;
+  padding-bottom: 1%;
+}
+
 .font-initial{
   font-weight: initial;
 }
