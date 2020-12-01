@@ -1,0 +1,4 @@
+
+export const CGL_DCARD_OPTIONS          = 'CGL_DCARD_OPTIONS'
+export const CGL_DCARD_RESET            = 'CGL_DCARD_RESET'
+export const CGL_DCARD_HIGHLIGHT_OPTION = 'CGL_DCARD_HIGHLIGHT_OPTION'

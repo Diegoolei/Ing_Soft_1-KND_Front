@@ -44,6 +44,12 @@ export {
   makeSelectDirectorUnavailable,
   activateCandidateSelection,
   deactivateCandidateSelection,
+  activateDiscardCardMinister,
+  deactivateDiscardCardMinister,
+  activateDiscardCardDirector,
+  deactivateDiscardCardDirector,
+  enableDiscardCard,
+  disableDiscardCard,
   makeCrucioAvailable,
   makeCrucioUnavailable,
   activateCrucio,
@@ -77,3 +83,10 @@ export {
   selectVictimToAvadaKedavra,
   confirmVictimToAvadaKedavra
 } from './game/avadaKedavra/avadaKedavraActions'
+
+ export {
+  highlightCardOption,
+  saveDCardOptions,
+  resetDiscardCard,
+  confirmDiscardCard
+} from './game/discardCard/discardCardActions'

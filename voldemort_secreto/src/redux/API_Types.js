@@ -25,6 +25,7 @@ export const API_ENDPOINT_VOTE = '/select_director/vote'
 export const API_ENDPOINT_SPELL = '/spell'
 export const API_ENDPOINT_AVADA_KEDAVRA = '/avada_kedavra'
 export const API_ENDPOINT_CRUCIO = '/spell/crucio'
+export const API_ENDPOINT_DISCARD_CARD = '/discard_card/'
 
 //FORMS
   // REGISTER BODY:

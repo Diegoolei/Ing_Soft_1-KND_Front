@@ -8,7 +8,7 @@ function Director() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.session.authToken)
   const game = useSelector(state => state.game)
-  const [playerNumber, setPlayer_number] = useState('')
+  const [playerNumber, setPlayer_number] = useState(null)
   const candidates = useSelector(state => state.select_director.candidates)
   console.log("Player number:", playerNumber)
 

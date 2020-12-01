@@ -10,6 +10,8 @@ import votationResultsReducer from './game/votationResults/votationResultsReduce
 import crucioReducer from './game/crucio/crucioReducer'
 import avadaKedavraReducer from './game/selectDirector/selectDirectorReducer'
 import playerPortraitReducer from './game/playerPortrait/playerPortraitReducer'
+import discardCardReducer from './game/discardCard/discardCardReducer'
+
 
 const rootReducer = combineReducers ({
   controller : componentControllerReducer,
@@ -22,7 +24,8 @@ const rootReducer = combineReducers ({
   votation_results: votationResultsReducer,
   crucio: crucioReducer,
   avada_kedavra: avadaKedavraReducer,
-  player_portraits: playerPortraitReducer
+  player_portraits: playerPortraitReducer,
+  discard_card: discardCardReducer
 })
 
 export default rootReducer

@@ -1,3 +1,8 @@
+import { setCandidates } from './selectDirector/selectDirectorActions'
+import { activateShowResults } from '../game/votationResults/votationResultsActions'
+import { wsConsumeMessage } from '../reduxIndex'
+import { saveDCardOptions } from '../game/discardCard/discardCardActions'
+
 import {
   playerJoinedLobby,
   playerLeftLobby,
@@ -10,13 +15,10 @@ import {
   proclaimDeathEater
 } from './gameActions'
 
-import { setCandidates } from './selectDirector/selectDirectorActions'
-import { makeSelectDirectorAvailable, makeCrucioAvailable } from './activeApps/activeAppsActions'
-import { setCrucioOptions } from './crucio/crucioActions'
-
-import { activateShowResults } from '../game/votationResults/votationResultsActions'
-
-import { wsConsumeMessage, updateDeckAmount } from '../reduxIndex'
+import { 
+  makeCrucioAvailable, 
+  enableDiscardCard
+} from './activeApps/activeAppsActions'
 
 export const processSocketMessage = jsonMsg => {
   console.log("Socket Processor got this message:  " + JSON.stringify(jsonMsg))
@@ -67,11 +69,17 @@ export const processSocketMessage = jsonMsg => {
         dispatch(activateShowResults(payload))
         break;
       case "MINISTER_DISCARD":
+        dispatch(saveDCardOptions(payload))
+        dispatch(enableDiscardCard())
+        dispatch(logAction("You have to discard a card"))
         break;
       case "CAOS_PROCLAMATION":
         dispatch(updateDeckAmount())
         break;
       case "DIRECTOR_DISCARD":
+        dispatch(saveDCardOptions(payload))
+        dispatch(enableDiscardCard())
+        dispatch(logAction("You have to discard a card"))
         break;
       case "PROCLAMATION":
         switch (payload) {
