@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import crucioIcon from '../metaMedia/crucio_icon.png'
+import { activateVote } from '../redux/game/activeApps/activeAppsActions'
 import {
-  activateCrucio, 
+  activateCrucio,
+  activateCandidateSelection,
   activateDiscardCardDirector,
   activateDiscardCardMinister
 } from '../redux/reduxIndex'
@@ -23,6 +25,7 @@ function ActionButton() {
   if (activeApps.is_crucio_available) chosenButton = 'CRUCIO'
   if (activeApps.is_discard_card_available) chosenButton = 'DISCARD_CARD'
   if (activeApps.is_select_director_available) chosenButton = 'SELECT_DIRECTOR'
+  if (activeApps.is_vote_available) chosenButton = 'VOTE'
 
   let buttonClick = () => null
   let alt = "empty button"
@@ -51,6 +54,11 @@ function ActionButton() {
       alt         = "Discard Card"
       src         = crucioIcon
       break;
+    
+    case 'VOTE':
+      buttonClick = () => dispatch(activateVote())
+      alt         = 'Vote'
+      src         = crucioIcon
 
     default:
       break;

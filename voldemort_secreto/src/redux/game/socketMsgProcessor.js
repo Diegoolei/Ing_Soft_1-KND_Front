@@ -2,6 +2,7 @@ import { setCandidates } from './selectDirector/selectDirectorActions'
 import { activateShowResults } from '../game/votationResults/votationResultsActions'
 import { wsConsumeMessage } from '../reduxIndex'
 import { saveDCardOptions } from '../game/discardCard/discardCardActions'
+import { setCrucioOptions } from '../game/crucio/crucioActions'
 
 import {
   playerJoinedLobby,
@@ -10,14 +11,16 @@ import {
   logAction,
   joinGame,
   closeLobby,
-  voteInGame,
   proclaimPhoenix,
-  proclaimDeathEater
+  proclaimDeathEater,
+  updateDeckAmount
 } from './gameActions'
 
 import { 
+  enableVote,
   makeCrucioAvailable, 
-  enableDiscardCard
+  enableDiscardCard,
+  makeSelectDirectorAvailable
 } from './activeApps/activeAppsActions'
 
 export const processSocketMessage = jsonMsg => {
@@ -62,7 +65,7 @@ export const processSocketMessage = jsonMsg => {
         break;
 
       case "REQUEST_VOTE":
-        dispatch(voteInGame(payload))
+        dispatch(enableVote(payload))
         dispatch(logAction("Vote: " + JSON.stringify(payload)))
         break;
       case "ELECTION_RESULT":

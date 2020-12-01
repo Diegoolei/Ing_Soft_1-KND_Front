@@ -29,8 +29,7 @@ import {
   API_ENDPOINT_START_GAME,
   API_ENDPOINT_GAME_INFO,
   API_ENDPOINT_WEBSOCKET,
-  API_ENDPOINT_VOTE,
-  API_ENDPOINT_DISCARD_CARD
+  API_ENDPOINT_VOTE
 } from '../API_Types'
 
 import { LOBBY_COMPONENT, GAME_COMPONENT, MAIN_MENU_COMPONENT } from '../componentController/componentControllerTypes'
@@ -380,11 +379,9 @@ export const joinGame = game_id => {
       } catch (er) {
         errorMsg = "Something went wrong:: " + er
       }
-      // console.log("-Response :" + JSON.stringify(errorMsg))
     })
   }
 }
-
 
 export const voteInGame = (vote_recive, game_id) => {
   const state = store.getState()

@@ -44,6 +44,8 @@ export {
   makeSelectDirectorUnavailable,
   activateCandidateSelection,
   deactivateCandidateSelection,
+  deactivateVote,
+  disableVote,
   activateDiscardCardMinister,
   deactivateDiscardCardMinister,
   activateDiscardCardDirector,

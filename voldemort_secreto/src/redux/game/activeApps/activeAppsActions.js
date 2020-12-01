@@ -93,6 +93,30 @@ export const deactivateDiscardCardDirector = () => {
   }
 }
 
+export const enableVote = () => {
+  return {
+    type: APPS_VOTE_AVAILABLE
+  }
+}
+
+export const disableVote = () => {
+  return {
+    type: APPS_VOTE_UNAVAILABLE
+  }
+}
+
+export const activateVote = () => {
+  return {
+    type: APPS_ACTIVATE_VOTE
+  }
+}
+
+export const deactivateVote = () => {
+  return {
+    type: APPS_DEACTIVATE_VOTE
+  }
+}
+
 export const makeCrucioAvailable = () => {
   return {
     type: APPS_MAKE_CRUCIO_AVAILABLE
