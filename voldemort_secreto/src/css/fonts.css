@@ -1,0 +1,31 @@
+@font-face{
+  font-family: 'Gothic';
+  src: url(../metaMedia/fonts/Sketch_Gothic_School.ttf);/*./metaMedia/fonts/Sketch_Gothic_School.ttf*/
+}
+
+.title-first-screen{
+  font-family: 'Gothic';
+  font-size: 100px;
+  color: rgb(12, 10, 10);
+  font-variant: normal;
+  font-weight: lighter;
+}
+
+.title-first-screen-alt{
+  font-family: 'Gothic';
+  font-size: 100px;
+  color: rgb(242, 242, 242);
+  font-variant: normal;
+  font-weight: lighter;
+  padding-bottom: 1%;
+}
+
+.font-initial{
+  font-weight: initial;
+}
+
+.footer-font-white{
+  font-size: small;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+}

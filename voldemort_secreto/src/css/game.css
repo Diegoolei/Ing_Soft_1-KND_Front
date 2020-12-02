@@ -1,0 +1,176 @@
+.Game-header {
+  background-color: #131010;
+  height:5vh;
+  margin: 0;
+}
+
+.Popup {
+  box-sizing: border-box;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 10%;
+  top: 10%;
+  height: 80vh;
+  width: 80vw;
+  z-index: 1;
+}
+
+.Popup-background {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0%;
+  top: 0%;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+}
+
+.Chat-container {
+  box-sizing: border-box;
+  float:right;  
+  width:25%;
+  height:95vh; 
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  padding: 0;
+  margin: 0;
+}
+
+.Lobby-chatcontainer {
+  box-sizing: border-box;
+  width:100%;
+  height:40vh; 
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  padding: 0;
+  margin: 0;
+}
+
+.Chat-history {
+  box-sizing: border-box;
+  color: rgb(14, 14, 14);
+  text-align: left;
+  font-size: small;  /* If you change this, change the const fontSize in chat */
+  text-indent: 2%;
+  background-color: #FFFFCC; 
+  width:100%;
+  height:90%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+  white-space: normal;
+  list-style-type: none;
+  padding: 1%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.Chat-input {
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width:100%;
+  height: 10%;
+}
+
+.Board-position  {
+  float:left;  
+  background:rgb(199, 186, 0); 
+  width:70%; 
+  height:100%; 
+}
+
+.Game-container {
+  box-sizing: border-box;
+  float:left;  
+  width:75%; 
+  /*voldemort_secreto/src/metaMedia/Wallpalper/fondo_lobby.jpg*/
+  background-image: url("../metaMedia/Wallpalper/fondo_lobby.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 120%;
+  /* background-color: #180e0e; */
+  background-position: 10%;
+  height:95vh;
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+}
+
+.Board-container {
+  box-sizing: border-box;
+  position: relative;
+  top: 23%;
+  left: 18.5%;
+  background-color: #1a0a0a;
+  border-radius: 3%;
+  height: 52%;
+  width: 63%;
+  padding: 3%;
+}
+
+.Proclamations-container {
+  box-sizing: border-box;
+  position: absolute;
+  /* background-color: #4CAF50; */
+  top: 0%;
+  right: 0%;
+  width: 83%;
+  height: 100%;
+}
+
+.Deck-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 14%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.Deck-number {
+  color: white;
+  font-size: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 50%;
+  left: 35%;
+}
+
+.ActionButton-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 68%;
+  left: 2.5%;
+  width: 14%;
+  height: 33%;
+}
+
+.ElectionCounter-container {
+  box-sizing: border-box;
+  position: absolute;
+  font-size: smaller;
+  color: white;
+  bottom: 2%;
+  right: 2%;
+  width: 12.6%;
+  height: 47.5%;
+}
+
+.Portrait-nameinfo {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  height: 20%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Colossal */

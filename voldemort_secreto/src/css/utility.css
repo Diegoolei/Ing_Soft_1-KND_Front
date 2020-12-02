@@ -1,0 +1,15 @@
+.ul-big {
+  list-style-type: none;
+  font-size: large;
+}
+
+
+.Div-invisible {
+  display: contents;
+}
+
+.Error-text {
+  color: red;
+  font-size: smaller;
+  font: italic;
+}

@@ -1,0 +1,239 @@
+.icon-approve {
+  height: 3.5vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 70%;
+  transform: scale(1.5);
+}
+
+.icon-2 {
+  height: 3.5vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 50%;
+  transform: scale(1.5);
+}
+
+.icon-small-inline {
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  display: inline;
+  transform: scale(1.5);
+}
+
+.icon-react2{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 40%;
+  left: 2%;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(1.5);
+}
+
+.icon-react{
+  position: absolute;
+  top: 2vw;
+  left: 27vw;
+  width: 9vw;
+  height: 100vh;
+  transform: scale(0.5);
+}
+
+.icon-css2{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 40%;
+  left: 8%;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(1.5);
+}
+
+.icon-css{
+  position: absolute;
+  top: 2vw;
+  left: 33vw;
+  width: 9vw;
+  height: 100vh;
+  transform: scale(0.5);
+}
+
+.icon-js2{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 40%;
+  left: 14%;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(1.5);
+}
+
+.icon-js{
+  position: absolute;
+  top: 2vw;
+  left: 39vw;
+  width: 9vw;
+  height: 100vh;
+  transform: scale(0.5);
+}
+
+.icon-python2{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 40%;
+  left: 20%;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(1.5);
+}
+
+.icon-python{
+  position: absolute;
+  top: 2vw;
+  left: 45vw;
+  width: 9vw;
+  height: 100vh;
+  transform: scale(0.5);
+}
+
+.icon-mysql2{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 40%;
+  left: 26%;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(1.5);
+}
+
+.icon-mysql{
+  position: absolute;
+  top: 2vw;
+  left: 51vw;
+  width: 9vw;
+  height: 100vh;
+  transform: scale(0.5);
+}
+
+.icon-github1-1{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 55.5%;
+  left: -12%;
+  position: absolute;
+  display: inline;
+  transform: scale(0.7);
+}
+
+.icon-github1{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 20vw;
+  top: 32vw;
+  left: 8vw;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(0.7);
+}
+
+.icon-github2-1{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 55.5%;
+  left: 3.5%; /*-13.5%;*/
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(0.7);
+}
+
+.icon-github2{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 20vw;
+  top: 32vw;
+  left: 26vw;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(0.7);
+}
+
+.icon-github3{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 55.5%;
+  left: 16.3%;
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(0.7);
+}
+
+.icon-github4{
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  top: 55.5%;
+  left: 26.5%; /*left: -13.5%;*/
+  /* width: 14%; */
+  /* height: 62%; */
+  position: absolute;
+  display: inline;
+  transform: scale(0.7);
+}
+
+.icon-small {
+  height: 6vmin; /*5vmin;*/
+  pointer-events: none;
+  width: 60%;
+  transform: scale(1.5);
+}
+
+.icon-bar-first {
+  width: 100%;
+  background-color: rgba(40, 27, 123, 0);
+  /* background-color: #555; */
+  overflow: auto;
+}
+  
+.icon-bar-first a {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar-first a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #e32828;
+}

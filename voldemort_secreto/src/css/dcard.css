@@ -1,0 +1,119 @@
+
+.Dcard-Popup {
+  box-sizing: border-box;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 8%;
+  top: 12%;
+  height: 70vh;
+  width: 60vw;
+  z-index: 1;
+  border-radius: 1%;
+}
+
+.Dcard-Popup-background {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0%;
+  top: 0%;
+  height: 150vh;
+  width: 100vw;
+  z-index: 1;
+  border-radius: 1%;
+}
+
+.Dcard-font-rules{
+  font-family: 'Gothic';
+  font-size: 80px;
+  color: rgb(242, 242, 242);
+  font-variant: normal;
+  font-weight: lighter;
+  padding: 4% 0;
+}
+
+
+.DCard-options {
+  display: inline-block;
+}
+
+.DCard-optionContainer {
+  box-sizing: border-box;
+  position: relative;
+  top: 2%;
+  max-height: 60%;
+  max-width: 100%;
+}
+
+.DCard-optionbutton {
+  box-sizing: border-box;
+  background-color: rgb(53, 47, 47);
+  color: white;
+  cursor: pointer;
+  width: 85%;
+  border-radius: 5%;
+  border: none;
+  padding: 1%;
+  margin: 3%;
+}
+
+.DCard-highlightedoption {
+  box-sizing: border-box;
+  background-color: rgb(107, 32, 32);
+  width: 93%;
+  color: rgb(20, 16, 16);
+  border-radius: 5%;
+  border: none;
+  padding: 1%;
+  margin: 3%;
+}
+
+.DCard-img {
+  box-sizing: border-box;
+  background-color: rgb(17, 15, 15);
+  width: 100%;
+  padding: 0.5%;
+  border-radius: 5%;
+}
+
+.DCard-confirm {
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+  background-color: rgb(44, 44, 44);
+  padding: 8px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 10%;
+  box-shadow: 0 5px #999; 
+  margin-bottom: 15px;
+}
+
+.DCard-confirm:hover {
+  background-color: rgb(79, 79, 79);
+  color: #fff;
+}
+
+.DCard-confirm:active {
+  background-color:  #5f5959;;
+  box-shadow: 0 3px #666; 
+  transform: translateY(4px);
+}
+
+.DCard-confirm-grey {
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+  background-color: rgb(43, 43, 43);
+  color: rgb(94, 94, 94);
+  padding: 8px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 5%;
+  box-shadow: 0 5px #999; 
+  margin-bottom: 15px;
+}

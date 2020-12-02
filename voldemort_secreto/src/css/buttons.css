@@ -1,0 +1,204 @@
+.button_dark_gray {
+  background-color: #555555;
+  border-radius: 12px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button_red {
+  background-color: #f44336;
+  border-radius: 12px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #555555; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-bottom: 15px;
+}
+
+.button:hover {background-color: #373333} /*#c93126*/
+
+.button:active {
+  background-color: #131010;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.button-shadow-red {
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #c22a2a; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-bottom: 15px;
+}
+
+.button-shadow-red:hover {background-color: #a51d1d} /*#c93126*/
+
+.button-shadow-red:active {
+  background-color: #8f1010;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.button-shadow-blue {
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4182d6; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-bottom: 20px;
+}
+
+.button-shadow-blue:hover {background-color: #1c64c2} /*#c93126*/
+
+.button-shadow-blue:active {
+  background-color: #0b438c;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.button-votation-red {
+  background-color: #f44336;
+  padding: 6px 14px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  box-shadow: 0 5px #999;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button-votation-red:active {
+  background-color: #8f1010;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.button-votation-red:hover {background-color: #db4545}
+
+.Button-Close {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  display: inline-block;
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #555555;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999; 
+  margin-bottom: 15px;
+}
+
+.Button-Close:hover {background-color: #353535;}
+
+.Button-Close:active {
+  background-color:  #1d1d1d;;
+  box-shadow: 0 3px #666; 
+  transform: translateY(4px);
+}
+
+.Action-button {
+  background-color: #8a0707;
+  outline: none;
+  box-shadow: 0 0px #999;
+  border: none;
+  border-radius: 20%;
+  cursor: pointer;
+  height: 90%;
+  width: 90%;
+}
+
+.Action-button:hover {
+  background-color: #5f0404;
+}
+
+.Action-button:active {
+  background-color: #610000;
+  box-shadow: 0 0px #666;
+  position: relative;
+  top: 5%;
+  height: 80%;
+  width: 80%;
+}
+
+.button_nav_bar {
+  background-color: rgba(92, 16, 16, 0.603); /*#b01919;*/ /*#b01992;*/ /*#19b04470*/ /*#3219b070*/
+  border-radius: 12px;
+  padding: 8px 18px;
+  /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
+}
+
+.button_nav_bar:hover {
+  background-color: #5f0404;
+}
+
+/* .button_nav_bar:active {
+  background-color: #610000;
+  box-shadow: 0 0px #666;
+  position: relative;
+  top: 5%;
+  height: 80%;
+  width: 80%;
+} */
+
+/* .button_nav_bar {
+  background-color: #b01919;
+  border-radius: 12px;
+  padding: 8px 8px;
+} */
+
+.button_about {
+  display: inline-block;
+  padding: 10px 26px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #555555; /*#f44336*/
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 3px #999;
+  margin-bottom: -3px;
+}
+
+.button_about:hover {background-color: #373333} /*#c93126*/
+
+.button_about:active {
+  background-color: #131010;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
