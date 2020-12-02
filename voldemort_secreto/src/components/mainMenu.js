@@ -43,7 +43,7 @@ function MainMenu () {
         <br/><button className="button" onClick={joinGame}>Rejoin Game</button>
         <br/><button className="button" onClick={() => dispatch(changeScreen(UPDATE_PROFILE_COMPONENT))}>Profile & Settings</button>
         {/* <br/><button className="button">View History (not available)</button> */}
-        <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button>
+        {/* <br/><button className="button" onClick={() => dispatch(changeScreen(ENDPOINT_SOCKET_TEST_COMPONENT))}>Endpoint & Socket Tests</button> */}
 
         {/* <br/><button className="buttom" onClick={() => dispatch(setVictimCandidatesToAvadaKedavra(["diego", "shiro", "cande", "agus", "sofi"]))}>Set Vitctim Candidates to AK</button>
         <br/><button className="button" onClick={() => setactive(!active)}>Switch AvadaKedavra</button>
