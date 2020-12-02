@@ -4,6 +4,7 @@ import { setCandidates } from './selectDirector/selectDirectorActions'
 import { wsConsumeMessage } from '../reduxIndex'
 import { saveDCardOptions } from '../game/discardCard/discardCardActions'
 import { setCrucioOptions } from '../game/crucio/crucioActions'
+// import { setImperiusOptions } from '../game/imperius/imperiusActions'
 
 import {
   playerJoinedLobby,
@@ -26,6 +27,7 @@ import {
 import { 
   enableVote,
   makeCrucioAvailable, 
+  // makeImperiusAvailable, 
   enableDiscardCard,
   makeSelectDirectorAvailable,
   makeExpelliarmusAvailable
@@ -174,6 +176,10 @@ export const processSocketMessage = jsonMsg => {
           case "ADIVINATION":
             dispatch(spellProphecy())
             break;
+
+          // case "IMPERIUS":
+          //   dispatch(spellProphecy())
+          //   break;
           
           default:
             console.log("Unknown spell has been requested")
@@ -185,10 +191,16 @@ export const processSocketMessage = jsonMsg => {
         dispatch(setCrucioOptions(payload))
         dispatch(makeCrucioAvailable())
         break;
+      
+      // case "REQUEST_IMPERIUS":
+      //   dispatch(setImperiusOptions(payload))
+      //   dispatch(makeImperiusAvailable())
+      //   break;
 
       case "ADIVINATION_NOTICE":
         dispatch(logAction(`Minister ${payload} reads the fate of the cards...`))
         break;
+        
       case "AVADA_KEDAVRA":
         break;
 

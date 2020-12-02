@@ -10,6 +10,7 @@ import ElectionCounter from './gameElectionCounter'
 import Proclamations from './gameProclamations'
 import Portraits from './gamePortraits'
 import Crucio from './gameCrucio'
+// import Imperius from './gameImperius'
 import DiscardCard from './gameDiscardCard'
 import SelectDirector from './selectDirector'
 import Vote from './gameVote'
@@ -112,6 +113,7 @@ function Game() {
       <div className="Game-container"><MainGame/></div>
       <div className="Chat-container"><Chat/></div>
       { activeApps.is_crucio_active ? <Crucio/> : null }
+      {/* { activeApps.is_imperius_active ? <Imperius/> : null } */}
       { activeApps.is_discard_card_active ? <DiscardCard/> : null }
       { activeApps.is_select_director_active ? <SelectDirector/> : null}
       { activeApps.is_vote_active ? <Vote/> : null }

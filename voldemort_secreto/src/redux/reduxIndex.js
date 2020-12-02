@@ -60,6 +60,10 @@ export {
   makeCrucioUnavailable,
   activateCrucio,
   deactivateCrucio,
+  // makeImperiusAvailable,
+  // makeImperiusUnavailable,
+  // activateImperius,
+  // deactivateImperius,
   activateAvadaKedavra,
   deactivateAvadaKedavra,
   makeExpelliarmusAvailable,
@@ -86,6 +90,13 @@ export {
   confirmCrucioSelection,
   resetCrucio
 } from './game/crucio/crucioActions'
+
+// export {
+//   highlightImperiusOption,
+//   setImperiusOptions,
+//   confirmImperiusSelection,
+//   resetImperius
+// } from './game/imperius/imperiusActions'
 
 export {
   resetAvadaKedavra,

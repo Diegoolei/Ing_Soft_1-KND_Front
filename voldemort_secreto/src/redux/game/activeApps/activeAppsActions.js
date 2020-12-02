@@ -15,6 +15,10 @@ import {
   APPS_MAKE_CRUCIO_UNAVAILABLE,
   APPS_ACTIVATE_CRUCIO,
   APPS_DEACTIVE_CRUCIO,
+  // APPS_MAKE_IMPERIUS_AVAILABLE,
+  // APPS_MAKE_IMPERIUS_UNAVAILABLE,
+  // APPS_ACTIVATE_IMPERIUS,
+  // APPS_DEACTIVE_IMPERIUS,
   APPS_MAKE_AVADA_KEDAVRA_AVAILABLE,
   APPS_MAKE_AVADA_KEDAVRA_UNAVAILABLE,
   APPS_ACTIVATE_AVADA_KEDAVRA,
@@ -148,6 +152,31 @@ export const deactivateCrucio = () => {
     type: APPS_DEACTIVE_CRUCIO
   }
 }
+
+
+// export const makeImperiusAvailable = () => {
+//   return {
+//     type: APPS_MAKE_IMPERIUS_AVAILABLE
+//   }
+// }
+
+// export const makeImperiusUnavailable = () => {
+//   return {
+//     type: APPS_MAKE_IMPERIUS_UNAVAILABLE
+//   }
+// }
+
+// export const activateImperius = () => {
+//   return {
+//     type: APPS_ACTIVATE_IMPERIUS
+//   }
+// }
+
+// export const deactivateImperius = () => {
+//   return {
+//     type: APPS_DEACTIVE_IMPERIUS
+//   }
+// }
 
 export const makeAvadaKedavraAvailable = () => {
   return {

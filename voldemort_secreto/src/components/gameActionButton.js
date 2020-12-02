@@ -3,6 +3,7 @@ import crucioIcon from '../metaMedia/crucio_icon.png'
 import { activateVote } from '../redux/game/activeApps/activeAppsActions'
 import {
   activateCrucio,
+  // activateImperius,
   activateCandidateSelection,
   activateDiscardCardDirector,
   activateDiscardCardMinister
@@ -14,7 +15,7 @@ function ActionButton() {
   const dispatch = useDispatch()
 
   function isMinister() {
-    const res = false
+    let res = false
     if (game.player_id===game.current_minister) {
       res = true
     }
@@ -23,6 +24,7 @@ function ActionButton() {
 
   let chosenButton = null
   if (activeApps.is_crucio_available) chosenButton = 'CRUCIO'
+  // if (activeApps.is_imperius_available) chosenButton = 'IMPERIUS'
   if (activeApps.is_discard_card_available) chosenButton = 'DISCARD_CARD'
   if (activeApps.is_select_director_available) chosenButton = 'SELECT_DIRECTOR'
   if (activeApps.is_vote_available) chosenButton = 'VOTE'
@@ -37,6 +39,12 @@ function ActionButton() {
       alt         = "Crucio"
       src         = crucioIcon
       break;
+
+    // case 'IMPERIUS':
+    //   buttonClick = () => dispatch(activateImperius())
+    //   alt         = "Imperius"
+    //   src         = crucioIcon
+    //   break;
 
     case 'SELECT_DIRECTOR':
       buttonClick = () => dispatch(activateCandidateSelection())

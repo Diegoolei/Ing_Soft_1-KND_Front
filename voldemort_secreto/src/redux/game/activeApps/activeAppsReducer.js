@@ -13,12 +13,16 @@ import {
   APPS_DISABLE_DISCARD_CARD,
   APPS_MAKE_CRUCIO_AVAILABLE,
   APPS_MAKE_CRUCIO_UNAVAILABLE,
+  // APPS_MAKE_IMPERIUS_AVAILABLE,
+  // APPS_MAKE_IMPERIUS_UNAVAILABLE,
   APPS_VOTE_AVAILABLE,
   APPS_VOTE_UNAVAILABLE,
   APPS_ACTIVATE_VOTE,
   APPS_DEACTIVATE_VOTE, 
   APPS_ACTIVATE_CRUCIO,
   APPS_DEACTIVE_CRUCIO,
+  // APPS_ACTIVATE_IMPERIUS,
+  // APPS_DEACTIVE_IMPERIUS,
   APPS_MAKE_AVADA_KEDAVRA_AVAILABLE,
   APPS_MAKE_AVADA_KEDAVRA_UNAVAILABLE,
   APPS_ACTIVATE_AVADA_KEDAVRA,
@@ -37,8 +41,8 @@ import {
     is_vote_active: false,
     is_discard_card_available: false,
     is_discard_card_active: false,
-    is_crucio_available: false,
-    is_crucio_active: false,
+    // is_imperius_available: false,
+    // is_imperius_active: false,
     is_avada_kedavra_available: false,
     is_avada_kedavra_active: false,
     is_expelliarmus_available: false,
@@ -146,6 +150,26 @@ const activeAppsReducer = (state = initialState, action) => {
       ...state,
       is_crucio_active: false
     }
+    
+    // case APPS_MAKE_IMPERIUS_AVAILABLE: return {
+    //   ...state,
+    //   is_imperius_available: true
+    // }
+
+    // case APPS_MAKE_IMPERIUS_UNAVAILABLE: return {
+    //   ...state,
+    //   is_imperius_available: false
+    // }
+    
+    // case APPS_ACTIVATE_IMPERIUS: return {
+    //   ...state,
+    //   is_imperius_active: true
+    // }
+
+    // case APPS_DEACTIVE_IMPERIUS: return {
+    //   ...state,
+    //   is_imperius_active: false
+    // }
       
     case APPS_MAKE_AVADA_KEDAVRA_AVAILABLE: return {
       ...state,
