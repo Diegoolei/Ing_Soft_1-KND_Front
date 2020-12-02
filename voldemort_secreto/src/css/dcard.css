@@ -2,12 +2,13 @@
 .Dcard-Popup {
   box-sizing: border-box;
   position: absolute;
-  background-color: rgba(161, 141, 75, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   left: 8%;
   top: 12%;
   height: 70vh;
   width: 60vw;
   z-index: 1;
+  border-radius: 1%;
 }
 
 .Dcard-Popup-background {
@@ -18,16 +19,18 @@
   height: 150vh;
   width: 100vw;
   z-index: 1;
+  border-radius: 1%;
 }
 
-.DCard-rules {
-  color: white;
-  float: center;
-  padding: 40px 0;
-  font-size: 50px;
-  font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+.Dcard-font-rules{
+  font-family: 'Gothic';
+  font-size: 80px;
+  color: rgb(242, 242, 242);
+  font-variant: normal;
+  font-weight: lighter;
+  padding: 4% 0;
 }
+
 
 .DCard-options {
   display: inline-block;
@@ -36,14 +39,14 @@
 .DCard-optionContainer {
   box-sizing: border-box;
   position: relative;
-  top: 5%;
+  top: 2%;
   max-height: 60%;
   max-width: 100%;
 }
 
 .DCard-optionbutton {
   box-sizing: border-box;
-  background-color: rgb(49, 43, 43);
+  background-color: rgb(53, 47, 47);
   color: white;
   cursor: pointer;
   width: 85%;
@@ -55,9 +58,9 @@
 
 .DCard-highlightedoption {
   box-sizing: border-box;
-  background-color: rgb(19, 4, 11);
+  background-color: rgb(107, 32, 32);
   width: 93%;
-  color: white;
+  color: rgb(20, 16, 16);
   border-radius: 5%;
   border: none;
   padding: 1%;
@@ -66,7 +69,7 @@
 
 .DCard-img {
   box-sizing: border-box;
-  background-color: white;
+  background-color: rgb(17, 15, 15);
   width: 100%;
   padding: 0.5%;
   border-radius: 5%;

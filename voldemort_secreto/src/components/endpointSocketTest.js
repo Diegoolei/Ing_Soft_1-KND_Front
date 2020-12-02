@@ -20,8 +20,9 @@ function TestSocket() {
   // const echoMsg = { "TYPE" : "PROCLAMATION", "PAYLOAD": 0}
   // const echoMsg = { "TYPE" : "MINISTER_DISCARD", "PAYLOAD": [ 0,1,1 ]}
   // const echoMsg = { "TYPE" : "REQUEST_CRUCIO", "PAYLOAD": 2}
+  const echoMsg = { "TYPE" : "REQUEST_CANDIDATE", "PAYLOAD" : ["Carol", "Banana", "Dexter"] }
   // const echoMsg = { "TYPE" : "REQUEST_CANDIDATE", "PAYLOAD" : ["user2", "user3", "user5"] }
-  const echoMsg = {"TYPE":"END_GAME","PAYLOAD":{"WINNER":0,"ROLES":{"user4":2,"user3":0,"user2":1,"user1":0,"user5":0}}}
+  // const echoMsg = {"TYPE":"END_GAME","PAYLOAD":{"WINNER":0,"ROLES":{"user4":2,"user3":0,"user2":1,"user1":0,"user5":0}}}
 
   if (unreadMsg.length !== 0) {
     const jsonmsg = unreadMsg[0]
