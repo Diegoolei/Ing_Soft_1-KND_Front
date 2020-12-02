@@ -18,7 +18,8 @@ import {
   CGL_USER_DONE_WITH_ACTION,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
-  CGL_VOTE
+  CGL_VOTE,
+  CGL_SET_PLAYER_DEAD
 } from './gameTypes'
 
 
@@ -213,6 +214,17 @@ const gameReducer = (state = initialState, action) => {
     case CGL_SET_CURRENT_CANDIDATE: return {
       ...state,
       current_candidate: action.payload
+    }
+
+    case CGL_SET_PLAYER_DEAD: return {
+      ...state,
+      player_array: {
+        ...state.player_array,
+        [action.payload]: {
+          ...state.player_array[action.payload],
+          is_alive: false
+        }
+      }
     }
 
     case CGL_START_WAITING_FOR_USER: return {

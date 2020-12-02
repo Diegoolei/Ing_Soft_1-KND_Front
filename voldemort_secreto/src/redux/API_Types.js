@@ -1,10 +1,8 @@
 
 //export const BASE_URL = 'http://190.xxx.xx.xx:8000'
 //export const BASE_WS_URL = 'ws://190.xxx.xx.xx:8000'
-export const BASE_URL = 'http://181.31.7.38:8000'
-export const BASE_WS_URL = 'ws://181.31.7.38:8000'
-// export const BASE_URL = 'http://127.0.0.1:8000'
-// export const BASE_WS_URL = 'ws://127.0.0.1:8000'
+export const BASE_URL = 'http://127.0.0.1:8000'
+export const BASE_WS_URL = 'ws://127.0.0.1:8000'
 
 //ENDPOINTS
 export const API_ENDPOINT_REGISTER            = '/users/'
