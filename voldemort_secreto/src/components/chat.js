@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { wsSendMessage } from '../redux/reduxIndex'
 
@@ -8,11 +8,12 @@ function Chat() {
   const dispatch = useDispatch()
   const [chat, setChat] = useState('')
   const [msg_len, setmsg_len] = useState(messages.length)
+  const msg_len_container = useRef(0)
 
   const scrollDown = () => {
     const objDiv = document.querySelectorAll('#chat_history')
     const fontSize = 30  // Make it twice as big as the actual font size
-    const scroll_top = objDiv[0].scrollTop
+    const scroll_top = objDiv[0].scrollTop //!FIXME
     const client_height = objDiv[0].clientHeight
     const scroll_height = objDiv[0].scrollHeight
     // console.log(`Scroll top: ${scroll_top}. Client Height: ${client_height}. Font size: ${fontSize}`)
@@ -21,11 +22,12 @@ function Chat() {
       objDiv[0].scrollTop = scroll_height
     }
   }
-
-  if (msg_len !== messages.length) {
-    setmsg_len(messages.length)
-    setTimeout(scrollDown,50)
-  }
+  useEffect(() => {
+    if (msg_len !== msg_len_container.current) {
+      msg_len_container.current = messages.length
+      setTimeout(scrollDown,50)
+    }
+  });
 
   function formatedLogMessages() {
     const msg_arr = []

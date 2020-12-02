@@ -101,10 +101,10 @@ function Portraits() {
     )
   }
 
-  const portraitPositionStyle = (top, left, bottom, right) => {
+  const portraitPositionStyle = (top, left, bottom, right, is_alive=true) => {
     let style = {
       root: {
-        "background-color": "rgb(47, 10, 10)",
+        "background-color": is_alive ? "rgb(47, 10, 10)" : "rgb(10, 10, 10)",
         position: "absolute",
         height: `${portrait_height}%`,
         width: `${portrait_width}%`
@@ -123,7 +123,13 @@ function Portraits() {
     let portrait_array = []
     for (let i in positions_arr) {
       const nick = positions_arr[i].nick
-      const clas = portraitPositionStyle(positions_arr[i].top, positions_arr[i].left,positions_arr[i].bottom, positions_arr[i].right)
+      const clas = portraitPositionStyle(
+        positions_arr[i].top, 
+        positions_arr[i].left,
+        positions_arr[i].bottom,
+        positions_arr[i].right,
+        player_arr[nick].is_alive
+      )
       const portr = (
       <div 
       key={`portrait_${nick}`}

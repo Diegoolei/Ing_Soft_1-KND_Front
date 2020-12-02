@@ -12,7 +12,6 @@ function ShowVotationResults() {
   
 
   function VotationResults () {
-    //const results = {"sarasa": false, "hola": true, "chau": true, "pedro": true, "juana": true} 
     let arrayResultsOfVotes = []
     let res = null
     let player_vote = ''

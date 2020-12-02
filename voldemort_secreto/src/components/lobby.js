@@ -36,7 +36,7 @@ function Lobby () {
         <button className="button" onClick={() => dispatch(leaveLobby(game.lobby_id))}>Leave Lobby</button>
         {game.is_owner ? startGameButton() : null}
         <button className="button" onClick={() => dispatch(activateChangeNick())}>Change Nick</button>
-        <Chat/>
+        <div className="Lobby-chatcontainer"><Chat/></div>
       </div>
     </header>
   )

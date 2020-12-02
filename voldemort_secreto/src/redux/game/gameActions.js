@@ -21,7 +21,8 @@ import {
   CGL_SET_PLAYER_ROLE,
   CGL_LOG_ACTION,
   CGL_CONSUME_LOG,
-  CGL_VOTE
+  CGL_VOTE,
+  CGL_SET_PLAYER_DEAD
 } from './gameTypes'
 
 
@@ -158,6 +159,13 @@ export const setPlayerRole = (nick, role) => {
       nick: nick,
       role: role
     }
+  }
+}
+
+export const setPlayerDead = nick => {
+  return {
+    type: CGL_SET_PLAYER_DEAD,
+    payload: nick
   }
 }
 

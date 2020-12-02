@@ -66,24 +66,24 @@ function About(){
     }
 
     return(
-        <header className="App-header">
+        <header className="header-about">
         <div className="App-div-about">
             <h1 className="title-first-screen">About</h1>
             <p>Languages used</p>
-            <div className="App-div-inline">
-                <img src={react} className="icon-react"></img>
-                <img src={css} className="icon-css"></img>
-                <img src={js} className="icon-js"></img>
-                <img src={python} className="icon-python"></img>
-                <img src={mysql} className="icon-mysql"></img>
+            <div className="div-inline-about">
+                <img src={react} className="icon-react" alt="logo"></img>
+                <img src={css} className="icon-css" alt="logo"></img>
+                <img src={js} className="icon-js" alt="logo"></img>
+                <img src={python} className="icon-python" alt="logo"></img>
+                <img src={mysql} className="icon-mysql" alt="logo"></img>
                 <p>Developers</p>
-                <img src={github} className="icon-github1"></img>
+                <img src={github} className="icon-github1" alt="logo"></img>
                 {redirectAgustin()}
-                <img src={github} className="icon-github2"></img>
+                <img src={github} className="icon-github2" alt="logo"></img>
                 {redirectDiego()}
-                <img src={github} className="icon-github3"></img>
+                <img src={github} className="icon-github3" alt="logo"></img>
                 {redirectCande()}
-                <img src={github} className="icon-github4"></img>
+                <img src={github} className="icon-github4" alt="logo"></img>
                 {redirectValentina()}
                 <h4>Source</h4>
                 <p> Author from music used: - Iago Roberts | Low Fideos - #RetoLofi (https://youtu.be/zWdpeaTcoy0) </p>

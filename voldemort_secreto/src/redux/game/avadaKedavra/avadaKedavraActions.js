@@ -6,6 +6,7 @@ import {
   API_ENDPOINT_SPELL,
   API_ENDPOINT_AVADA_KEDAVRA
 } from '../../API_Types'
+import { deactivateAvadaKedavra, makeAvadaKedavraUnavailable } from '../activeApps/activeAppsActions'
 
 import {
   CGL_AVADA_KEDAVRA_RESET,
@@ -26,10 +27,10 @@ export const setVictimCandidatesToAvadaKedavra = victimsCandidatesArray => {
   }
 }
 
-export const selectVictimToAvadaKedavra = victim_nick => {
+export const selectVictimToAvadaKedavra = i => {
   return {
     type: CGL_SELECT_VICTIM_AVADA_KEDAVRA,
-    payload: victim_nick
+    payload: i
   }
 }
 
@@ -46,6 +47,9 @@ export const confirmVictimToAvadaKedavra = victim_number => {
       ).then(response => {
         console.log(response.data)
         console.log("-Response :" + JSON.stringify(response.data))
+        dispatch(makeAvadaKedavraUnavailable())
+        dispatch(deactivateAvadaKedavra())
+        dispatch(resetAvadaKedavra())
       }).catch(error => {
           let errorMsg
           try {
@@ -58,4 +62,4 @@ export const confirmVictimToAvadaKedavra = victim_number => {
           console.log("-Response :" + JSON.stringify(errorMsg))
         })
     }  
-}
+}      

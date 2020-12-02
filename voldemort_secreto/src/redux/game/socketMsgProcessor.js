@@ -1,9 +1,9 @@
 import store from '../store'
 import { setCandidates } from './selectDirector/selectDirectorActions'
-// import { activateShowResults } from '../game/votationResults/votationResultsActions'
 import { wsConsumeMessage } from '../reduxIndex'
 import { saveDCardOptions } from '../game/discardCard/discardCardActions'
 import { setCrucioOptions } from '../game/crucio/crucioActions'
+import { setVictimCandidatesToAvadaKedavra } from '../game/avadaKedavra/avadaKedavraActions'
 
 import {
   playerJoinedLobby,
@@ -20,7 +20,8 @@ import {
   setMinister,
   setElectionCounter,
   spellProphecy,
-  setPlayerRole
+  setPlayerRole,
+  setPlayerDead
 } from './gameActions'
 
 import { 
@@ -28,7 +29,8 @@ import {
   makeCrucioAvailable, 
   enableDiscardCard,
   makeSelectDirectorAvailable,
-  makeExpelliarmusAvailable
+  makeExpelliarmusAvailable,
+  makeAvadaKedavraAvailable
 } from './activeApps/activeAppsActions'
 
 export const processSocketMessage = jsonMsg => {
@@ -148,15 +150,15 @@ export const processSocketMessage = jsonMsg => {
         }
         dispatch(updateDeckAmount())
         break;
+
       case "END_GAME":
-        let endgame_msg = ''
-        const roles = payload.PAYLOAD
+        const roles = payload.ROLES
         const winner_string = payload.WINNER === 0 ? "Order of the Phoenix" : "Death Eaters"
-        if (payload.WINNER === 0) {
-          dispatch(proclaimPhoenix())
-        } else {
-          dispatch(proclaimDeathEater())
-        }
+        // if (payload.WINNER === 0) {
+        //   dispatch(proclaimPhoenix())
+        // } else {
+        //   dispatch(proclaimDeathEater())
+        // }
         dispatch(logAction(`Winner: ${winner_string}`))
         for (let nick in roles) {
           const endgame_role = roles[nick]
@@ -165,14 +167,26 @@ export const processSocketMessage = jsonMsg => {
           if (endgame_role === 1) endgame_stringrole = "Death Eater"
           if (endgame_role === 2) endgame_stringrole = "Voldemort"
           dispatch(setPlayerRole(nick,roles[nick]))
-          endgame_msg = endgame_msg + ` ${nick} : ${endgame_stringrole} `
+          dispatch(logAction(`${nick} : ${endgame_stringrole}`))
         }
-        dispatch(logAction(endgame_msg))
         break;
       case "REQUEST_SPELL":
         switch (payload) { 
           case "ADIVINATION":
             dispatch(spellProphecy())
+            break;
+          
+          case "AVADA_KEDAVRA":
+            let possible_victims = []
+            for (let nick in game.player_array) {
+              const ak_alive = game.player_array[nick].is_alive
+              const ak_is_current_player = nick === game.player_nick
+              if (ak_alive && !ak_is_current_player) {
+                possible_victims.push(nick)
+              }
+            }
+            dispatch(setVictimCandidatesToAvadaKedavra(possible_victims))
+            dispatch(makeAvadaKedavraAvailable())
             break;
           
           default:
@@ -190,6 +204,8 @@ export const processSocketMessage = jsonMsg => {
         dispatch(logAction(`Minister ${payload} reads the fate of the cards...`))
         break;
       case "AVADA_KEDAVRA":
+        dispatch(logAction(`Minister killed ${payload} in a duel.`))
+        dispatch(setPlayerDead(payload))
         break;
 
       case "CHAT":
