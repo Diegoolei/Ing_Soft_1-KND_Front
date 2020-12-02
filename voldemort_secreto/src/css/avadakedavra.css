@@ -1,0 +1,113 @@
+
+.AvadaKedavra-rules {
+  color: white;
+}
+
+.AvadaKedavra-options {
+  display: inline-block;
+}
+
+.AvadaKedavra-optionContainer {
+  box-sizing: border-box;
+  position: relative;
+  top: 20%;
+  max-height: 50%;
+  max-width: 100%;
+  /* background-color: aqua; */
+}
+
+.AvadaKedavra-optionbutton {
+  box-sizing: border-box;
+  background-color: rgb(49, 43, 43);
+  color: white;
+  width: 100%;
+  border-radius: 5%;
+  border: none;
+  padding: 1%;
+  margin: 3%;
+}
+
+.AvadaKedavra-highlightedoption {
+  box-sizing: border-box;
+  background-color: rgb(34, 9, 21);
+  width: 100%;
+  color: white;
+  border-radius: 5%;
+  border: none;
+  padding: 1%;
+  margin: 3%;
+}
+
+.AvadaKedavra-img {
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  padding: 3%;
+}
+
+/* .AvadaKedavra-confirm {
+  position: absolute;
+  bottom: 5%;
+  box-sizing: border-box;
+  background-color: rgb(43, 43, 43);
+} */
+
+.AvadaKedavra-confirm {
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+  background-color: rgb(44, 44, 44);
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999; 
+  margin-bottom: 15px;
+}
+
+.AvadaKedavra-confirm:hover {
+  background-color: rgb(79, 79, 79);
+  color: #fff;
+}
+
+.AvadaKedavra-confirm:active {
+  background-color:  #5f5959;;
+  box-shadow: 0 3px #666; 
+  transform: translateY(4px);
+}
+
+.AvadaKedavra-confirm-grey {
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+  background-color: rgb(43, 43, 43);
+  color: rgb(94, 94, 94);
+  padding: 8px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999; 
+  margin-bottom: 15px;
+}
+
+.AvadaKedavra-revealcontainer {
+  display: block;
+  position: relative;
+  color: white;
+  top: 10%;
+}
+
+.AvadaKedavra-revealimg {
+  background-color: white;
+  max-width: 40%;
+}

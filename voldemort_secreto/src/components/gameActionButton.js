@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import crucioIcon from '../metaMedia/crucio_icon.png'
-import { activateVote } from '../redux/game/activeApps/activeAppsActions'
+import { activateAvadaKedavra, activateVote } from '../redux/game/activeApps/activeAppsActions'
 import {
   activateCrucio,
   activateCandidateSelection,
@@ -13,19 +13,14 @@ function ActionButton() {
   const game = useSelector(state => state.game)
   const dispatch = useDispatch()
 
-  function isMinister() {
-    const res = false
-    if (game.player_id===game.current_minister) {
-      res = true
-    }
-    return res
-  }
+  const isMinister = () => game.player_id===game.current_minister
 
   let chosenButton = null
   if (activeApps.is_crucio_available) chosenButton = 'CRUCIO'
   if (activeApps.is_discard_card_available) chosenButton = 'DISCARD_CARD'
   if (activeApps.is_select_director_available) chosenButton = 'SELECT_DIRECTOR'
   if (activeApps.is_vote_available) chosenButton = 'VOTE'
+  if (activeApps.is_avada_kedavra_available) chosenButton = 'AVADA_KEDAVRA'
 
   let buttonClick = () => null
   let alt = "empty button"
@@ -59,6 +54,13 @@ function ActionButton() {
       buttonClick = () => dispatch(activateVote())
       alt         = 'Vote'
       src         = crucioIcon
+      break;
+
+    case 'AVADA_KEDAVRA':
+      buttonClick = () => dispatch(activateAvadaKedavra())
+      alt         = 'Avada Kedavra'
+      src         = crucioIcon
+      break;
 
     default:
       break;

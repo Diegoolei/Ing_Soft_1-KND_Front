@@ -15,6 +15,7 @@ import SelectDirector from './selectDirector'
 import Vote from './gameVote'
 import Expelliarmus from './gameExpelliarmus'
 import AvadaKedavra from './avadaKedavra'
+import { makeAvadaKedavraAvailable } from '../redux/game/activeApps/activeAppsActions'
 
 function Game() {
   const dispatch = useDispatch()

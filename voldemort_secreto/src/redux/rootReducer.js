@@ -8,7 +8,7 @@ import activeAppsReducer from './game/activeApps/activeAppsReducer'
 import selectDirectorReducer from './game/selectDirector/selectDirectorReducer'
 import votationResultsReducer from './game/votationResults/votationResultsReducer'
 import crucioReducer from './game/crucio/crucioReducer'
-import avadaKedavraReducer from './game/selectDirector/selectDirectorReducer'
+import avadaKedavraReducer from './game/avadaKedavra/avadaKedavraReducer'
 import playerPortraitReducer from './game/playerPortrait/playerPortraitReducer'
 import discardCardReducer from './game/discardCard/discardCardReducer'
 
