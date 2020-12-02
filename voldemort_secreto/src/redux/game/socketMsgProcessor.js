@@ -154,11 +154,11 @@ export const processSocketMessage = jsonMsg => {
       case "END_GAME":
         const roles = payload.ROLES
         const winner_string = payload.WINNER === 0 ? "Order of the Phoenix" : "Death Eaters"
-        if (payload.WINNER === 0) {
-          dispatch(proclaimPhoenix())
-        } else {
-          dispatch(proclaimDeathEater())
-        }
+        // if (payload.WINNER === 0) {
+        //   dispatch(proclaimPhoenix())
+        // } else {
+        //   dispatch(proclaimDeathEater())
+        // }
         dispatch(logAction(`Winner: ${winner_string}`))
         for (let nick in roles) {
           const endgame_role = roles[nick]
