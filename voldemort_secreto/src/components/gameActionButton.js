@@ -3,7 +3,6 @@ import crucioIcon from '../metaMedia/ActionButton/crucio_icon.png'
 import hat2 from '../metaMedia/ActionButton/hat2.png'
 import discardCard from '../metaMedia/ActionButton/discardCard.png'
 import voto from '../metaMedia/ActionButton/voto.svg' 
-import { activateVote } from '../redux/game/activeApps/activeAppsActions'
 import { activateAvadaKedavra, activateVote } from '../redux/game/activeApps/activeAppsActions'
 import {
   activateCrucio,
