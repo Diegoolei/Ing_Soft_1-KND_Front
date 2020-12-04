@@ -1,4 +1,3 @@
-import react from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
 import icons from '../metaMedia/icons/iconindex'
@@ -7,7 +6,6 @@ import { deactivateAvadaKedavra } from '../redux/reduxIndex'
  
 function SpellAvadaKedavra() {
   const dispatch = useDispatch()
-  const token = useSelector(state => state.session.authToken)
   const game = useSelector(state => state.game)
   const candidates_avada_kedravra = useSelector(state => state.avada_kedavra.candidates_avada_kedravra)
   const highlighted_option = useSelector(state =>state.avada_kedavra.highlighted_option)

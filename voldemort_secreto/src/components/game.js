@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import processSocketMessage from '../redux/game/socketMsgProcessor'
 import Header from './gameHeader'
@@ -15,7 +15,6 @@ import SelectDirector from './selectDirector'
 import Vote from './gameVote'
 import Expelliarmus from './gameExpelliarmus'
 import AvadaKedavra from './avadaKedavra'
-import { makeAvadaKedavraAvailable } from '../redux/game/activeApps/activeAppsActions'
 
 function Game() {
   const dispatch = useDispatch()
@@ -23,9 +22,9 @@ function Game() {
   const activeApps = useSelector(state => state.active_apps)
   const unprocessed_socket_messages = useSelector(state => state.socket.messages)
   //const votationActive = useSelector(state => state.votation_results.is_show_results_active)
-  const [showingSecretInfo, setShowingSecretInfo] = useState(false)
+  //const [showingSecretInfo, setShowingSecretInfo] = useState(false)
 
-  const info = () => {
+/*  const info = () => {
     return (
       <div className="Div-invisible">
         <br /><button onClick={() => setShowingSecretInfo(!showingSecretInfo)}>Show Secret Role</button>
@@ -39,6 +38,7 @@ function Game() {
       </div>
     )
   }
+*/
 
   useEffect(() => {
     if (unprocessed_socket_messages.length !== 0) {
@@ -66,7 +66,7 @@ function Game() {
     return undefined
   }
 
-  function secretInfo() {
+/*  function secretInfo() {
     const user_role = gameState.player_array[gameState.player_nick].role
     let otherRoles = []
     let auxRole = undefined
@@ -83,7 +83,7 @@ function Game() {
       </p>
     )
   }
-
+*/
   const currentMinisterString = () => String(getNickByNumber(gameState.current_minister))
   const currentDirectorString = () => {
     if (gameState.current_director === -1) {

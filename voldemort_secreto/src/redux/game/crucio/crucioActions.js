@@ -7,10 +7,10 @@ import {
 } from './crucioTypes'
 import {
   BASE_URL,
+  API_ENDPOINT_GAME_INFO,
   API_ENDPOINT_CRUCIO
 } from '../../API_Types'
 
-import { deactivateCrucio } from '../activeApps/activeAppsActions'
 import axios from 'axios'
 import { setPlayerRole } from '../gameActions'
 
@@ -57,7 +57,7 @@ export const setCrucioOptions = except_player_number => {
 export const confirmCrucioSelection = victim_number => {
   const state = store.getState()
   const token = state.session.authToken
-  const uri = BASE_URL + `/games/${state.game.game_id}/spell/crucio`
+  const uri = BASE_URL+API_ENDPOINT_GAME_INFO+`${state.game.game_id}`+API_ENDPOINT_CRUCIO
   return dispatch => {
     const body = { victim_number : victim_number }
     axios.post(uri, body,

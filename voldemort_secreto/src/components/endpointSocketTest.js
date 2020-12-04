@@ -15,7 +15,7 @@ function TestSocket() {
   const [currentGame_id, setCurrentGame_id] = useState('')
   const [selectDirector_number, setselectDirector_number] = useState('')
   const [chatmsg, setchatmsg] = useState('')
-  const votes = {"kndilta": false, "kndilta1": true, "kndilta2": true, "kndilta3": true, "kndilta4": true}
+  //const votes = {"kndilta": false, "kndilta1": true, "kndilta2": true, "kndilta3": true, "kndilta4": true}
   // const echoMsg = { "TYPE" : "ELECTION_RESULT", "PAYLOAD": votes }
   // const echoMsg = { "TYPE" : "PROCLAMATION", "PAYLOAD": 0}
   // const echoMsg = { "TYPE" : "MINISTER_DISCARD", "PAYLOAD": [ 0,1,1 ]}

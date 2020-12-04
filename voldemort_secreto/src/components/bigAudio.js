@@ -1,6 +1,7 @@
 import React from 'react';
-import Expo, { Audio } from 'expo';
-import { View } from 'react-native';
+import Expo from 'expo';
+//import Audio from 'expo';
+//import { View } from 'react-native';
 
 export default class BgAudio extends React.Component {
 
